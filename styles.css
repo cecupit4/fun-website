@@ -431,5 +431,112 @@ body {
   margin-bottom: 1.25rem;
 }
 
+/* Soundstage 1000-Cover Galaxy Visual */
+.soundstage-visual {
+  background: linear-gradient(160deg, #10141f 0%, #07090d 100%);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  border-radius: 22px;
+  box-shadow: 0 0 45px rgba(0, 242, 254, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin: 1.5rem 0 2rem 0;
+  position: relative;
+}
+
+.soundstage-header {
+  background: rgba(14, 18, 27, 0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+  padding: 1.25rem 1.5rem;
+}
+
+.soundstage-deck-layout {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .soundstage-deck-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.soundstage-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 4px;
+  padding: 12px;
+  max-height: 560px;
+  overflow-y: auto;
+  background: #080a0e;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1200px) {
+  .soundstage-matrix {
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 5px;
+    padding: 14px;
+  }
+}
+
+.soundstage-matrix::-webkit-scrollbar {
+  width: 8px;
+}
+
+.soundstage-matrix::-webkit-scrollbar-track {
+  background: #0d1017;
+}
+
+.soundstage-matrix::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 254, 0.4);
+  border-radius: 4px;
+}
+
+.soundstage-matrix::-webkit-scrollbar-thumb:hover {
+  background: #00f2fe;
+}
+
+.matrix-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #141722;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.matrix-tile:hover {
+  transform: scale(2.2);
+  z-index: 50;
+  border-color: #00f2fe;
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.7);
+}
+
+.matrix-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.matrix-tile.is-active {
+  border: 2px solid #00f2fe;
+  box-shadow: 0 0 14px #00f2fe;
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.matrix-tile.is-dimmed {
+  opacity: 0.15;
+  filter: grayscale(80%);
+}
+
+
 
 
