@@ -649,6 +649,308 @@ body {
   filter: grayscale(80%);
 }
 
+/* ================================================================
+   THE GRAND HI-FI TURNTABLE DECK (Realistic Audio Player)
+   ================================================================ */
+
+.grand-turntable-deck {
+  background: radial-gradient(circle at 25% 25%, #1c2230 0%, #0c0f16 100%);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85), inset 0 2px 3px rgba(255, 255, 255, 0.15), 0 0 35px rgba(0, 242, 254, 0.12);
+  padding: 1.75rem;
+  margin: 1.5rem 0 2.5rem 0;
+  position: relative;
+}
+
+.turntable-bezel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.25rem;
+}
+
+.turntable-logo-text {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffd166;
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+}
+
+.turntable-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .turntable-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .tonearm-column {
+    display: none;
+  }
+}
+
+/* The Big Circular Platter containing all album covers */
+.big-platter-well {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #080a0e;
+  border: 14px solid #1a202c;
+  box-shadow: 0 0 0 3px #3b4252, inset 0 0 35px rgba(0,0,0,0.95), 0 15px 35px rgba(0,0,0,0.85);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inside the platter: The Album Covers Mosaic */
+.platter-covers-mosaic {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 3px;
+  padding: 20px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: #090c12;
+}
+
+.platter-covers-mosaic::-webkit-scrollbar {
+  width: 6px;
+}
+.platter-covers-mosaic::-webkit-scrollbar-track {
+  background: #090c12;
+}
+.platter-covers-mosaic::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 254, 0.35);
+  border-radius: 3px;
+}
+
+.platter-cover-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #141722;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.platter-cover-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.platter-cover-tile:hover {
+  transform: scale(2.4);
+  z-index: 60;
+  border-color: #00f2fe;
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.8);
+}
+
+.platter-cover-tile.is-active-track {
+  border: 2px solid #ffd166;
+  box-shadow: 0 0 15px #ffd166;
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.platter-cover-tile.is-dimmed {
+  opacity: 0.15;
+  filter: grayscale(80%);
+}
+
+/* Center Spindle Hub floating in middle of platter */
+.center-spindle-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #12151e;
+  border: 4px solid #ffd166;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 209, 102, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.center-spinning-vinyl {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: vinylSpin 6s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-spinning-vinyl img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spindle-pin {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #a0aec0 70%, #4a5568 100%);
+  border: 2px solid #1a202c;
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 50;
+}
+
+/* Tonearm Assembly on Right */
+.tonearm-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 500px;
+  position: relative;
+}
+
+.tonearm-base {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #4a5568 0%, #1a202c 80%);
+  border: 3px solid #718096;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tonearm-counterweight {
+  width: 44px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #718096, #2d3748);
+  border: 1px solid #a0aec0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.tonearm-rod {
+  width: 8px;
+  height: 330px;
+  background: linear-gradient(to right, #cbd5e0, #e2e8f0, #718096);
+  border-radius: 4px;
+  margin-top: -15px;
+  position: relative;
+  transform-origin: top center;
+  transform: rotate(-10deg);
+  box-shadow: 3px 6px 12px rgba(0,0,0,0.5);
+  animation: armBob 3s ease-in-out infinite alternate;
+}
+
+@keyframes armBob {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+.tonearm-headshell {
+  position: absolute;
+  bottom: -22px;
+  left: -8px;
+  width: 24px;
+  height: 38px;
+  background: linear-gradient(135deg, #2d3748, #1a202c);
+  border: 1px solid #718096;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.needle-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f2fe;
+  box-shadow: 0 0 10px #00f2fe;
+}
+
+/* Pitch / Tempo Slider on Tonearm column */
+.pitch-control {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #a0aec0;
+  font-family: monospace;
+}
+
+/* LCD Screen & Deck Console */
+.turntable-lcd-screen {
+  background: #080d14;
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+.lcd-playback-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.lcd-album-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.lcd-meta-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.lcd-chip {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-family: monospace;
+  font-weight: 700;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+}
+
+
 
 
 
