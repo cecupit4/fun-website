@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Top 1000 Album Covers – Album Covers</title>
+<title>Album Cover Archive – Album Covers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -108,8 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -146,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">About the Album Cover Archive</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -167,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Top 1000 Album Covers</h1>
+<h1 class="title">Album Cover Archive</h1>
 </div>
 
 
@@ -184,304 +147,340 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Explore all 1,000 greatest albums of all time loaded directly inside a grand interactive vinyl turntable.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="13" data-source-offset="-36"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 12;"><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>albums <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"top_1000_albums.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>cleanData <span class="op">=</span> albums<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span>d<span class="op">,</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primary_genre</span><span class="op">:</span> d<span class="op">.</span><span class="at">genres</span> <span class="op">?</span> d<span class="op">.</span><span class="at">genres</span><span class="op">.</span><span class="fu">split</span>(<span class="st">","</span>)[<span class="dv">0</span>]<span class="op">.</span><span class="fu">trim</span>() <span class="op">:</span> <span class="st">"other"</span><span class="op">,</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">decade</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(d<span class="op">.</span><span class="at">year</span> <span class="op">/</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span><span class="sc">}</span><span class="vs">s`</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">// State for active album on the needle</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>mutable activeAlbum <span class="op">=</span> cleanData[<span class="dv">0</span>]</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>mutable isSpinning <span class="op">=</span> <span class="kw">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<p>Explore the iconic album cover art from the <a href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">Cover Art Archive (Open Culture)</a> and the <a href="https://browse.gallery/en/project_category/album-cover-en/">Browse Gallery</a> Hipgnosis collection, loaded directly inside a grand interactive vinyl turntable.</p>
+<div class="grand-turntable-deck">
+  <!-- Top Bezel: Navigation & Deck Branding -->
+  <div class="turntable-bezel">
+    <div class="turntable-logo-text">
+      🏛️ COVER ART ARCHIVE // BROWSE GALLERY HI-FI DECK
+    </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
+    <!-- Creative Anodized Hardware Channel Switcher -->
+    <div class="hardware-switch-nav" style="margin-bottom: 0;">
+      <a href="index.html" class="switch-nav-btn is-active">
+        <div class="switch-top-line">
+          <span class="switch-led"></span>
+          <span>CH-1: 🎛️ TURNTABLE</span>
+        </div>
+        <div class="switch-subtext">33 RPM Platter Deck</div>
+      </a>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-3" data-nodetype="declaration">
+      <a href="compare.html" class="switch-nav-btn">
+        <div class="switch-top-line">
+          <span class="switch-led"></span>
+          <span>CH-2: 🎚️ COMPARATOR</span>
+        </div>
+        <div class="switch-subtext">Crossfader &amp; FX Battle</div>
+      </a>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-4" data-nodetype="declaration">
+      <a href="game.html" class="switch-nav-btn">
+        <div class="switch-top-line">
+          <span class="switch-led"></span>
+          <span>CH-3: 🕹️ ARCADE SHOWDOWN</span>
+        </div>
+        <div class="switch-subtext">Rank Guesser Game</div>
+      </a>
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="29" data-source-offset="-39"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 28;"><span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>viewof searchQuery <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">"Search 1,000 albums on the turntable..."</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>genresList <span class="op">=</span> [<span class="st">"All"</span><span class="op">,</span> <span class="st">"rock"</span><span class="op">,</span> <span class="st">"pop"</span><span class="op">,</span> <span class="st">"folk"</span><span class="op">,</span> <span class="st">"electronica"</span><span class="op">,</span> <span class="st">"punk"</span><span class="op">,</span> <span class="st">"hip-hop"</span><span class="op">,</span> <span class="st">"soul"</span><span class="op">,</span> <span class="st">"jazz"</span><span class="op">,</span> <span class="st">"country"</span><span class="op">,</span> <span class="st">"metal"</span>]</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>viewof selectedGenre <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(genresList<span class="op">,</span> {</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Platter Genre"</span><span class="op">,</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"All"</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
+      <a href="about.html" class="switch-nav-btn">
+        <div class="switch-top-line">
+          <span class="switch-led"></span>
+          <span>CH-4: 📻 INTEL ARCHIVE</span>
+        </div>
+        <div class="switch-subtext">Master Credits &amp; Info</div>
+      </a>
+    </div>
+  </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="declaration">
+  <!-- Turntable Body: Giant Circular Platter on Left, Realistic Tonearm on Right -->
+  <div class="turntable-body-grid">
+    <!-- Big Circular Platter filled with the album cover photos -->
+    <div class="big-platter-well">
+      <!-- Center Spindle Hub with spinning active album artwork -->
+      <div class="center-spindle-hub" id="spindleHub">
+        <div class="center-spinning-vinyl" id="centerVinyl">
+          <img id="spindleImg" src="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" alt="The Dark Side of the Moon" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Vinyl';">
+        </div>
+        <div class="spindle-pin"></div>
+      </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-3" data-nodetype="declaration">
+      <!-- Inside the Platter: The Album Cover Photos Mosaic -->
+      <div class="platter-covers-mosaic is-archive" id="platterMosaic">
+          <div class="platter-cover-tile" data-index="0" data-title="Ruins" data-artist="First Aid Kit" data-year="2018" data-source="Open Culture Cover Art Archive" data-img="https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg" title="Ruins — First Aid Kit (2018) | Open Culture Cover Art Archive">
+            <img src="https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg" alt="Ruins" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="1" data-title="Meddle" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Meddle_Pink-Floyd_copyright-Pink-Floyd-Music-Ltd.-Browse-Gallery.jpg" title="Meddle — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2023/01/Meddle_Pink-Floyd_copyright-Pink-Floyd-Music-Ltd.-Browse-Gallery.jpg" alt="Meddle" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile is-active-track" data-index="2" data-title="The Dark Side of the Moon" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" title="The Dark Side of the Moon — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" alt="The Dark Side of the Moon" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="3" data-title="Atom Heart Mother" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/PF-Atom-Heart-Mother-copyright_pink-Floyd-Music-LTD.-Browse-Gallery.jpg" title="Atom Heart Mother — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2023/01/PF-Atom-Heart-Mother-copyright_pink-Floyd-Music-LTD.-Browse-Gallery.jpg" alt="Atom Heart Mother" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="4" data-title="Wish you were here" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" title="Wish you were here — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" alt="Wish you were here" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="5" data-title="Oh! You Pretty Things" data-artist="Lilac" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2020/11/DavidBowie_OhYouPrettyThings_Lilac_AlbumCoverArtPrint.jpg" title="Oh! You Pretty Things — Lilac (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2020/11/DavidBowie_OhYouPrettyThings_Lilac_AlbumCoverArtPrint.jpg" alt="Oh! You Pretty Things" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="6" data-title="Pink Floyd" data-artist="The later Years Box Set Image" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2019/12/Pink-Floyd-later-years-cover-art-2.jpg" title="Pink Floyd — The later Years Box Set Image (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2019/12/Pink-Floyd-later-years-cover-art-2.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="7" data-title="ACDC -Dirty Deeds Done Dirt Cheap" data-artist="Hipgnosis / Storm Thorgerson" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2019/12/ACDC_Hipgnosis.jpg" title="ACDC -Dirty Deeds Done Dirt Cheap — Hipgnosis / Storm Thorgerson (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2019/12/ACDC_Hipgnosis.jpg" alt="ACDC -Dirty Deeds Done Dirt Cheap" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="8" data-title="10cc Greatest Hits" data-artist="1972-1978" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/09/10cc_greatesthits_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc Greatest Hits — 1972-1978 (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/09/10cc_greatesthits_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc Greatest Hits" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="9" data-title="Riff Raff" data-artist="Vinyl Fu­tures" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/09/VinylFutures_RiffRaff_AlbumCoverArtPrint_StormThorgerson_fu_plusl-min.jpg" title="Riff Raff — Vinyl Fu­tures (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/09/VinylFutures_RiffRaff_AlbumCoverArtPrint_StormThorgerson_fu_plusl-min.jpg" alt="Riff Raff" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="10" data-title="10cc" data-artist="The Original Sound­track" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/08/10cc_originalsoundtrack_albumcoverartprint_hipgnosis_full-wi.jpg" title="10cc — The Original Sound­track (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/08/10cc_originalsoundtrack_albumcoverartprint_hipgnosis_full-wi.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="11" data-title="Be Bop Deluxe" data-artist="Drastic Plastic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/hipgnosis_bebopdeluxe_drasticplastic_kopiebanner.jpg" title="Be Bop Deluxe — Drastic Plastic (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/hipgnosis_bebopdeluxe_drasticplastic_kopiebanner.jpg" alt="Be Bop Deluxe" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="12" data-title="Godley and Creme" data-artist="Freeze Frame" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/GodleyAndCreme_FreezeFrame_AlbumCoverArtPrint_Hipgnosis_kopiefull.jpg" title="Godley and Creme — Freeze Frame (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/GodleyAndCreme_FreezeFrame_AlbumCoverArtPrint_Hipgnosis_kopiefull.jpg" alt="Godley and Creme" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="13" data-title="10cc" data-artist="Sheetmusic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_sheetmusic_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc — Sheetmusic (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_sheetmusic_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="14" data-title="Montrose" data-artist="Jump on it" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/Montrose_JumpOnIt_AlbumCoverArt_Hipgnosis_full-width.jpg" title="Montrose — Jump on it (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/Montrose_JumpOnIt_AlbumCoverArt_Hipgnosis_full-width.jpg" alt="Montrose" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="15" data-title="10cc" data-artist="how dare you" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_howdareyou_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc — how dare you (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_howdareyou_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="16" data-title="10cc" data-artist="Deceptive Bends" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_deceptivebends_albumcoverartprint_hipgnosis_signing_aub.jpg" title="10cc — Deceptive Bends (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_deceptivebends_albumcoverartprint_hipgnosis_signing_aub.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="17" data-title="Led Zeppelin" data-artist="Knebworth" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/Led-Zepplin.jpg" title="Led Zeppelin — Knebworth (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/Led-Zepplin.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="18" data-title="Styx" data-artist="Pieces of Eight" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/styx_piecesofeight_albumcoverart_hipgnosis_full-width.jpg" title="Styx — Pieces of Eight (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/styx_piecesofeight_albumcoverart_hipgnosis_full-width.jpg" alt="Styx" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="19" data-title="Rainbow" data-artist="Difficult to Cure" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/rainbow_difficulttocure_albumcoverartprint_hipgnosis_bannerweb.jpg" title="Rainbow — Difficult to Cure (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/rainbow_difficulttocure_albumcoverartprint_hipgnosis_bannerweb.jpg" alt="Rainbow" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="20" data-title="Pretty Things" data-artist="Silk Torpedo" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/PrettyThings_SilkTorpedo_AlbumCoverArt_Hipgnosis.jpg" title="Pretty Things — Silk Torpedo (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/PrettyThings_SilkTorpedo_AlbumCoverArt_Hipgnosis.jpg" alt="Pretty Things" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="21" data-title="Strawbs" data-artist="Deadlines" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/strawbs_deadline_albumcoverart_hipgnosis.jpg" title="Strawbs — Deadlines (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/07/strawbs_deadline_albumcoverart_hipgnosis.jpg" alt="Strawbs" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="22" data-title="Scorpions" data-artist="Lovedrive" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/06/scorpions_love_drive.jpg" title="Scorpions — Lovedrive (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2018/06/scorpions_love_drive.jpg" alt="Scorpions" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="23" data-title="10cc" data-artist="Bloody Tourists" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/10cc_bloodytourists_albumcoverartprint_signing_header_1-1024x576.jpg" title="10cc — Bloody Tourists (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/11/10cc_bloodytourists_albumcoverartprint_signing_header_1-1024x576.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="24" data-title="Wishbone Ash" data-artist="New England" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/WishboneAsh_NewEngland_AlbumCoverArt_Hipgnosis_full-width.jpg" title="Wishbone Ash — New England (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/07/WishboneAsh_NewEngland_AlbumCoverArt_Hipgnosis_full-width.jpg" alt="Wishbone Ash" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="25" data-title="Led Zeppelin" data-artist="Houses of the Holy" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/ledzeppelin_housesoftheholy_albumcoverartprint_hipgnosis_signing_aubreypowell_full-1-1024x576.jpg" title="Led Zeppelin — Houses of the Holy (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/11/ledzeppelin_housesoftheholy_albumcoverartprint_hipgnosis_signing_aubreypowell_full-1-1024x576.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="26" data-title="Peter Gabriel" data-artist="Car" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/petergabriel_car_lrg_albumcoverartprint_hipgnosis_signing_stormthorgerson_full-width-1-1024x576.jpg" title="Peter Gabriel — Car (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/11/petergabriel_car_lrg_albumcoverartprint_hipgnosis_signing_stormthorgerson_full-width-1-1024x576.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="27" data-title="Genesis" data-artist="The Lamb lies down on Broadway" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/Genesis_LambLiesDownOnBroadway_AlbumCoverArtPrint_PeterGabriel_Hipgnosis_full-width.jpg" title="Genesis — The Lamb lies down on Broadway (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/07/Genesis_LambLiesDownOnBroadway_AlbumCoverArtPrint_PeterGabriel_Hipgnosis_full-width.jpg" alt="Genesis" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="28" data-title="Peter Gabriel" data-artist="Melt Polaroids" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/petergabriel_meltpolaroids_emily2_1.jpg" title="Peter Gabriel — Melt Polaroids (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/07/petergabriel_meltpolaroids_emily2_1.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="29" data-title="Peter Gabriel" data-artist="Scratch" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Scratch_AlbumCoverArtPrint_Hipgnosis_Lrg_full-width_1.jpg" title="Peter Gabriel — Scratch (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Scratch_AlbumCoverArtPrint_Hipgnosis_Lrg_full-width_1.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="30" data-title="Peter Gabriel" data-artist="Melt" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Melt_AlbumCoverArtPrint_PeterGabriel_Sml_full-width_2.jpg" title="Peter Gabriel — Melt (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Melt_AlbumCoverArtPrint_PeterGabriel_Sml_full-width_2.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="31" data-title="Pink Floyd" data-artist="Animals" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/10/PinkFloyd_Animals_AlbumCoverArt_Hipgnosis-1-1024x658-1024x658-1024x658-min-1.jpg" title="Pink Floyd — Animals (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/10/PinkFloyd_Animals_AlbumCoverArt_Hipgnosis-1-1024x658-1024x658-1024x658-min-1.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="32" data-title="Pink Floyd" data-artist="Ummagumma" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/PinkFloyd_Ummagumma_AlbumCoverArtPrint_Hipgnosis_full-width-Kopie-1-1024x576.jpg" title="Pink Floyd — Ummagumma (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/11/PinkFloyd_Ummagumma_AlbumCoverArtPrint_Hipgnosis_full-width-Kopie-1-1024x576.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+          <div class="platter-cover-tile" data-index="33" data-title="Led Zeppelin" data-artist="Presence" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/LedZeppelin_Presence_AlbumCoverArt_Hipgnosis_full-width-1-1-1024x576.jpg" title="Led Zeppelin — Presence (1970s) | Browse Gallery Album Cover Archive">
+            <img src="https://browse.gallery/wp-content/uploads/2017/11/LedZeppelin_Presence_AlbumCoverArt_Hipgnosis_full-width-1-1-1024x576.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+          </div>
+      </div>
+    </div>
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="43" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> searchQuery<span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">trim</span>()</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>matchingSet <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  cleanData</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> matchGenre <span class="op">=</span> selectedGenre <span class="op">===</span> <span class="st">"All"</span> <span class="op">||</span> d<span class="op">.</span><span class="at">primary_genre</span> <span class="op">===</span> selectedGenre<span class="op">;</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> matchText <span class="op">=</span> <span class="op">!</span>q <span class="op">||</span> </span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        d<span class="op">.</span><span class="at">album</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(q) <span class="op">||</span> </span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        d<span class="op">.</span><span class="at">artist</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(q) <span class="op">||</span> </span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span>(d<span class="op">.</span><span class="at">year</span>)<span class="op">.</span><span class="fu">includes</span>(q) <span class="op">||</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        d<span class="op">.</span><span class="at">primary_genre</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(q)<span class="op">;</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> matchGenre <span class="op">&amp;&amp;</span> matchText<span class="op">;</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">rank</span>)</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>spotlight <span class="op">=</span> activeAlbum <span class="op">||</span> cleanData[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
+    <!-- Tonearm Assembly on Right Side of the Deck -->
+    <div class="tonearm-column">
+      <div class="tonearm-base">
+        <div class="tonearm-counterweight"></div>
+      </div>
+      
+      <div class="tonearm-rod" id="tonearmRod">
+        <div class="tonearm-headshell">
+          <div class="needle-light"></div>
+        </div>
+      </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
+      <div class="pitch-control">
+        <div>33 ⅓ RPM</div>
+        <div style="color: #00f2fe; margin-top: 4px; font-weight: bold;">● DIRECT DRIVE</div>
+        <div style="font-size: 0.65rem; color: #ffd166; margin-top: 6px;">🏛️ ARCHIVE PRINTS</div>
+      </div>
+    </div>
+  </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
+  <!-- Bottom Console: Illuminated LCD Screen & Deck Controls -->
+  <div class="turntable-lcd-screen">
+    <div class="lcd-playback-line">
+      <div>
+        <div style="font-size: 0.7rem; color: #00f2fe; font-family: monospace; letter-spacing: 1.5px; font-weight: 700;">
+          ⚡ NEEDLE DROP // ACTIVE ALBUM ARTWORK
+        </div>
+        <div class="lcd-album-title" id="lcdTitle">
+          The Dark Side of the Moon
+        </div>
+        <div style="font-size: 0.95rem; color: #cbd5e1; font-family: monospace;">
+          <span id="lcdArtist">Pink Floyd</span> <span id="lcdYear" style="color: #ffd166;">(1970s)</span>
+        </div>
+      </div>
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="62" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co">// The Grand Hi-Fi Turntable Component: Big Turntable with all album covers inside of it!</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="grand-turntable-deck"&gt;</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;!-- Top Bezel: Navigation &amp; Brand Name --&gt;</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="turntable-bezel"&gt;</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="turntable-logo-text"&gt;</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="vs">      AUDIO-TECHNICA // DIRECT DRIVE HI-FI 1000</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="deck-nav-bar" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;"&gt;</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span style="font-size: 0.72rem; font-weight: 700; color: #ffd166; text-transform: uppercase;"&gt;VAULT TABS:&lt;/span&gt;</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;a href="index.qmd" class="deck-nav-pill active"&gt;🎵 Turntable Deck&lt;/a&gt;</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;a href="compare.qmd" class="deck-nav-pill"&gt;⚖️ Cover Compare ↗&lt;/a&gt;</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;a href="game.qmd" class="deck-nav-pill"&gt;🎮 Higher / Lower Game ↗&lt;/a&gt;</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;a href="about.qmd" class="deck-nav-pill"&gt;ℹ️ About ↗&lt;/a&gt;</span></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;!-- Turntable Body: Giant Platter containing Album Covers on Left, Tonearm on Right --&gt;</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="turntable-body-grid"&gt;</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Big Circular Platter filled with the 1,000 album covers --&gt;</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="big-platter-well"&gt;</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- Center Spindle Hub with spinning active album label --&gt;</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="center-spindle-hub"&gt;</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="center-spinning-vinyl" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation-play-state: paused;'</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;img </span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="vs">            src="</span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">image_url</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="vs">            alt="</span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="vs">            referrerpolicy="no-referrer"</span></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="vs">            crossorigin="anonymous"</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="vs">            onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Vinyl'"</span></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="vs">          /&gt;</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="spindle-pin"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- Inside the Platter: The 1,000 Album Covers Mosaic --&gt;</span></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="platter-covers-mosaic"&gt;</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>cleanData<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>          <span class="kw">const</span> isMatch <span class="op">=</span> matchingSet<span class="op">.</span><span class="fu">has</span>(d<span class="op">.</span><span class="at">rank</span>)<span class="op">;</span></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>          <span class="kw">const</span> isActive <span class="op">=</span> spotlight<span class="op">.</span><span class="at">rank</span> <span class="op">===</span> d<span class="op">.</span><span class="at">rank</span><span class="op">;</span></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;div </span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="vs">              class="platter-cover-tile </span><span class="sc">${</span>isActive <span class="op">?</span> <span class="st">'is-active-track'</span> <span class="op">:</span> <span class="st">''</span><span class="sc">}</span><span class="vs"> </span><span class="sc">${</span><span class="op">!</span>isMatch <span class="op">?</span> <span class="st">'is-dimmed'</span> <span class="op">:</span> <span class="st">''</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="vs">              title="#</span><span class="sc">${</span>d<span class="op">.</span><span class="at">rank</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>d<span class="op">.</span><span class="at">artist</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">) | ⭐ </span><span class="sc">${</span>d<span class="op">.</span><span class="at">rating</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">"</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="vs">              onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>                mutable activeAlbum <span class="op">=</span> d<span class="op">;</span></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>              }<span class="sc">}</span></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="vs">              onmouseover=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>                mutable activeAlbum <span class="op">=</span> d<span class="op">;</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>              }<span class="sc">}</span></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="vs">            &gt;</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="vs">              &lt;img </span></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="vs">                src="</span><span class="sc">${</span>d<span class="op">.</span><span class="at">image_url</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="vs">                alt="</span><span class="sc">${</span>d<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="vs">                referrerpolicy="no-referrer"</span></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="vs">                crossorigin="anonymous"</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="vs">                onerror="this.src='https://placehold.co/100x100/181b26/00f2fe?text=Album'"</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="vs">              /&gt;</span></span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;/div&gt;</span></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="vs">          `</span><span class="op">;</span></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>        })<span class="sc">}</span></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Realistic Tonearm Assembly on Right Side of the Deck --&gt;</span></span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="tonearm-column"&gt;</span></span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="tonearm-base"&gt;</span></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="tonearm-counterweight"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="tonearm-rod" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'transform: rotate(-18deg); animation: none;'</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="tonearm-headshell"&gt;</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div class="needle-light"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="pitch-control"&gt;</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div&gt;33 ⅓ RPM&lt;/div&gt;</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="color: #00f2fe; margin-top: 4px; font-weight: bold;"&gt;● DIRECT DRIVE&lt;/div&gt;</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;!-- Bottom Console: Illuminated LCD Monitor Screen &amp; Deck Controls --&gt;</span></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="turntable-lcd-screen"&gt;</span></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="lcd-playback-line"&gt;</span></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div&gt;</span></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 0.7rem; color: #00f2fe; font-family: monospace; letter-spacing: 1.5px; font-weight: 700;"&gt;</span></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="vs">          ⚡ NEEDLE DROP // ACTIVE GROOVE</span></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="lcd-album-title"&gt;</span></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">album</span><span class="sc">}</span></span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 0.95rem; color: #cbd5e1; font-family: monospace;"&gt;</span></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">artist</span><span class="sc">}</span><span class="vs"> &lt;span style="color: #ffd166;"&gt;(</span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">)&lt;/span&gt;</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- Equalizer Visualizer Bars --&gt;</span></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="equalizer-wrap" style="height: 22px; margin: 0;"&gt;</span></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="eq-bar" style="</span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">''</span> <span class="op">:</span> <span class="st">'animation: none; height: 30%;'</span><span class="sc">}</span><span class="vs">"&gt;&lt;/div&gt;</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Metadata Chips --&gt;</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="lcd-meta-chips"&gt;</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="lcd-chip" style="color: #ffd166; border-color: rgba(255, 209, 102, 0.4);"&gt;</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="vs">        ALL-TIME RANK: #</span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">rank</span><span class="sc">}</span><span class="vs"> OF 1000</span></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/span&gt;</span></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="lcd-chip"&gt;</span></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="vs">        RATING: ⭐ </span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">rating</span> <span class="op">?</span> spotlight<span class="op">.</span><span class="at">rating</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"4.00"</span><span class="sc">}</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/span&gt;</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="lcd-chip" style="text-transform: uppercase;"&gt;</span></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="vs">        GENRE: </span><span class="sc">${</span>spotlight<span class="op">.</span><span class="at">primary_genre</span><span class="sc">}</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/span&gt;</span></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="lcd-chip" style="color: #38ef7d; border-color: rgba(56, 239, 125, 0.4);"&gt;</span></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="vs">        GROOVES LIT: </span><span class="sc">${</span>matchingSet<span class="op">.</span><span class="at">size</span><span class="sc">}</span><span class="vs"> / 1000</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/span&gt;</span></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Turntable Action Buttons --&gt;</span></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="deck-controls" style="margin-top: 1rem;"&gt;</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;button </span></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="vs">        class="btn-neon" </span></span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="vs">        style="background: </span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">'linear-gradient(135deg, #ffd166, #ff7b00)'</span> <span class="op">:</span> <span class="st">'linear-gradient(135deg, #00f2fe, #4facfe)'</span><span class="sc">}</span><span class="vs">; font-size: 0.85rem; padding: 0.45rem 1.1rem;"</span></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="vs">        onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>          mutable isSpinning <span class="op">=</span> <span class="op">!</span>isSpinning<span class="op">;</span></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>        }<span class="sc">}</span></span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="vs">      &gt;</span></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>isSpinning <span class="op">?</span> <span class="st">'⏹ PAUSE PLATTER'</span> <span class="op">:</span> <span class="st">'▶ SPIN PLATTER'</span><span class="sc">}</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/button&gt;</span></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;button </span></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="vs">        class="btn-neon" </span></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="vs">        style="font-size: 0.85rem; padding: 0.45rem 1.1rem;"</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="vs">        onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>          <span class="kw">const</span> randIndex <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> cleanData<span class="op">.</span><span class="at">length</span>)<span class="op">;</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>          mutable activeAlbum <span class="op">=</span> cleanData[randIndex]<span class="op">;</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>        }<span class="sc">}</span></span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a><span class="vs">      &gt;</span></span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a><span class="vs">        🎲 Drop Needle (Random)</span></span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/button&gt;</span></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;a </span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="vs">        class="btn btn-outline-light btn-sm" </span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="vs">        style="font-size: 0.85rem; padding: 0.45rem 1.1rem; border-radius: 8px; font-family: monospace;" </span></span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a><span class="vs">        target="_blank" </span></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="vs">        href="https://open.spotify.com/search/</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(spotlight<span class="op">.</span><span class="at">artist</span> <span class="op">+</span> <span class="st">' '</span> <span class="op">+</span> spotlight<span class="op">.</span><span class="at">album</span>)<span class="sc">}</span><span class="vs">"</span></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="vs">      &gt;</span></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="vs">        🎧 Listen on Spotify ↗</span></span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/a&gt;</span></span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="expression">
+      <!-- Equalizer Visualizer Bars -->
+      <div class="equalizer-wrap" style="height: 22px; margin: 0;" id="eqWrap">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+      </div>
+    </div>
 
+    <!-- Metadata Chips -->
+    <div class="lcd-meta-chips">
+      <span class="lcd-chip" id="lcdSource" style="color: #ffd166; border-color: rgba(255, 209, 102, 0.4); font-size: 0.82rem;">
+        SOURCE: Browse Gallery Album Cover Archive
+      </span>
+      <span class="lcd-chip" style="font-size: 0.82rem;">
+        FORMAT: 12" Vinyl Gatefold
+      </span>
+      <span class="lcd-chip" style="color: #38ef7d; border-color: rgba(56, 239, 125, 0.4); font-size: 0.82rem;">
+        LOADED: 34 ARCHIVE PRINTS IN PLATTER
+      </span>
+    </div>
+
+    <!-- Turntable Action Controls -->
+    <div class="deck-controls" style="margin-top: 1rem;">
+      <button class="btn-neon" id="btnToggleSpin" type="button" style="background: linear-gradient(135deg, #ffd166, #ff7b00); font-size: 0.85rem; padding: 0.45rem 1.1rem;">
+        ⏹ PAUSE PLATTER
+      </button>
+
+      <button class="btn-neon" id="btnRandomDrop" type="button" style="font-size: 0.85rem; padding: 0.45rem 1.1rem;">
+        🎲 Drop Needle (Random)
+      </button>
+
+      <a class="btn btn-outline-light btn-sm" id="btnSpotifyLink" style="font-size: 0.85rem; padding: 0.45rem 1.1rem; border-radius: 8px; font-family: monospace;" target="_blank" href="https://open.spotify.com/search/Pink%20Floyd%20The%20Dark%20Side%20of%20the%20Moon">
+        🎧 Listen on Spotify ↗
+      </a>
+
+      <a class="btn btn-outline-info btn-sm" style="font-size: 0.85rem; padding: 0.45rem 1.1rem; border-radius: 8px; font-family: monospace;" target="_blank" href="https://browse.gallery/en/project_category/album-cover-en/">
+        🏛️ Browse Gallery Source ↗
+      </a>
+
+      <a class="btn btn-outline-warning btn-sm" style="font-size: 0.85rem; padding: 0.45rem 1.1rem; border-radius: 8px; font-family: monospace;" target="_blank" href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">
+        📚 Open Culture Archive ↗
+      </a>
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let isSpinning = true;
+  const tiles = Array.from(document.querySelectorAll('.platter-cover-tile'));
+  const spindleImg = document.getElementById('spindleImg');
+  const centerVinyl = document.getElementById('centerVinyl');
+  const tonearmRod = document.getElementById('tonearmRod');
+  const lcdTitle = document.getElementById('lcdTitle');
+  const lcdArtist = document.getElementById('lcdArtist');
+  const lcdYear = document.getElementById('lcdYear');
+  const lcdSource = document.getElementById('lcdSource');
+  const btnSpotifyLink = document.getElementById('btnSpotifyLink');
+  const btnToggleSpin = document.getElementById('btnToggleSpin');
+  const btnRandomDrop = document.getElementById('btnRandomDrop');
+  const eqWrap = document.getElementById('eqWrap');
+
+  function selectTile(tile) {
+    if (!tile) return;
+    tiles.forEach(t => t.classList.remove('is-active-track'));
+    tile.classList.add('is-active-track');
+
+    const title = tile.getAttribute('data-title');
+    const artist = tile.getAttribute('data-artist');
+    const year = tile.getAttribute('data-year');
+    const source = tile.getAttribute('data-source');
+    const img = tile.getAttribute('data-img');
+
+    if (spindleImg) spindleImg.src = img;
+    if (lcdTitle) lcdTitle.textContent = title;
+    if (lcdArtist) lcdArtist.textContent = artist;
+    if (lcdYear) lcdYear.textContent = '(' + year + ')';
+    if (lcdSource) lcdSource.textContent = 'SOURCE: ' + source;
+    if (btnSpotifyLink) {
+      btnSpotifyLink.href = 'https://open.spotify.com/search/' + encodeURIComponent(artist + ' ' + title);
+    }
+  }
+
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => selectTile(tile));
+    tile.addEventListener('mouseover', () => selectTile(tile));
+  });
+
+  if (btnToggleSpin) {
+    btnToggleSpin.addEventListener('click', () => {
+      isSpinning = !isSpinning;
+      if (isSpinning) {
+        if (centerVinyl) centerVinyl.style.animationPlayState = 'running';
+        if (tonearmRod) {
+          tonearmRod.style.animation = 'armBob 3s ease-in-out infinite alternate';
+          tonearmRod.style.transform = 'rotate(-10deg)';
+        }
+        btnToggleSpin.textContent = '⏹ PAUSE PLATTER';
+        btnToggleSpin.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+        if (eqWrap) {
+          Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'running');
+        }
+      } else {
+        if (centerVinyl) centerVinyl.style.animationPlayState = 'paused';
+        if (tonearmRod) {
+          tonearmRod.style.animation = 'none';
+          tonearmRod.style.transform = 'rotate(-18deg)';
+        }
+        btnToggleSpin.textContent = '▶ SPIN PLATTER';
+        btnToggleSpin.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
+        if (eqWrap) {
+          Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'paused');
+        }
+      }
+    });
+  }
+
+  if (btnRandomDrop) {
+    btnRandomDrop.addEventListener('click', () => {
+      const randIndex = Math.floor(Math.random() * tiles.length);
+      const chosen = tiles[randIndex];
+      selectTile(chosen);
+      chosen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+});
+</script>
 
 
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIExvYWQgdGhlIHRvcCAxMDAwIGFsYnVtcyBkYXRhc2V0XG5hbGJ1bXMgPSBGaWxlQXR0YWNobWVudChcInRvcF8xMDAwX2FsYnVtcy5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuY2xlYW5EYXRhID0gYWxidW1zLm1hcChkID0+ICh7XG4gIC4uLmQsXG4gIHByaW1hcnlfZ2VucmU6IGQuZ2VucmVzID8gZC5nZW5yZXMuc3BsaXQoXCIsXCIpWzBdLnRyaW0oKSA6IFwib3RoZXJcIixcbiAgZGVjYWRlOiBgJHtNYXRoLmZsb29yKGQueWVhciAvIDEwKSAqIDEwfXNgXG59KSlcblxuLy8gU3RhdGUgZm9yIGFjdGl2ZSBhbGJ1bSBvbiB0aGUgbmVlZGxlXG5tdXRhYmxlIGFjdGl2ZUFsYnVtID0gY2xlYW5EYXRhWzBdXG5tdXRhYmxlIGlzU3Bpbm5pbmcgPSB0cnVlXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBEZWNrIHNlYXJjaCAmIGdlbnJlIGZpbHRlciBjb250cm9sc1xudmlld29mIHNlYXJjaFF1ZXJ5ID0gSW5wdXRzLnRleHQoe1xuICBwbGFjZWhvbGRlcjogXCJTZWFyY2ggMSwwMDAgYWxidW1zIG9uIHRoZSB0dXJudGFibGUuLi5cIlxufSlcblxuZ2VucmVzTGlzdCA9IFtcIkFsbFwiLCBcInJvY2tcIiwgXCJwb3BcIiwgXCJmb2xrXCIsIFwiZWxlY3Ryb25pY2FcIiwgXCJwdW5rXCIsIFwiaGlwLWhvcFwiLCBcInNvdWxcIiwgXCJqYXp6XCIsIFwiY291bnRyeVwiLCBcIm1ldGFsXCJdXG52aWV3b2Ygc2VsZWN0ZWRHZW5yZSA9IElucHV0cy5zZWxlY3QoZ2VucmVzTGlzdCwge1xuICBsYWJlbDogXCJQbGF0dGVyIEdlbnJlXCIsXG4gIHZhbHVlOiBcIkFsbFwiXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gRGV0ZXJtaW5lIG1hdGNoaW5nIGFsYnVtcyBmb3IgaWxsdW1pbmF0ZWQgbmVlZGxlIGhpZ2hsaWdodGluZ1xucSA9IHNlYXJjaFF1ZXJ5LnRvTG93ZXJDYXNlKCkudHJpbSgpXG5tYXRjaGluZ1NldCA9IG5ldyBTZXQoXG4gIGNsZWFuRGF0YVxuICAgIC5maWx0ZXIoZCA9PiB7XG4gICAgICBjb25zdCBtYXRjaEdlbnJlID0gc2VsZWN0ZWRHZW5yZSA9PT0gXCJBbGxcIiB8fCBkLnByaW1hcnlfZ2VucmUgPT09IHNlbGVjdGVkR2VucmU7XG4gICAgICBjb25zdCBtYXRjaFRleHQgPSAhcSB8fCBcbiAgICAgICAgZC5hbGJ1bS50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHEpIHx8IFxuICAgICAgICBkLmFydGlzdC50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHEpIHx8IFxuICAgICAgICBTdHJpbmcoZC55ZWFyKS5pbmNsdWRlcyhxKSB8fFxuICAgICAgICBkLnByaW1hcnlfZ2VucmUudG9Mb3dlckNhc2UoKS5pbmNsdWRlcyhxKTtcbiAgICAgIHJldHVybiBtYXRjaEdlbnJlICYmIG1hdGNoVGV4dDtcbiAgICB9KVxuICAgIC5tYXAoZCA9PiBkLnJhbmspXG4pXG5cbnNwb3RsaWdodCA9IGFjdGl2ZUFsYnVtIHx8IGNsZWFuRGF0YVswXVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gVGhlIEdyYW5kIEhpLUZpIFR1cm50YWJsZSBDb21wb25lbnQ6IEJpZyBUdXJudGFibGUgd2l0aCBhbGwgYWxidW0gY292ZXJzIGluc2lkZSBvZiBpdCFcbmh0bWxgXG48ZGl2IGNsYXNzPVwiZ3JhbmQtdHVybnRhYmxlLWRlY2tcIj5cbiAgPCEtLSBUb3AgQmV6ZWw6IE5hdmlnYXRpb24gJiBCcmFuZCBOYW1lIC0tPlxuICA8ZGl2IGNsYXNzPVwidHVybnRhYmxlLWJlemVsXCI+XG4gICAgPGRpdiBjbGFzcz1cInR1cm50YWJsZS1sb2dvLXRleHRcIj5cbiAgICAgIEFVRElPLVRFQ0hOSUNBIC8vIERJUkVDVCBEUklWRSBISS1GSSAxMDAwXG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZGVjay1uYXYtYmFyXCIgc3R5bGU9XCJtYXJnaW4tYm90dG9tOiAwOyBwYWRkaW5nLWJvdHRvbTogMDsgYm9yZGVyLWJvdHRvbTogbm9uZTtcIj5cbiAgICAgIDxzcGFuIHN0eWxlPVwiZm9udC1zaXplOiAwLjcycmVtOyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogI2ZmZDE2NjsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcIj5WQVVMVCBUQUJTOjwvc3Bhbj5cbiAgICAgIDxhIGhyZWY9XCJpbmRleC5xbWRcIiBjbGFzcz1cImRlY2stbmF2LXBpbGwgYWN0aXZlXCI+8J+OtSBUdXJudGFibGUgRGVjazwvYT5cbiAgICAgIDxhIGhyZWY9XCJjb21wYXJlLnFtZFwiIGNsYXNzPVwiZGVjay1uYXYtcGlsbFwiPuKalu+4jyBDb3ZlciBDb21wYXJlIOKGlzwvYT5cbiAgICAgIDxhIGhyZWY9XCJnYW1lLnFtZFwiIGNsYXNzPVwiZGVjay1uYXYtcGlsbFwiPvCfjq4gSGlnaGVyIC8gTG93ZXIgR2FtZSDihpc8L2E+XG4gICAgICA8YSBocmVmPVwiYWJvdXQucW1kXCIgY2xhc3M9XCJkZWNrLW5hdi1waWxsXCI+4oS577iPIEFib3V0IOKGlzwvYT5cbiAgICA8L2Rpdj5cbiAgPC9kaXY+XG5cbiAgPCEtLSBUdXJudGFibGUgQm9keTogR2lhbnQgUGxhdHRlciBjb250YWluaW5nIEFsYnVtIENvdmVycyBvbiBMZWZ0LCBUb25lYXJtIG9uIFJpZ2h0IC0tPlxuICA8ZGl2IGNsYXNzPVwidHVybnRhYmxlLWJvZHktZ3JpZFwiPlxuICAgIDwhLS0gQmlnIENpcmN1bGFyIFBsYXR0ZXIgZmlsbGVkIHdpdGggdGhlIDEsMDAwIGFsYnVtIGNvdmVycyAtLT5cbiAgICA8ZGl2IGNsYXNzPVwiYmlnLXBsYXR0ZXItd2VsbFwiPlxuICAgICAgPCEtLSBDZW50ZXIgU3BpbmRsZSBIdWIgd2l0aCBzcGlubmluZyBhY3RpdmUgYWxidW0gbGFiZWwgLS0+XG4gICAgICA8ZGl2IGNsYXNzPVwiY2VudGVyLXNwaW5kbGUtaHViXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjZW50ZXItc3Bpbm5pbmctdmlueWxcIiBzdHlsZT1cIiR7aXNTcGlubmluZyA/ICcnIDogJ2FuaW1hdGlvbi1wbGF5LXN0YXRlOiBwYXVzZWQ7J31cIj5cbiAgICAgICAgICA8aW1nIFxuICAgICAgICAgICAgc3JjPVwiJHtzcG90bGlnaHQuaW1hZ2VfdXJsfVwiIFxuICAgICAgICAgICAgYWx0PVwiJHtzcG90bGlnaHQuYWxidW19XCIgXG4gICAgICAgICAgICByZWZlcnJlcnBvbGljeT1cIm5vLXJlZmVycmVyXCJcbiAgICAgICAgICAgIGNyb3Nzb3JpZ2luPVwiYW5vbnltb3VzXCJcbiAgICAgICAgICAgIG9uZXJyb3I9XCJ0aGlzLnNyYz0naHR0cHM6Ly9wbGFjZWhvbGQuY28vMzAweDMwMC8xODFiMjYvMDBmMmZlP3RleHQ9VmlueWwnXCJcbiAgICAgICAgICAvPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cInNwaW5kbGUtcGluXCI+PC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPCEtLSBJbnNpZGUgdGhlIFBsYXR0ZXI6IFRoZSAxLDAwMCBBbGJ1bSBDb3ZlcnMgTW9zYWljIC0tPlxuICAgICAgPGRpdiBjbGFzcz1cInBsYXR0ZXItY292ZXJzLW1vc2FpY1wiPlxuICAgICAgICAke2NsZWFuRGF0YS5tYXAoZCA9PiB7XG4gICAgICAgICAgY29uc3QgaXNNYXRjaCA9IG1hdGNoaW5nU2V0LmhhcyhkLnJhbmspO1xuICAgICAgICAgIGNvbnN0IGlzQWN0aXZlID0gc3BvdGxpZ2h0LnJhbmsgPT09IGQucmFuaztcbiAgICAgICAgICByZXR1cm4gaHRtbGBcbiAgICAgICAgICAgIDxkaXYgXG4gICAgICAgICAgICAgIGNsYXNzPVwicGxhdHRlci1jb3Zlci10aWxlICR7aXNBY3RpdmUgPyAnaXMtYWN0aXZlLXRyYWNrJyA6ICcnfSAkeyFpc01hdGNoID8gJ2lzLWRpbW1lZCcgOiAnJ31cIiBcbiAgICAgICAgICAgICAgdGl0bGU9XCIjJHtkLnJhbmt9OiAke2QuYWxidW19IC0gJHtkLmFydGlzdH0gKCR7ZC55ZWFyfSkgfCDirZAgJHtkLnJhdGluZy50b0ZpeGVkKDIpfVwiXG4gICAgICAgICAgICAgIG9uY2xpY2s9JHsoKSA9PiB7XG4gICAgICAgICAgICAgICAgbXV0YWJsZSBhY3RpdmVBbGJ1bSA9IGQ7XG4gICAgICAgICAgICAgIH19XG4gICAgICAgICAgICAgIG9ubW91c2VvdmVyPSR7KCkgPT4ge1xuICAgICAgICAgICAgICAgIG11dGFibGUgYWN0aXZlQWxidW0gPSBkO1xuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICA8aW1nIFxuICAgICAgICAgICAgICAgIHNyYz1cIiR7ZC5pbWFnZV91cmx9XCIgXG4gICAgICAgICAgICAgICAgYWx0PVwiJHtkLmFsYnVtfVwiIFxuICAgICAgICAgICAgICAgIHJlZmVycmVycG9saWN5PVwibm8tcmVmZXJyZXJcIlxuICAgICAgICAgICAgICAgIGNyb3Nzb3JpZ2luPVwiYW5vbnltb3VzXCJcbiAgICAgICAgICAgICAgICBvbmVycm9yPVwidGhpcy5zcmM9J2h0dHBzOi8vcGxhY2Vob2xkLmNvLzEwMHgxMDAvMTgxYjI2LzAwZjJmZT90ZXh0PUFsYnVtJ1wiXG4gICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICBgO1xuICAgICAgICB9KX1cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuXG4gICAgPCEtLSBSZWFsaXN0aWMgVG9uZWFybSBBc3NlbWJseSBvbiBSaWdodCBTaWRlIG9mIHRoZSBEZWNrIC0tPlxuICAgIDxkaXYgY2xhc3M9XCJ0b25lYXJtLWNvbHVtblwiPlxuICAgICAgPGRpdiBjbGFzcz1cInRvbmVhcm0tYmFzZVwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwidG9uZWFybS1jb3VudGVyd2VpZ2h0XCI+PC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICAgIFxuICAgICAgPGRpdiBjbGFzcz1cInRvbmVhcm0tcm9kXCIgc3R5bGU9XCIke2lzU3Bpbm5pbmcgPyAnJyA6ICd0cmFuc2Zvcm06IHJvdGF0ZSgtMThkZWcpOyBhbmltYXRpb246IG5vbmU7J31cIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cInRvbmVhcm0taGVhZHNoZWxsXCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm5lZWRsZS1saWdodFwiPjwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzPVwicGl0Y2gtY29udHJvbFwiPlxuICAgICAgICA8ZGl2PjMzIOKFkyBSUE08L2Rpdj5cbiAgICAgICAgPGRpdiBzdHlsZT1cImNvbG9yOiAjMDBmMmZlOyBtYXJnaW4tdG9wOiA0cHg7IGZvbnQtd2VpZ2h0OiBib2xkO1wiPuKXjyBESVJFQ1QgRFJJVkU8L2Rpdj5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cblxuICA8IS0tIEJvdHRvbSBDb25zb2xlOiBJbGx1bWluYXRlZCBMQ0QgTW9uaXRvciBTY3JlZW4gJiBEZWNrIENvbnRyb2xzIC0tPlxuICA8ZGl2IGNsYXNzPVwidHVybnRhYmxlLWxjZC1zY3JlZW5cIj5cbiAgICA8ZGl2IGNsYXNzPVwibGNkLXBsYXliYWNrLWxpbmVcIj5cbiAgICAgIDxkaXY+XG4gICAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuN3JlbTsgY29sb3I6ICMwMGYyZmU7IGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7IGxldHRlci1zcGFjaW5nOiAxLjVweDsgZm9udC13ZWlnaHQ6IDcwMDtcIj5cbiAgICAgICAgICDimqEgTkVFRExFIERST1AgLy8gQUNUSVZFIEdST09WRVxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImxjZC1hbGJ1bS10aXRsZVwiPlxuICAgICAgICAgICR7c3BvdGxpZ2h0LmFsYnVtfVxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC45NXJlbTsgY29sb3I6ICNjYmQ1ZTE7IGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XCI+XG4gICAgICAgICAgJHtzcG90bGlnaHQuYXJ0aXN0fSA8c3BhbiBzdHlsZT1cImNvbG9yOiAjZmZkMTY2O1wiPigke3Nwb3RsaWdodC55ZWFyfSk8L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDwhLS0gRXF1YWxpemVyIFZpc3VhbGl6ZXIgQmFycyAtLT5cbiAgICAgIDxkaXYgY2xhc3M9XCJlcXVhbGl6ZXItd3JhcFwiIHN0eWxlPVwiaGVpZ2h0OiAyMnB4OyBtYXJnaW46IDA7XCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJlcS1iYXJcIiBzdHlsZT1cIiR7aXNTcGlubmluZyA/ICcnIDogJ2FuaW1hdGlvbjogbm9uZTsgaGVpZ2h0OiAzMCU7J31cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImVxLWJhclwiIHN0eWxlPVwiJHtpc1NwaW5uaW5nID8gJycgOiAnYW5pbWF0aW9uOiBub25lOyBoZWlnaHQ6IDMwJTsnfVwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiZXEtYmFyXCIgc3R5bGU9XCIke2lzU3Bpbm5pbmcgPyAnJyA6ICdhbmltYXRpb246IG5vbmU7IGhlaWdodDogMzAlOyd9XCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJlcS1iYXJcIiBzdHlsZT1cIiR7aXNTcGlubmluZyA/ICcnIDogJ2FuaW1hdGlvbjogbm9uZTsgaGVpZ2h0OiAzMCU7J31cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImVxLWJhclwiIHN0eWxlPVwiJHtpc1NwaW5uaW5nID8gJycgOiAnYW5pbWF0aW9uOiBub25lOyBoZWlnaHQ6IDMwJTsnfVwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiZXEtYmFyXCIgc3R5bGU9XCIke2lzU3Bpbm5pbmcgPyAnJyA6ICdhbmltYXRpb246IG5vbmU7IGhlaWdodDogMzAlOyd9XCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJlcS1iYXJcIiBzdHlsZT1cIiR7aXNTcGlubmluZyA/ICcnIDogJ2FuaW1hdGlvbjogbm9uZTsgaGVpZ2h0OiAzMCU7J31cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImVxLWJhclwiIHN0eWxlPVwiJHtpc1NwaW5uaW5nID8gJycgOiAnYW5pbWF0aW9uOiBub25lOyBoZWlnaHQ6IDMwJTsnfVwiPjwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG5cbiAgICA8IS0tIE1ldGFkYXRhIENoaXBzIC0tPlxuICAgIDxkaXYgY2xhc3M9XCJsY2QtbWV0YS1jaGlwc1wiPlxuICAgICAgPHNwYW4gY2xhc3M9XCJsY2QtY2hpcFwiIHN0eWxlPVwiY29sb3I6ICNmZmQxNjY7IGJvcmRlci1jb2xvcjogcmdiYSgyNTUsIDIwOSwgMTAyLCAwLjQpO1wiPlxuICAgICAgICBBTEwtVElNRSBSQU5LOiAjJHtzcG90bGlnaHQucmFua30gT0YgMTAwMFxuICAgICAgPC9zcGFuPlxuICAgICAgPHNwYW4gY2xhc3M9XCJsY2QtY2hpcFwiPlxuICAgICAgICBSQVRJTkc6IOKtkCAke3Nwb3RsaWdodC5yYXRpbmcgPyBzcG90bGlnaHQucmF0aW5nLnRvRml4ZWQoMikgOiBcIjQuMDBcIn1cbiAgICAgIDwvc3Bhbj5cbiAgICAgIDxzcGFuIGNsYXNzPVwibGNkLWNoaXBcIiBzdHlsZT1cInRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XCI+XG4gICAgICAgIEdFTlJFOiAke3Nwb3RsaWdodC5wcmltYXJ5X2dlbnJlfVxuICAgICAgPC9zcGFuPlxuICAgICAgPHNwYW4gY2xhc3M9XCJsY2QtY2hpcFwiIHN0eWxlPVwiY29sb3I6ICMzOGVmN2Q7IGJvcmRlci1jb2xvcjogcmdiYSg1NiwgMjM5LCAxMjUsIDAuNCk7XCI+XG4gICAgICAgIEdST09WRVMgTElUOiAke21hdGNoaW5nU2V0LnNpemV9IC8gMTAwMFxuICAgICAgPC9zcGFuPlxuICAgIDwvZGl2PlxuXG4gICAgPCEtLSBUdXJudGFibGUgQWN0aW9uIEJ1dHRvbnMgLS0+XG4gICAgPGRpdiBjbGFzcz1cImRlY2stY29udHJvbHNcIiBzdHlsZT1cIm1hcmdpbi10b3A6IDFyZW07XCI+XG4gICAgICA8YnV0dG9uIFxuICAgICAgICBjbGFzcz1cImJ0bi1uZW9uXCIgXG4gICAgICAgIHN0eWxlPVwiYmFja2dyb3VuZDogJHtpc1NwaW5uaW5nID8gJ2xpbmVhci1ncmFkaWVudCgxMzVkZWcsICNmZmQxNjYsICNmZjdiMDApJyA6ICdsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAjMDBmMmZlLCAjNGZhY2ZlKSd9OyBmb250LXNpemU6IDAuODVyZW07IHBhZGRpbmc6IDAuNDVyZW0gMS4xcmVtO1wiXG4gICAgICAgIG9uY2xpY2s9JHsoKSA9PiB7XG4gICAgICAgICAgbXV0YWJsZSBpc1NwaW5uaW5nID0gIWlzU3Bpbm5pbmc7XG4gICAgICAgIH19XG4gICAgICA+XG4gICAgICAgICR7aXNTcGlubmluZyA/ICfij7kgUEFVU0UgUExBVFRFUicgOiAn4pa2IFNQSU4gUExBVFRFUid9XG4gICAgICA8L2J1dHRvbj5cblxuICAgICAgPGJ1dHRvbiBcbiAgICAgICAgY2xhc3M9XCJidG4tbmVvblwiIFxuICAgICAgICBzdHlsZT1cImZvbnQtc2l6ZTogMC44NXJlbTsgcGFkZGluZzogMC40NXJlbSAxLjFyZW07XCJcbiAgICAgICAgb25jbGljaz0keygpID0+IHtcbiAgICAgICAgICBjb25zdCByYW5kSW5kZXggPSBNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiBjbGVhbkRhdGEubGVuZ3RoKTtcbiAgICAgICAgICBtdXRhYmxlIGFjdGl2ZUFsYnVtID0gY2xlYW5EYXRhW3JhbmRJbmRleF07XG4gICAgICAgIH19XG4gICAgICA+XG4gICAgICAgIPCfjrIgRHJvcCBOZWVkbGUgKFJhbmRvbSlcbiAgICAgIDwvYnV0dG9uPlxuXG4gICAgICA8YSBcbiAgICAgICAgY2xhc3M9XCJidG4gYnRuLW91dGxpbmUtbGlnaHQgYnRuLXNtXCIgXG4gICAgICAgIHN0eWxlPVwiZm9udC1zaXplOiAwLjg1cmVtOyBwYWRkaW5nOiAwLjQ1cmVtIDEuMXJlbTsgYm9yZGVyLXJhZGl1czogOHB4OyBmb250LWZhbWlseTogbW9ub3NwYWNlO1wiIFxuICAgICAgICB0YXJnZXQ9XCJfYmxhbmtcIiBcbiAgICAgICAgaHJlZj1cImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9zZWFyY2gvJHtlbmNvZGVVUklDb21wb25lbnQoc3BvdGxpZ2h0LmFydGlzdCArICcgJyArIHNwb3RsaWdodC5hbGJ1bSl9XCJcbiAgICAgID5cbiAgICAgICAg8J+OpyBMaXN0ZW4gb24gU3BvdGlmeSDihpdcbiAgICAgIDwvYT5cbiAgICA8L2Rpdj5cbiAgPC9kaXY+XG48L2Rpdj5cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2VhcmNoUXVlcnknKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2VsZWN0ZWRHZW5yZScpIn1dfQ==
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../..";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

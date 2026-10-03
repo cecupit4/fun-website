@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cover Showdown Game – Album Covers</title>
+<title>Cover Showdown Arcade Game – Album Covers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -108,8 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -146,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">About the Album Cover Archive</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -167,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Cover Showdown Game</h1>
+<h1 class="title">Cover Showdown Arcade Game</h1>
 </div>
 
 
@@ -184,262 +147,247 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Test your musical knowledge! Guess whether the mystery album is ranked <strong>HIGHER</strong> or <strong>LOWER</strong> in the all-time top 1000 list.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="13" data-source-offset="-36"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 12;"><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>albums <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"top_1000_albums.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>cleanAlbums <span class="op">=</span> albums<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span>d<span class="op">,</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primary_genre</span><span class="op">:</span> d<span class="op">.</span><span class="at">genres</span> <span class="op">?</span> d<span class="op">.</span><span class="at">genres</span><span class="op">.</span><span class="fu">split</span>(<span class="st">","</span>)[<span class="dv">0</span>]<span class="op">.</span><span class="fu">trim</span>() <span class="op">:</span> <span class="st">"other"</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Game State: current streak, best streak, round, albumA, albumB, status</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>mutable currentStreak <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>mutable bestStreak <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>mutable gameStatus <span class="op">=</span> <span class="st">"playing"</span> <span class="co">// "playing", "won", "lost"</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>mutable roundCounter <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">// Random seed triggers</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getRandomAlbum</span>(excludeRank) {</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> item <span class="op">=</span> cleanAlbums[<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> cleanAlbums<span class="op">.</span><span class="at">length</span>)]<span class="op">;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (excludeRank <span class="op">&amp;&amp;</span> item<span class="op">.</span><span class="at">rank</span> <span class="op">===</span> excludeRank) {</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    item <span class="op">=</span> cleanAlbums[<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> cleanAlbums<span class="op">.</span><span class="at">length</span>)]<span class="op">;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> item<span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>mutable gameAlbumA <span class="op">=</span> cleanAlbums[<span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">200</span>)]</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>mutable gameAlbumB <span class="op">=</span> <span class="fu">getRandomAlbum</span>(gameAlbumA<span class="op">.</span><span class="at">rank</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<p>Test your musical knowledge! Guess whether the mystery album is ranked <strong>HIGHER</strong> (closer to #1) or <strong>LOWER</strong> on the all-time album chart.</p>
+<!-- Top Hardware Channel Switcher -->
+<div class="hardware-switch-nav">
+  <a href="index.html" class="switch-nav-btn">
+    <div class="switch-top-line">
+      <span class="switch-led"></span>
+      <span>CH-1: 🎛️ TURNTABLE</span>
+    </div>
+    <div class="switch-subtext">33 RPM Platter Deck</div>
+  </a>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
+  <a href="compare.html" class="switch-nav-btn">
+    <div class="switch-top-line">
+      <span class="switch-led"></span>
+      <span>CH-2: 🎚️ COMPARATOR</span>
+    </div>
+    <div class="switch-subtext">Crossfader &amp; FX Battle</div>
+  </a>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-3" data-nodetype="declaration">
+  <a href="game.html" class="switch-nav-btn is-active">
+    <div class="switch-top-line">
+      <span class="switch-led"></span>
+      <span>CH-3: 🕹️ ARCADE SHOWDOWN</span>
+    </div>
+    <div class="switch-subtext">Rank Guesser Game</div>
+  </a>
 
+  <a href="about.html" class="switch-nav-btn">
+    <div class="switch-top-line">
+      <span class="switch-led"></span>
+      <span>CH-4: 📻 INTEL ARCHIVE</span>
+    </div>
+    <div class="switch-subtext">Master Credits &amp; Info</div>
+  </a>
 </div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-4" data-nodetype="declaration">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-5" data-nodetype="declaration">
+<!-- Main Game Arena -->
+<div class="game-arena text-center">
+  <!-- Top Streak Status -->
+  <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+    <div class="streak-counter" id="streakBadge">
+      🔥 Current Streak: <span id="currentStreakDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
+    </div>
+    <div class="streak-counter" style="background: rgba(0, 242, 254, 0.15); border-color: rgba(0, 242, 254, 0.35); color: #00f2fe;">
+      🏆 Best Streak: <span id="bestStreakDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
+    </div>
+    <div class="streak-counter" style="background: rgba(148, 163, 184, 0.12); border-color: rgba(148, 163, 184, 0.25); color: #cbd5e1;">
+      🎯 Round: <span id="roundCounterDisplay" style="font-size: 1.35rem; margin-left: 4px;">1</span>
+    </div>
+  </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-6" data-nodetype="declaration">
+  <!-- Head-to-Head Arena -->
+  <div class="compare-grid" style="margin: 1.5rem 0;">
+    <!-- Benchmark Album A (Known) -->
+    <div class="compare-box" style="border-color: rgba(0, 242, 254, 0.4);">
+      <div style="font-size: 0.75rem; letter-spacing: 1.5px; color: #00f2fe; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;">
+        BENCHMARK ALBUM (KNOWN)
+      </div>
+      <img id="gameImgA" class="compare-cover" src="" alt="Benchmark Album" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album+A'">
+      <h3 id="gameTitleA" style="color: #fff; font-size: 1.35rem; margin: 0.4rem 0 0.15rem 0; font-weight: 800;" class="anchored"></h3>
+      <div id="gameArtistA" style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem;"></div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-7" data-nodetype="declaration">
+      <div style="font-size: 1.4rem; font-weight: 900; color: #00f2fe; margin-top: 0.6rem; font-family: monospace;">
+        RANK #<span id="gameRankA"></span>
+      </div>
+      <div style="font-size: 0.85rem; color: #ffd166;" id="gameRatingA"></div>
+    </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-8" data-nodetype="declaration">
+    <!-- Center VS Indicator -->
+    <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div class="vs-badge">VS</div>
+      <div style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace; margin-top: 0.6rem; letter-spacing: 1px;">
+        IS IT HIGHER OR LOWER?
+      </div>
+    </div>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-9" data-nodetype="declaration">
+    <!-- Mystery Album B (Challenger) -->
+    <div class="compare-box" id="mysteryBox" style="border-color: rgba(255, 209, 102, 0.4);">
+      <div style="font-size: 0.75rem; letter-spacing: 1.5px; color: #ffd166; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;">
+        MYSTERY CHALLENGER
+      </div>
+      <img id="gameImgB" class="compare-cover" src="" alt="Mystery Album" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album+B'">
+      <h3 id="gameTitleB" style="color: #fff; font-size: 1.35rem; margin: 0.4rem 0 0.15rem 0; font-weight: 800;" class="anchored"></h3>
+      <div id="gameArtistB" style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem;"></div>
 
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="40" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 39;"><span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co">// Integrated navigation header</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="turntable-deck" style="padding: 1rem 1.5rem; margin-bottom: 1.5rem; grid-template-columns: 1fr;"&gt;</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="deck-nav-bar" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;"&gt;</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span style="font-size: 0.75rem; font-weight: 700; color: #ffd166; text-transform: uppercase;"&gt;VAULT TABS:&lt;/span&gt;</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;a href="index.qmd" class="deck-nav-pill"&gt;🎵 Turntable Wall ↗&lt;/a&gt;</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;a href="compare.qmd" class="deck-nav-pill"&gt;⚖️ Cover Compare ↗&lt;/a&gt;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;a href="game.qmd" class="deck-nav-pill active"&gt;🎮 Higher / Lower Game&lt;/a&gt;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;a href="about.qmd" class="deck-nav-pill"&gt;ℹ️ About ↗&lt;/a&gt;</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-2" data-nodetype="expression">
+      <!-- Rank display: Hidden until guess -->
+      <div id="mysteryRankLine" style="font-size: 1.4rem; font-weight: 900; color: #ffd166; margin-top: 0.6rem; font-family: monospace;">
+        RANK # ???
+      </div>
 
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="56" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 55;"><span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">// Main Game Arena Component</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="game-arena text-center"&gt;</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;"&gt;</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="streak-counter"&gt;</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="vs">      🔥 Current Streak: &lt;span style="font-size: 1.25rem;"&gt;</span><span class="sc">${</span>currentStreak<span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="streak-counter" style="background: rgba(0, 242, 254, 0.15); border-color: rgba(0, 242, 254, 0.35); color: #00f2fe;"&gt;</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="vs">      🏆 Best Streak: &lt;span style="font-size: 1.25rem;"&gt;</span><span class="sc">${</span>bestStreak<span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="compare-grid" style="margin: 1.5rem 0;"&gt;</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Album A (Known) --&gt;</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="compare-box"&gt;</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 0.75rem; letter-spacing: 1.5px; color: #00f2fe; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;"&gt;</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="vs">        BENCHMARK ALBUM</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;img </span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="vs">        class="compare-cover" </span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="vs">        src="</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">image_url</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="vs">        alt="</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="vs">        referrerpolicy="no-referrer"</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="vs">        crossorigin="anonymous"</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="vs">        onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album'"</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="vs">      /&gt;</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;h3 style="color: #fff; font-size: 1.35rem; margin: 0.25rem 0; font-weight: 800;"&gt;</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">&lt;/h3&gt;</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem;"&gt;</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">artist</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">)&lt;/div&gt;</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 1.1rem; font-weight: 900; color: #00f2fe; margin-top: 0.5rem;"&gt;</span></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="vs">        RANK #</span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">rank</span><span class="sc">}</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 0.85rem; color: #ffd166;"&gt;⭐ </span><span class="sc">${</span>gameAlbumA<span class="op">.</span><span class="at">rating</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Center VS Indicator --&gt;</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="text-align: center;"&gt;</span></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="vs-badge"&gt;VS&lt;/div&gt;</span></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 0.75rem; color: #cbd5e1; margin-top: 0.6rem; font-weight: 600;"&gt;</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="vs">        Round </span><span class="sc">${</span>roundCounter<span class="sc">}</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;!-- Album B (Mystery) --&gt;</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="compare-box" style="</span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'won'</span> <span class="op">?</span> <span class="st">'border-color: #00f2fe; box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);'</span> <span class="op">:</span> (gameStatus <span class="op">===</span> <span class="st">'lost'</span> <span class="op">?</span> <span class="st">'border-color: #ff4d4d; box-shadow: 0 0 25px rgba(255, 77, 77, 0.4);'</span> <span class="op">:</span> <span class="st">''</span>)<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 0.75rem; letter-spacing: 1.5px; color: #ffd166; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;"&gt;</span></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="vs">        MYSTERY ALBUM</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;img </span></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="vs">        class="compare-cover" </span></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="vs">        src="</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">image_url</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="vs">        alt="</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="vs">        referrerpolicy="no-referrer"</span></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="vs">        crossorigin="anonymous"</span></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="vs">        onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album'"</span></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="vs">      /&gt;</span></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;h3 style="color: #fff; font-size: 1.35rem; margin: 0.25rem 0; font-weight: 800;"&gt;</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">album</span><span class="sc">}</span><span class="vs">&lt;/h3&gt;</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem;"&gt;</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">artist</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">)&lt;/div&gt;</span></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'playing'</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 1.1rem; font-weight: 900; color: #ffd166; margin-top: 0.5rem;"&gt;</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="vs">          RANK: ❓❓❓</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 0.85rem; color: #94a3b8;"&gt;Is it ranked higher or lower?&lt;/div&gt;</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 1.25rem; font-weight: 900; color: </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'won'</span> <span class="op">?</span> <span class="st">'#00f2fe'</span> <span class="op">:</span> <span class="st">'#ff4d4d'</span><span class="sc">}</span><span class="vs">; margin-top: 0.5rem;"&gt;</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="vs">          RANK #</span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">rank</span><span class="sc">}</span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div style="font-size: 0.85rem; color: #ffd166;"&gt;⭐ </span><span class="sc">${</span>gameAlbumB<span class="op">.</span><span class="at">rating</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span><span class="sc">}</span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;!-- Interactive Decision Controls --&gt;</span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'playing'</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;"&gt;</span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;button class="btn-neon" style="background: linear-gradient(135deg, #00f2fe, #4facfe); font-size: 1rem; padding: 0.65rem 1.6rem;" onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Higher rank means numerical rank is smaller (e.g. #1 is higher than #10)</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> isHigher <span class="op">=</span> gameAlbumB<span class="op">.</span><span class="at">rank</span> <span class="op">&lt;</span> gameAlbumA<span class="op">.</span><span class="at">rank</span><span class="op">;</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (isHigher) {</span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>          <span class="kw">const</span> newStreak <span class="op">=</span> currentStreak <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>          mutable currentStreak <span class="op">=</span> newStreak<span class="op">;</span></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (newStreak <span class="op">&gt;</span> bestStreak) mutable bestStreak <span class="op">=</span> newStreak<span class="op">;</span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>          mutable gameStatus <span class="op">=</span> <span class="st">"won"</span><span class="op">;</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>          mutable currentStreak <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>          mutable gameStatus <span class="op">=</span> <span class="st">"lost"</span><span class="op">;</span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>      }<span class="sc">}</span><span class="vs">&gt;</span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">        ▲ HIGHER RANK (Closer to #1)</span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/button&gt;</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;button class="btn-neon" style="background: linear-gradient(135deg, #ffd166, #ff7b00); font-size: 1rem; padding: 0.65rem 1.6rem;" onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Lower rank means numerical rank is larger (e.g. #50 is lower than #10)</span></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> isLower <span class="op">=</span> gameAlbumB<span class="op">.</span><span class="at">rank</span> <span class="op">&gt;</span> gameAlbumA<span class="op">.</span><span class="at">rank</span><span class="op">;</span></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (isLower) {</span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>          <span class="kw">const</span> newStreak <span class="op">=</span> currentStreak <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>          mutable currentStreak <span class="op">=</span> newStreak<span class="op">;</span></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (newStreak <span class="op">&gt;</span> bestStreak) mutable bestStreak <span class="op">=</span> newStreak<span class="op">;</span></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>          mutable gameStatus <span class="op">=</span> <span class="st">"won"</span><span class="op">;</span></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>          mutable currentStreak <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>          mutable gameStatus <span class="op">=</span> <span class="st">"lost"</span><span class="op">;</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>      }<span class="sc">}</span><span class="vs">&gt;</span></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="vs">        ▼ LOWER RANK (Further from #1)</span></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/button&gt;</span></span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="margin-top: 1.25rem;"&gt;</span></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'won'</span> <span class="op">?</span> <span class="st">'#00f2fe'</span> <span class="op">:</span> <span class="st">'#ff4d4d'</span><span class="sc">}</span><span class="vs">;"&gt;</span></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'won'</span> <span class="op">?</span> <span class="st">'🎉 SPOT ON! You guessed correctly!'</span> <span class="op">:</span> <span class="st">'❌ BUSTED! Better luck next time!'</span><span class="sc">}</span></span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;button class="btn-neon" style="padding: 0.6rem 1.8rem; font-size: 1rem;" onclick=</span><span class="sc">${</span>() <span class="kw">=&gt;</span> {</span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>        mutable gameAlbumA <span class="op">=</span> gameAlbumB<span class="op">;</span></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>        mutable gameAlbumB <span class="op">=</span> <span class="fu">getRandomAlbum</span>(gameAlbumB<span class="op">.</span><span class="at">rank</span>)<span class="op">;</span></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>        mutable gameStatus <span class="op">=</span> <span class="st">"playing"</span><span class="op">;</span></span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>        mutable roundCounter <span class="op">=</span> roundCounter <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>      }<span class="sc">}</span><span class="vs">&gt;</span></span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>gameStatus <span class="op">===</span> <span class="st">'won'</span> <span class="op">?</span> <span class="st">'🔥 Keep Streak Going →'</span> <span class="op">:</span> <span class="st">'🔄 Play Again'</span><span class="sc">}</span></span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/button&gt;</span></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span><span class="sc">}</span></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-3" data-nodetype="expression">
+      <!-- Action Guess Buttons -->
+      <div id="guessActions" style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+        <button id="btnHigher" class="btn-neon" type="button" style="background: linear-gradient(135deg, #00f2fe, #4facfe); color: #000; font-weight: 800; font-size: 0.9rem; padding: 0.55rem 1.25rem;">
+          🔼 HIGHER RANK (Closer to #1)
+        </button>
 
+        <button id="btnLower" class="btn-neon" type="button" style="background: linear-gradient(135deg, #ffd166, #ff7b00); color: #000; font-weight: 800; font-size: 0.9rem; padding: 0.55rem 1.25rem;">
+          🔽 LOWER RANK (Further from #1)
+        </button>
+      </div>
+
+      <!-- Result Reveal & Next Round Button (Hidden initially) -->
+      <div id="resultBanner" style="display: none; margin-top: 1rem;">
+        <div id="resultMessage" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; font-family: monospace;"></div>
+        <button id="btnNextRound" class="btn-neon" type="button" style="font-size: 0.9rem; padding: 0.5rem 1.4rem;">
+          ⏭ Next Contender
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const albums = [{"rank": 1, "album": "Rumours", "artist": "Fleetwood Mac", "year": 1977, "rating": 4.45, "genre": "rock", "image_url": "https://i.scdn.co/image/12fe04b0eb5ba5ecbfa9f508da60c2669719102e"}, {"rank": 2, "album": "Abbey Road", "artist": "Beatles", "year": 1969, "rating": 4.45, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25"}, {"rank": 3, "album": "The Dark Side Of The Moon", "artist": "Pink Floyd", "year": 1973, "rating": 4.43, "genre": "rock", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg"}, {"rank": 4, "album": "Nevermind", "artist": "Nirvana", "year": 1991, "rating": 4.37, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02fbc71c99f9c1296c56dd51b6"}, {"rank": 5, "album": "Led Zeppelin IV", "artist": "Led Zeppelin", "year": 1971, "rating": 4.33, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e024509204d0860cc0cc67e83dc"}, {"rank": 6, "album": "Wish You Were Here", "artist": "Pink Floyd", "year": 1975, "rating": 4.3, "genre": "rock", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg"}, {"rank": 7, "album": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars", "artist": "David Bowie", "year": 1972, "rating": 4.26, "genre": "rock", "image_url": "https://i.scdn.co/image/45f499572ed94edaedef7062d8e6fb2a7316f763"}, {"rank": 8, "album": "Sgt. Pepper's Lonely Hearts Club Band", "artist": "Beatles", "year": 1967, "rating": 4.24, "genre": "rock", "image_url": "https://i.scdn.co/image/2407ba9ca85d40a9e99f2a187bae2179dd0dcb08"}, {"rank": 9, "album": "Revolver", "artist": "Beatles", "year": 1966, "rating": 4.23, "genre": "rock", "image_url": "https://i.scdn.co/image/afac90c8979a0e93db3b6c58ac18f5899ee7f218"}, {"rank": 10, "album": "Thriller", "artist": "Michael Jackson", "year": 1982, "rating": 4.22, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e02de437d960dda1ac0a3586d97"}, {"rank": 11, "album": "MTV Unplugged In New York", "artist": "Nirvana", "year": 1994, "rating": 4.2, "genre": "rock", "image_url": "https://i.scdn.co/image/58e94705a7a411bc4e91b8298a454471135f0dd3"}, {"rank": 12, "album": "Paranoid", "artist": "Black Sabbath", "year": 1970, "rating": 4.19, "genre": "metal", "image_url": "https://i.scdn.co/image/940cb8bad50269081a3c0bca7286e8ff5a5d84d5"}, {"rank": 13, "album": "The White Album", "artist": "Beatles", "year": 1968, "rating": 4.17, "genre": "rock", "image_url": "https://i.scdn.co/image/1e2ff261274f27d2c3d5fc29af1a6286bfefbf1a"}, {"rank": 14, "album": "Are You Experienced", "artist": "Jimi Hendrix", "year": 1967, "rating": 4.13, "genre": "rock", "image_url": "https://i.scdn.co/image/bad0306a070fb9b09a0b9ee40872ed566e23d61f"}, {"rank": 15, "album": "OK Computer", "artist": "Radiohead", "year": 1997, "rating": 4.12, "genre": "rock", "image_url": "https://i.scdn.co/image/c1fabe2e86e55234ed060ff5b0cdd8e3ab896560"}, {"rank": 16, "album": "The Wall", "artist": "Pink Floyd", "year": 1979, "rating": 4.12, "genre": "rock", "image_url": "https://i.scdn.co/image/f7f22420531d4850aa5b568445feaa9b62af60e7"}, {"rank": 17, "album": "Rubber Soul", "artist": "Beatles", "year": 1965, "rating": 4.11, "genre": "rock", "image_url": "https://i.scdn.co/image/85cdd8d5563bfa069fbf9399a3455d4ab6be7322"}, {"rank": 18, "album": "Led Zeppelin II", "artist": "Led Zeppelin", "year": 1969, "rating": 4.09, "genre": "metal", "image_url": "https://i.scdn.co/image/86186b5082c70be197dca2163e2f1c97d1be7104"}, {"rank": 19, "album": "Songs In The Key Of Life", "artist": "Stevie Wonder", "year": 1976, "rating": 4.08, "genre": "funk", "image_url": "https://i.scdn.co/image/eac97467988a62e32e457903f7f34ecdeeaa4f68"}, {"rank": 20, "album": "Led Zeppelin", "artist": "Led Zeppelin", "year": 1969, "rating": 4.07, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e026f2f499c1df1f210c9b34b32"}, {"rank": 21, "album": "Lady Soul", "artist": "Aretha Franklin", "year": 1968, "rating": 4.05, "genre": "soul", "image_url": "https://i.scdn.co/image/742fcdea16c23b2335b2ea655250831dfff22b84"}, {"rank": 22, "album": "Kind Of Blue", "artist": "Miles Davis", "year": 1959, "rating": 4.04, "genre": "jazz", "image_url": "https://i.scdn.co/image/ab67616d00001e027ab89c25093ea3787b1995b4"}, {"rank": 23, "album": "Back To Black", "artist": "Amy Winehouse", "year": 2006, "rating": 4.03, "genre": "soul", "image_url": "https://i.scdn.co/image/065142e0c4c0cb194e20702cae8dda05d1085a44"}, {"rank": 24, "album": "The Bends", "artist": "Radiohead", "year": 1995, "rating": 4.02, "genre": "rock", "image_url": "https://i.scdn.co/image/9a251a9ea3e80d65d8e41a05823295fb74fec088"}, {"rank": 25, "album": "Purple Rain", "artist": "Prince", "year": 1984, "rating": 4.02, "genre": "funk", "image_url": "https://i.scdn.co/image/f6f134b51b8e88dc4be6bef65613a2142113a3e6"}, {"rank": 26, "album": "Hunky Dory", "artist": "David Bowie", "year": 1971, "rating": 3.99, "genre": "rock", "image_url": "https://i.scdn.co/image/1b2d3105a3e87cc9fb011dacc19cbdc9c678d803"}, {"rank": 27, "album": "Rage Against The Machine", "artist": "Rage Against The Machine", "year": 1992, "rating": 3.97, "genre": "rock", "image_url": "https://i.scdn.co/image/3326f9517fabd0951b4336c6d52cb8fe09cd6c9a"}, {"rank": 28, "album": "London Calling", "artist": "The Clash", "year": 1979, "rating": 3.96, "genre": "punk", "image_url": "https://i.scdn.co/image/84ca0f9564ae1eff9163a6a1dfae2a10b1d60a6a"}, {"rank": 29, "album": "At Folsom Prison", "artist": "Johnny Cash", "year": 1968, "rating": 3.96, "genre": "country", "image_url": "https://i.scdn.co/image/ab67616d00001e024a04593b7c149dc7b725683e"}, {"rank": 30, "album": "Bridge Over Troubled Water", "artist": "Simon & Garfunkel", "year": 1970, "rating": 3.95, "genre": "folk", "image_url": "https://i.scdn.co/image/d77dc3db3a55f0bd5da1050995c67c7c1867b1a8"}, {"rank": 31, "album": "A Night At The Opera", "artist": "Queen", "year": 1975, "rating": 3.95, "genre": "rock", "image_url": "https://i.scdn.co/image/7dc09be2030c957d4c4e0a00e2880aeefd42093b"}, {"rank": 32, "album": "What's Going On", "artist": "Marvin Gaye", "year": 1971, "rating": 3.94, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02b36949bee43217351961ffbc"}, {"rank": 33, "album": "Led Zeppelin III", "artist": "Led Zeppelin", "year": 1970, "rating": 3.93, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e0290a50cfe99a4c19ff3cbfbdb"}, {"rank": 34, "album": "The Doors", "artist": "The Doors", "year": 1967, "rating": 3.93, "genre": "rock", "image_url": "https://i.scdn.co/image/bc371b6b1115b50daf92dd2f6e211dc3aeff235e"}, {"rank": 35, "album": "Electric Ladyland", "artist": "Jimi Hendrix", "year": 1968, "rating": 3.93, "genre": "rock", "image_url": "https://i.scdn.co/image/dee867bbe7a3dd97a37212de86cd40166ebf6dc5"}, {"rank": 36, "album": "Exodus", "artist": "Bob Marley & The Wailers", "year": 1977, "rating": 3.93, "genre": "reggae", "image_url": "https://i.scdn.co/image/ab67616d00001e02811bfdc4f55b3a7484524aaf"}, {"rank": 37, "album": "I Never Loved a Man the Way I Love You", "artist": "Aretha Franklin", "year": 1967, "rating": 3.93, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e026aa9314b7ddfbd8f036ba3ac"}, {"rank": 38, "album": "Pet Sounds", "artist": "The Beach Boys", "year": 1966, "rating": 3.92, "genre": "pop", "image_url": "https://i.scdn.co/image/033c5c30c94b672083748ba667a08851ae2e1fd9"}, {"rank": 39, "album": "Goodbye Yellow Brick Road", "artist": "Elton John", "year": 1973, "rating": 3.92, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02f72f1e38e9bd48f18a17ed9b"}, {"rank": 40, "album": "Tapestry", "artist": "Carole King", "year": 1971, "rating": 3.92, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e0223350feac07f56d8b96f33d5"}, {"rank": 41, "album": "Ten", "artist": "Pearl Jam", "year": 1991, "rating": 3.91, "genre": "rock", "image_url": "https://i.scdn.co/image/42bb4e98900ff6cbf1968f2908a1dff1754d67f4"}, {"rank": 42, "album": "Otis Blue/Otis Redding Sings Soul", "artist": "Otis Redding", "year": 1965, "rating": 3.91, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e028f2e2804d068b8ed79f15979"}, {"rank": 43, "album": "Physical Graffiti", "artist": "Led Zeppelin", "year": 1975, "rating": 3.89, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e022abc2d86a442efb6cc631d0a"}, {"rank": 44, "album": "Who's Next", "artist": "The Who", "year": 1971, "rating": 3.89, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02fe24dcd263c08c6dd84b6e8c"}, {"rank": 45, "album": "Cosmo's Factory", "artist": "Creedence Clearwater Revival", "year": 1970, "rating": 3.89, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0261834aa14b97a7d9c693134f"}, {"rank": 46, "album": "A Hard Day's Night", "artist": "Beatles", "year": 1964, "rating": 3.88, "genre": "rock", "image_url": "https://i.scdn.co/image/c230dfb403e50b0d402902cb9b671d2d9bddcdf3"}, {"rank": 47, "album": "In Rainbows", "artist": "Radiohead", "year": 2007, "rating": 3.87, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0234733f87148c2fbe0176abdb"}, {"rank": 48, "album": "Disintegration", "artist": "The Cure", "year": 1989, "rating": 3.87, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02858ed9e2832801189187391a"}, {"rank": 49, "album": "Innervisions", "artist": "Stevie Wonder", "year": 1973, "rating": 3.87, "genre": "funk", "image_url": "https://i.scdn.co/image/ab67616d00001e02ea8ab1a548312b79ac955266"}, {"rank": 50, "album": "(What's The Story) Morning Glory", "artist": "Oasis", "year": 1995, "rating": 3.86, "genre": "rock", "image_url": "https://i.scdn.co/image/adb304d21869a2765f55ad2d58c0d314cfe984be"}, {"rank": 51, "album": "The Stranger", "artist": "Billy Joel", "year": 1977, "rating": 3.86, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e028a6dbac0b74bd2484189ea5f"}, {"rank": 52, "album": "American IV: The Man Comes Around", "artist": "Johnny Cash", "year": 2002, "rating": 3.86, "genre": "country", "image_url": "https://i.scdn.co/image/66fd30da44cd9a21d402513f1ed0edf5e1a77c4b"}, {"rank": 53, "album": "Sticky Fingers", "artist": "The Rolling Stones", "year": 1971, "rating": 3.85, "genre": "rock", "image_url": "https://i.scdn.co/image/76f5b86a326ca21f892ebaa5f77e76968e6ca3ba"}, {"rank": 54, "album": "Elephant", "artist": "The White Stripes", "year": 2003, "rating": 3.83, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02a69f71a8794e2d867a52f98f"}, {"rank": 55, "album": "Back In Black", "artist": "AC/DC", "year": 1980, "rating": 3.83, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e020b51f8d91f3a21e8426361ae"}, {"rank": 56, "album": "In Utero", "artist": "Nirvana", "year": 1993, "rating": 3.82, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02c4f52ef8782f0e8ede4c1aaf"}, {"rank": 57, "album": "Siamese Dream", "artist": "The Smashing Pumpkins", "year": 1993, "rating": 3.82, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02f00d9c29f0eb7691f908f23a"}, {"rank": 58, "album": "Time Out", "artist": "The Dave Brubeck Quartet", "year": 1959, "rating": 3.82, "genre": "jazz", "image_url": "https://i.scdn.co/image/f38a47efdc7873a6bae96aecc9e716c9e3e68721"}, {"rank": 59, "album": "Black Sabbath", "artist": "Black Sabbath", "year": 1970, "rating": 3.81, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e021311a92b0ca83a5154c5a5e7"}, {"rank": 60, "album": "Is This It", "artist": "The Strokes", "year": 2001, "rating": 3.81, "genre": "rock", "image_url": "https://i.scdn.co/image/4f399666325158516073a0bdeebeded9ebb6893d"}, {"rank": 61, "album": "Bad", "artist": "Michael Jackson", "year": 1987, "rating": 3.81, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e0262e97ae5072de10850578af5"}, {"rank": 62, "album": "All Things Must Pass", "artist": "George Harrison", "year": 1970, "rating": 3.81, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02acc11d868a59008935e72299"}, {"rank": 63, "album": "Automatic For The People", "artist": "R.E.M.", "year": 1992, "rating": 3.8, "genre": "rock", "image_url": "https://i.scdn.co/image/7ccf85b50307c9d32ec24ba26b673287fed84e42"}, {"rank": 64, "album": "Let It Bleed", "artist": "The Rolling Stones", "year": 1969, "rating": 3.8, "genre": "rock", "image_url": "https://i.scdn.co/image/2be7232708f6959da59818238050cfd2c4982d54"}, {"rank": 65, "album": "Off The Wall", "artist": "Michael Jackson", "year": 1979, "rating": 3.8, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e027027294551db4fda68b5ddac"}, {"rank": 66, "album": "Harvest", "artist": "Neil Young", "year": 1972, "rating": 3.8, "genre": "rock", "image_url": "https://i.scdn.co/image/644ae2a5d92b559a8d7714f7a5de305afa317fb8"}, {"rank": 67, "album": "Dookie", "artist": "Green Day", "year": 1994, "rating": 3.79, "genre": "punk", "image_url": "https://i.scdn.co/image/4bf06c01a3911f76a386524c1fd675249e342c2f"}, {"rank": 68, "album": "Tracy Chapman", "artist": "Tracy Chapman", "year": 1988, "rating": 3.79, "genre": "folk", "image_url": "https://i.scdn.co/image/e00124ed1864f9ae7f41b7e4e065c4ee41f45892"}, {"rank": 69, "album": "Let's Get It On", "artist": "Marvin Gaye", "year": 1973, "rating": 3.78, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02320f0f0bb4eae1a2596db77c"}, {"rank": 70, "album": "American Idiot", "artist": "Green Day", "year": 2004, "rating": 3.77, "genre": "punk", "image_url": "https://i.scdn.co/image/329423c0d0435d8a29c91689f48c4b6a3c067575"}, {"rank": 71, "album": "Metallica", "artist": "Metallica", "year": 1991, "rating": 3.77, "genre": "metal", "image_url": "https://i.scdn.co/image/400dee6165a81c49b665d18637e3954213679ee8"}, {"rank": 72, "album": "Axis: Bold As Love", "artist": "Jimi Hendrix", "year": 1967, "rating": 3.77, "genre": "rock", "image_url": "https://i.scdn.co/image/4b9994763bc8efbd74bd6b6429e111ad167523b7"}, {"rank": 73, "album": "At San Quentin", "artist": "Johnny Cash", "year": 1969, "rating": 3.77, "genre": "country", "image_url": "https://i.scdn.co/image/f4409af5fb8fd35a407d4ab1b812244a9a2eeed9"}, {"rank": 74, "album": "Parallel Lines", "artist": "Blondie", "year": 1978, "rating": 3.76, "genre": "rock", "image_url": "https://i.scdn.co/image/d823559ac6ffa4c84c7ebb3b7ac2e2caa5206aba"}, {"rank": 75, "album": "Green River", "artist": "Creedence Clearwater Revival", "year": 1969, "rating": 3.76, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e023efcd243aaa5638f55318f91"}, {"rank": 76, "album": "Songs From The Big Chair", "artist": "Tears For Fears", "year": 1985, "rating": 3.75, "genre": "rock", "image_url": "https://i.scdn.co/image/5727a0dda52a33d496843dc595287c640274db52"}, {"rank": 77, "album": "Grace", "artist": "Jeff Buckley", "year": 1994, "rating": 3.75, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e026a760642a56847027428cb61"}, {"rank": 78, "album": "Highway 61 Revisited", "artist": "Bob Dylan", "year": 1965, "rating": 3.75, "genre": "rock", "image_url": "https://i.scdn.co/image/70188a3795fe296d98539cc2f2ec48f7efb68c22"}, {"rank": 79, "album": "Live At The Harlem Square Club", "artist": "Sam Cooke", "year": 1963, "rating": 3.75, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02cada54c15af0a1da882f08f9"}, {"rank": 80, "album": "Vol. 4", "artist": "Black Sabbath", "year": 1972, "rating": 3.74, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e02f44c5014a32565b63475d7b2"}, {"rank": 81, "album": "Doolittle", "artist": "Pixies", "year": 1989, "rating": 3.74, "genre": "rock", "image_url": "https://i.scdn.co/image/bf8ff4fa67e09d5e44db36589f1778060f0c3af7"}, {"rank": 82, "album": "Can't Buy A Thrill", "artist": "Steely Dan", "year": 1972, "rating": 3.74, "genre": "rock", "image_url": "https://i.scdn.co/image/0e6808755fbe3520633e6bd7f9ccce98deba9740"}, {"rank": 83, "album": "Let's Stay Together", "artist": "Al Green", "year": 1972, "rating": 3.74, "genre": "soul", "image_url": "https://i.scdn.co/image/cb2e964016dd8ebf2488649bae6471f885000dfc"}, {"rank": 84, "album": "(Pronounced 'Leh-'N\u00e9rd 'Skin-'N\u00e9rd)", "artist": "Lynyrd Skynyrd", "year": 1973, "rating": 3.74, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02ed9531fd3add18804cd6d7c1"}, {"rank": 85, "album": "Brothers In Arms", "artist": "Dire Straits", "year": 1985, "rating": 3.73, "genre": "rock", "image_url": "https://i.scdn.co/image/0e528f08633f70706fc1494f611aa974a31c9df7"}, {"rank": 86, "album": "KIWANUKA", "artist": "Michael Kiwanuka", "year": 2019, "rating": 3.73, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e0260ada139840fb439d6750f27"}, {"rank": 87, "album": "Whatever People Say I Am, That's What I'm Not", "artist": "Arctic Monkeys", "year": 2006, "rating": 3.72, "genre": "rock", "image_url": "https://i.scdn.co/image/5e004226de34dc4f79d9d895d2b3c7526e50129f"}, {"rank": 88, "album": "Dire Straits", "artist": "Dire Straits", "year": 1978, "rating": 3.72, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e029dfee5404d5e0763998c958e"}, {"rank": 89, "album": "Graceland", "artist": "Paul Simon", "year": 1986, "rating": 3.72, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02ecd1e6fe12d12402318d747d"}, {"rank": 90, "album": "Jagged Little Pill", "artist": "Alanis Morissette", "year": 1995, "rating": 3.72, "genre": "pop", "image_url": "https://i.scdn.co/image/b45f1b84098251d48f8e257312818ae31784be73"}, {"rank": 91, "album": "Talking Book", "artist": "Stevie Wonder", "year": 1972, "rating": 3.72, "genre": "funk", "image_url": "https://i.scdn.co/image/762d8bcdb64f62254567552032ac01eed9c22b25"}, {"rank": 92, "album": "Hot Fuss", "artist": "The Killers", "year": 2004, "rating": 3.72, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02ccdddd46119a4ff53eaf1f5d"}, {"rank": 93, "album": "Kid A", "artist": "Radiohead", "year": 2000, "rating": 3.71, "genre": "rock", "image_url": "https://i.scdn.co/image/690e5c2be4147fe16bf810b5d7e4ce3582319945"}, {"rank": 94, "album": "Dummy", "artist": "Portishead", "year": 1994, "rating": 3.71, "genre": "electronica", "image_url": "https://i.scdn.co/image/b72a514a7a7ba3cd9084192ca6dbe96ec69845bc"}, {"rank": 95, "album": "Master Of Puppets", "artist": "Metallica", "year": 1986, "rating": 3.71, "genre": "metal", "image_url": "https://i.scdn.co/image/720e1d7a38da870d3efce843d0bcc4ccd4cafaad"}, {"rank": 96, "album": "Abraxas", "artist": "Santana", "year": 1970, "rating": 3.71, "genre": "rock", "image_url": "https://i.scdn.co/image/04dc767e8ac9ac25f0c45a1ba57a22ba31733339"}, {"rank": 97, "album": "Pearl", "artist": "Janis Joplin", "year": 1971, "rating": 3.71, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e028882f88e4f2c44d61fe56ffe"}, {"rank": 98, "album": "Appetite For Destruction", "artist": "Guns N' Roses", "year": 1987, "rating": 3.7, "genre": "metal", "image_url": "https://i.scdn.co/image/257237fe469affd86b4d18bb3f81ee5ad2839159"}, {"rank": 99, "album": "Violator", "artist": "Depeche Mode", "year": 1990, "rating": 3.7, "genre": "electronica", "image_url": "https://i.scdn.co/image/d03afbc90d4ad998eb9d65cbd764d122cbf68c8d"}, {"rank": 100, "album": "Boston", "artist": "Boston", "year": 1976, "rating": 3.7, "genre": "rock", "image_url": "https://i.scdn.co/image/ea6c0cdc86984d4cb8fb8758eb53a09060e1c1dd"}, {"rank": 101, "album": "The Low End Theory", "artist": "A Tribe Called Quest", "year": 1991, "rating": 3.7, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/b6b9740d104cf31a9c2cd30be1374167f2e4179b"}, {"rank": 102, "album": "Deja Vu", "artist": "Crosby, Stills, Nash & Young", "year": 1970, "rating": 3.7, "genre": "rock", "image_url": "https://i.scdn.co/image/1287b3b9201fc5ed8c51101dbeb0326a450671ec"}, {"rank": 103, "album": "Station To Station", "artist": "David Bowie", "year": 1976, "rating": 3.69, "genre": "rock", "image_url": "https://i.scdn.co/image/9645887ae16ebebce9a15b8777511896a1161c32"}, {"rank": 104, "album": "Born In The U.S.A.", "artist": "Bruce Springsteen", "year": 1984, "rating": 3.69, "genre": "rock", "image_url": "https://i.scdn.co/image/ff30aee935ac235dcdf53e2b4cef4532de7d33cf"}, {"rank": 105, "album": "The Score", "artist": "Fugees", "year": 1996, "rating": 3.69, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/e46633eff20c4e1e044abd854d74abdd1b064450"}, {"rank": 106, "album": "Superfly", "artist": "Curtis Mayfield", "year": 1972, "rating": 3.69, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02e40d99abf163cfd9c9de18f1"}, {"rank": 107, "album": "21", "artist": "Adele", "year": 2011, "rating": 3.69, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e02fb7eedd9877b0c60597ef3e5"}, {"rank": 108, "album": "Californication", "artist": "Red Hot Chili Peppers", "year": 1999, "rating": 3.68, "genre": "rock", "image_url": "https://i.scdn.co/image/a6acf5e95e997e07a877cf8bdfd8e7bae8d62c7d"}, {"rank": 109, "album": "Remain In Light", "artist": "Talking Heads", "year": 1980, "rating": 3.68, "genre": "electronica", "image_url": "https://i.scdn.co/image/6cd647135195ef216b9d58b475a4258d2699025f"}, {"rank": 110, "album": "Mellon Collie and the Infinite Sadness", "artist": "The Smashing Pumpkins", "year": 1995, "rating": 3.68, "genre": "rock", "image_url": "https://i.scdn.co/image/e478c9aa6b08b1816ec54f47a1fbfca38875e0aa"}, {"rank": 111, "album": "Buena Vista Social Club", "artist": "Buena Vista Social Club", "year": 1997, "rating": 3.68, "genre": "jazz", "image_url": "https://i.scdn.co/image/587097fed39e95806b7ab08d3154327d37908356"}, {"rank": 112, "album": "Moondance", "artist": "Van Morrison", "year": 1970, "rating": 3.68, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02d828b182ee9b7193a0f8b5d6"}, {"rank": 113, "album": "The Queen Is Dead", "artist": "The Smiths", "year": 1986, "rating": 3.67, "genre": "rock", "image_url": "https://i.scdn.co/image/fba88127753bad349ee8672ccf60ecc98e5cf307"}, {"rank": 114, "album": "The Miseducation of Lauryn Hill", "artist": "Lauryn Hill", "year": 1998, "rating": 3.67, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/517be4be20d34be9a9b27e1ff72d974a3ad86238"}, {"rank": 115, "album": "Band On The Run", "artist": "Paul McCartney and Wings", "year": 1973, "rating": 3.67, "genre": "rock", "image_url": "https://i.scdn.co/image/4e70f951f60ccbce2ca5a0be502a7e97b16da02b"}, {"rank": 116, "album": "Tea for the Tillerman", "artist": "Cat Stevens", "year": 1970, "rating": 3.67, "genre": "folk", "image_url": "https://i.scdn.co/image/ab67616d00001e02409b4acd6ef9f8f05a41466c"}, {"rank": 117, "album": "The Joshua Tree", "artist": "U2", "year": 1987, "rating": 3.66, "genre": "rock", "image_url": "https://i.scdn.co/image/06909fcbfc067a3a02466311fbf20acef563b90a"}, {"rank": 118, "album": "Transformer", "artist": "Lou Reed", "year": 1972, "rating": 3.66, "genre": "rock", "image_url": "https://i.scdn.co/image/19e4828ddb234b8061dc0e0c689358224302de27"}, {"rank": 119, "album": "The Stone Roses", "artist": "The Stone Roses", "year": 1989, "rating": 3.66, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02cf1f6466a493eb73d6d9d280"}, {"rank": 120, "album": "Blood On The Tracks", "artist": "Bob Dylan", "year": 1975, "rating": 3.66, "genre": "rock", "image_url": "https://i.scdn.co/image/755a11cfa36419d006b1482feba5799cbcf1c2d8"}, {"rank": 121, "album": "Live At The Regal", "artist": "B.B. King", "year": 1965, "rating": 3.66, "genre": "blues", "image_url": "https://i.scdn.co/image/f40a1d1b96a1f00e34b3106730f754e2e7173188"}, {"rank": 122, "album": "Getz/Gilberto", "artist": "Stan Getz", "year": 1964, "rating": 3.66, "genre": "jazz", "image_url": "https://i.scdn.co/image/ab67616d00001e0275a2f83efddd9dc79e034ec3"}, {"rank": 123, "album": "Pink Moon", "artist": "Nick Drake", "year": 1972, "rating": 3.65, "genre": "folk", "image_url": "https://i.scdn.co/image/948223a2ac50b905d3998341d802e1868b34d018"}, {"rank": 124, "album": "The Cars", "artist": "The Cars", "year": 1978, "rating": 3.65, "genre": "rock", "image_url": "https://i.scdn.co/image/f384ed7299d6974fd58707c000757fd2d6d48111"}, {"rank": 125, "album": "Superunknown", "artist": "Soundgarden", "year": 1994, "rating": 3.65, "genre": "rock", "image_url": "https://i.scdn.co/image/9605a8c3ab4a85a637e1c20f466a441ea167d5c8"}, {"rank": 126, "album": "Wild Is The Wind", "artist": "Nina Simone", "year": 1966, "rating": 3.65, "genre": "blues", "image_url": "https://i.scdn.co/image/c863204a11f07cbce562771acdf73e7dc02e9906"}, {"rank": 127, "album": "good kid, m.A.A.d city", "artist": "Kendrick Lamar", "year": 2012, "rating": 3.65, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/ab67616d00001e022cd55246d935a8a77cb4859e"}, {"rank": 128, "album": "With The Beatles", "artist": "Beatles", "year": 1963, "rating": 3.64, "genre": "rock", "image_url": "https://i.scdn.co/image/c1f4d171a363872f3d0c52085f380edc871d2641"}, {"rank": 129, "album": "White Blood Cells", "artist": "The White Stripes", "year": 2001, "rating": 3.64, "genre": "rock", "image_url": "https://i.scdn.co/image/46bbe215854113958297fca03d81b7816a90c8a8"}, {"rank": 130, "album": "L.A. Woman", "artist": "The Doors", "year": 1971, "rating": 3.64, "genre": "rock", "image_url": "https://i.scdn.co/image/390765e671d4e263b70b9a1669eb4c2a98b94ac4"}, {"rank": 131, "album": "To Pimp A Butterfly", "artist": "Kendrick Lamar", "year": 2015, "rating": 3.64, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/ab67616d00001e02cdb645498cd3d8a2db4d05e1"}, {"rank": 132, "album": "Hounds Of Love", "artist": "Kate Bush", "year": 1985, "rating": 3.63, "genre": "pop", "image_url": "https://i.scdn.co/image/f43e56da19bcaff2bf003e9006e4149e314ed7cc"}, {"rank": 133, "album": "Born To Run", "artist": "Bruce Springsteen", "year": 1975, "rating": 3.63, "genre": "rock", "image_url": "https://i.scdn.co/image/ae5cc1ad1b55621c1d835c08c7135bcb37f0f903"}, {"rank": 134, "album": "Bayou Country", "artist": "Creedence Clearwater Revival", "year": 1969, "rating": 3.63, "genre": "rock", "image_url": "https://i.scdn.co/image/378d421c5232404c22ba6296c688463f8f390d8b"}, {"rank": 135, "album": "Out Of The Blue", "artist": "Electric Light Orchestra", "year": 1977, "rating": 3.63, "genre": "rock", "image_url": "https://i.scdn.co/image/32abd87b6cbfb66c5555ad4819f0f765f0185c8b"}, {"rank": 136, "album": "Ill Communication", "artist": "Beastie Boys", "year": 1994, "rating": 3.63, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/730ba683efd452583b60ba1a0b227c5abdf224b8"}, {"rank": 137, "album": "Bringing It All Back Home", "artist": "Bob Dylan", "year": 1965, "rating": 3.63, "genre": "rock", "image_url": "https://i.scdn.co/image/940eb7a70b6ff1febf64ec974305b3555d7f7641"}, {"rank": 138, "album": "A Love Supreme", "artist": "John Coltrane", "year": 1965, "rating": 3.63, "genre": "jazz", "image_url": "https://i.scdn.co/image/5727cd4a065e14ecbb410a3c7141aff4629c58e9"}, {"rank": 139, "album": "Birth Of The Cool", "artist": "Miles Davis", "year": 1957, "rating": 3.63, "genre": "jazz", "image_url": "https://i.scdn.co/image/eb093c2c4092de06c7ee1034ad83856c42081cab"}, {"rank": 140, "album": "The Velvet Underground & Nico", "artist": "The Velvet Underground", "year": 1967, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0298260c528e6eec9dd431c1d7"}, {"rank": 141, "album": "Oracular Spectacular", "artist": "MGMT", "year": 2007, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/60c81344995dcca6528e42adbd8b763a4e5c93da"}, {"rank": 142, "album": "Young Americans", "artist": "David Bowie", "year": 1975, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/7e3406b7781040f18d7916a8c8fff0da28361f7b"}, {"rank": 143, "album": "Sheer Heart Attack", "artist": "Queen", "year": 1974, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/735afc888526cf537c1203589219e912fccf44e0"}, {"rank": 144, "album": "The Freewheelin' Bob Dylan", "artist": "Bob Dylan", "year": 1963, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/48950e52d435e6993a3b2e3dbcaecd825e4a595b"}, {"rank": 145, "album": "In A Silent Way", "artist": "Miles Davis", "year": 1969, "rating": 3.62, "genre": "jazz", "image_url": "https://i.scdn.co/image/bf1fb601654caeecf7e16357bec660751457a3dc"}, {"rank": 146, "album": "Highway to Hell", "artist": "AC/DC", "year": 1979, "rating": 3.62, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0251c02a77d09dfcd53c8676d0"}, {"rank": 147, "album": "Mothership Connection", "artist": "Parliament", "year": 1975, "rating": 3.62, "genre": "funk", "image_url": "https://i.scdn.co/image/3bf4c8049d3d088de18ffb2dbdba26873792780b"}, {"rank": 148, "album": "The Genius Of Ray Charles", "artist": "Ray Charles", "year": 1959, "rating": 3.62, "genre": "soul", "image_url": "https://i.scdn.co/image/325ee8c3dad60f553e07e767792f21ff3c9cb75c"}, {"rank": 149, "album": "People's Instinctive Travels and the Paths of Rhythm", "artist": "A Tribe Called Quest", "year": 1990, "rating": 3.62, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/ab67616d00001e024ba1fe238a517021ebcc2ace"}, {"rank": 150, "album": "Heroes", "artist": "David Bowie", "year": 1977, "rating": 3.61, "genre": "rock", "image_url": "https://i.scdn.co/image/2c1d5611677c95f1880d6f110b30386f4381e36c"}, {"rank": 151, "album": "Parsley, Sage, Rosemary And Thyme", "artist": "Simon & Garfunkel", "year": 1966, "rating": 3.61, "genre": "folk", "image_url": "https://i.scdn.co/image/26105999ac5407065073e9f9048b6840716eaa66"}, {"rank": 152, "album": "Van Halen", "artist": "Van Halen", "year": 1978, "rating": 3.61, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e0217dd812df38fed44d6d2036e"}, {"rank": 153, "album": "Illmatic", "artist": "Nas", "year": 1994, "rating": 3.61, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/4d11cf0fc74b4961afd1898867eaeb7234c614a5"}, {"rank": 154, "album": "Catch A Fire", "artist": "Bob Marley & The Wailers", "year": 1973, "rating": 3.61, "genre": "reggae", "image_url": "https://i.scdn.co/image/ab67616d00001e0274dc45beb45b50ec54516c05"}, {"rank": 155, "album": "In The Court Of The Crimson King", "artist": "King Crimson", "year": 1969, "rating": 3.61, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e020e36a62897cf3f5937bf9c16"}, {"rank": 156, "album": "After The Gold Rush", "artist": "Neil Young", "year": 1970, "rating": 3.61, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e021e52dc7f7425f0c5bc3a4047"}, {"rank": 157, "album": "Aladdin Sane", "artist": "David Bowie", "year": 1973, "rating": 3.6, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e025db6dbaca8678527e643a866"}, {"rank": 158, "album": "Beggars Banquet", "artist": "The Rolling Stones", "year": 1968, "rating": 3.6, "genre": "rock", "image_url": "https://i.scdn.co/image/a8bd5a7d5ab71a76b998ce256b046e90571de0d3"}, {"rank": 159, "album": "Maggot Brain", "artist": "Funkadelic", "year": 1971, "rating": 3.6, "genre": "funk", "image_url": "https://i.scdn.co/image/dedd88fa7a3d10c893009b62fde652c54cd71821"}, {"rank": 160, "album": "Enter The Wu-Tang (36 Chambers)", "artist": "Wu-Tang Clan", "year": 1993, "rating": 3.6, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/698e2edd55f41be33769f08906795c2e5b49d48e"}, {"rank": 161, "album": "Hard Again", "artist": "Muddy Waters", "year": 1977, "rating": 3.6, "genre": "blues", "image_url": "https://i.scdn.co/image/3626bcf75f21aca1156d0ac65f21827bd593947a"}, {"rank": 162, "album": "Exile On Main Street", "artist": "The Rolling Stones", "year": 1972, "rating": 3.59, "genre": "rock", "image_url": "https://i.scdn.co/image/5857f7fad60c1e6af9f5b601410895e16eeb6ebe"}, {"rank": 163, "album": "Lust For Life", "artist": "Iggy Pop", "year": 1977, "rating": 3.59, "genre": "rock", "image_url": "https://i.scdn.co/image/f96ab03391cbc13017c61e302fb65cd514d83e40"}, {"rank": 164, "album": "Black Holes and Revelations", "artist": "Muse", "year": 2006, "rating": 3.59, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0228933b808bfb4cbbd0385400"}, {"rank": 165, "album": "3 + 3", "artist": "The Isley Brothers", "year": 1973, "rating": 3.59, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e029d1d0e64081ea5c0927d6051"}, {"rank": 166, "album": "Hotel California", "artist": "Eagles", "year": 1976, "rating": 3.58, "genre": "rock", "image_url": "https://i.scdn.co/image/470e6660ebe014f52236c7cc723037e8fab562c2"}, {"rank": 167, "album": "1999", "artist": "Prince", "year": 1982, "rating": 3.58, "genre": "funk", "image_url": "https://i.scdn.co/image/8518eb5655ce5a44023943b0f87b61990f7db515"}, {"rank": 168, "album": "Madman Across The Water", "artist": "Elton John", "year": 1971, "rating": 3.58, "genre": "rock", "image_url": "https://i.scdn.co/image/0bc13a3eb3ecb8c5b5e6b285d0f69af99d92811c"}, {"rank": 169, "album": "Yoshimi Battles The Pink Robots", "artist": "The Flaming Lips", "year": 2002, "rating": 3.57, "genre": "rock", "image_url": "https://i.scdn.co/image/2a86248a6ce38d85133b0a49832f3d3ebb3ceac1"}, {"rank": 170, "album": "Franz Ferdinand", "artist": "Franz Ferdinand", "year": 2004, "rating": 3.57, "genre": "rock", "image_url": "https://i.scdn.co/image/65e5cbb5fbbb20385d042ce7aa357309388f555e"}, {"rank": 171, "album": "Moon Safari", "artist": "Air", "year": 1998, "rating": 3.57, "genre": "pop", "image_url": "https://i.scdn.co/image/eba315b54484b420d68a6dc95914ef2c565533dc"}, {"rank": 172, "album": "Machine Head", "artist": "Deep Purple", "year": 1972, "rating": 3.57, "genre": "metal", "image_url": "https://i.scdn.co/image/0405a5f1db4cc0078f8b3ef35855c628f01da76d"}, {"rank": 173, "album": "The Number Of The Beast", "artist": "Iron Maiden", "year": 1982, "rating": 3.57, "genre": "metal", "image_url": "https://i.scdn.co/image/9a6870d886df9554420d37f782d07f7e5f6092de"}, {"rank": 174, "album": "Ramones", "artist": "Ramones", "year": 1976, "rating": 3.56, "genre": "punk", "image_url": "https://i.scdn.co/image/ab67616d00001e020d7c0a6fdfce64964d26eda2"}, {"rank": 175, "album": "Morrison Hotel", "artist": "The Doors", "year": 1970, "rating": 3.56, "genre": "rock", "image_url": "https://i.scdn.co/image/03f0ea28bd3e6f093a71239cd09abb34fe794862"}, {"rank": 176, "album": "Moving Pictures", "artist": "Rush", "year": 1981, "rating": 3.56, "genre": "rock", "image_url": "https://i.scdn.co/image/7dfedccefb4c69ee9581787fa640d8708100132d"}, {"rank": 177, "album": "Jazz Samba", "artist": "Stan Getz", "year": 1962, "rating": 3.56, "genre": "jazz", "image_url": "https://i.scdn.co/image/ab67616d00001e02e259545b94392d48378ecb3c"}, {"rank": 178, "album": "Natty Dread", "artist": "Bob Marley & The Wailers", "year": 1974, "rating": 3.56, "genre": "reggae", "image_url": "https://i.scdn.co/image/a3f37004aa4e5ee2cc5030df661adb64edf08d2d"}, {"rank": 179, "album": "Fulfillingness' First Finale", "artist": "Stevie Wonder", "year": 1974, "rating": 3.56, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02de0ccd19b3f72c1c4db92497"}, {"rank": 180, "album": "Talking Heads 77", "artist": "Talking Heads", "year": 1977, "rating": 3.55, "genre": "rock", "image_url": "https://i.scdn.co/image/6aaf5c3b56ed3739f1a0141c2f5362b6c45f50ed"}, {"rank": 181, "album": "Document", "artist": "R.E.M.", "year": 1987, "rating": 3.55, "genre": "rock", "image_url": "https://i.scdn.co/image/b100832732e93db61b4ba3497e1facfa1102be27"}, {"rank": 182, "album": "Bookends", "artist": "Simon & Garfunkel", "year": 1968, "rating": 3.55, "genre": "folk", "image_url": "https://i.scdn.co/image/5bbedc46a9d07d85465ad1f86838963041261a4d"}, {"rank": 183, "album": "Stankonia", "artist": "OutKast", "year": 2000, "rating": 3.55, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/d9c8acf62afd165f9b50fac85688b54f4907557e"}, {"rank": 184, "album": "Low", "artist": "David Bowie", "year": 1977, "rating": 3.54, "genre": "rock", "image_url": "https://i.scdn.co/image/5575191d033271bc55ed3c9547104b9b674e36fa"}, {"rank": 185, "album": "Funeral", "artist": "Arcade Fire", "year": 2004, "rating": 3.54, "genre": "rock", "image_url": "https://i.scdn.co/image/9f4688be9768a6f6d799fba26479b54746361fe2"}, {"rank": 186, "album": "Definitely Maybe", "artist": "Oasis", "year": 1994, "rating": 3.54, "genre": "rock", "image_url": "https://i.scdn.co/image/539889ac8b17001d002e8fb4b112821568edd520"}, {"rank": 187, "album": "Head Hunters", "artist": "Herbie Hancock", "year": 1973, "rating": 3.54, "genre": "jazz", "image_url": "https://i.scdn.co/image/ab67616d00001e026b75d57d2d070c0c4afb3f9a"}, {"rank": 188, "album": "Here's Little Richard", "artist": "Little Richard", "year": 1957, "rating": 3.54, "genre": "rock", "image_url": "https://i.scdn.co/image/7e53ddf8c0a59087b70183aeff5d8431e98eb978"}, {"rank": 189, "album": "The Velvet Underground", "artist": "The Velvet Underground", "year": 1969, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/19843335f185c8b706e18e3cbc5c356400bdf00f"}, {"rank": 190, "album": "Licensed To Ill", "artist": "Beastie Boys", "year": 1986, "rating": 3.53, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/3e5eed9ad426ab2e08d10b5f54440f7edf316c35"}, {"rank": 191, "album": "Gorillaz", "artist": "Gorillaz", "year": 2001, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02f6c46838e4425ea96e2562fe"}, {"rank": 192, "album": "Brothers", "artist": "The Black Keys", "year": 2010, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/ca4b85e01309d843d615b8ab93d312742650e46d"}, {"rank": 193, "album": "Electric Warrior", "artist": "T. Rex", "year": 1971, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0261a23657edb5d80fa18a630d"}, {"rank": 194, "album": "Arrival", "artist": "ABBA", "year": 1976, "rating": 3.53, "genre": "pop", "image_url": "https://i.scdn.co/image/59f4f383515d3d13560ac3b7e18580aee27cad7f"}, {"rank": 195, "album": "Everybody Knows This Is Nowhere", "artist": "Neil Young & Crazy Horse", "year": 1969, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/5cb8817792e03600f7d259ec402173461b6ad8ec"}, {"rank": 196, "album": "At Newport 1960", "artist": "Muddy Waters", "year": 1960, "rating": 3.53, "genre": "blues", "image_url": "https://i.scdn.co/image/a999d36f7c556f3885b05f6399f089ca79b75bbb"}, {"rank": 197, "album": "So", "artist": "Peter Gabriel", "year": 1986, "rating": 3.53, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0211bb04f55be562c76d8e8ecf"}, {"rank": 198, "album": "The Clash", "artist": "The Clash", "year": 1977, "rating": 3.52, "genre": "punk", "image_url": "https://i.scdn.co/image/ab67616d00001e02505d5b5ac3202fc9b89c4390"}, {"rank": 199, "album": "Bryter Layter", "artist": "Nick Drake", "year": 1971, "rating": 3.52, "genre": "folk", "image_url": "https://i.scdn.co/image/498076ad404fcecd3b624f5018c67630fcbaab5d"}, {"rank": 200, "album": "Marquee Moon", "artist": "Television", "year": 1977, "rating": 3.51, "genre": "rock", "image_url": "https://i.scdn.co/image/71974d61e6a75e0de7e0196574d138fdc2b6614d"}, {"rank": 201, "album": "Surrealistic Pillow", "artist": "Jefferson Airplane", "year": 1967, "rating": 3.51, "genre": "rock", "image_url": "https://i.scdn.co/image/f9c3d675e08026cf474ef17edb1431eb4ccc66fe"}, {"rank": 202, "album": "Songs For Swingin' Lovers!", "artist": "Frank Sinatra", "year": 1956, "rating": 3.51, "genre": "jazz", "image_url": "https://i.scdn.co/image/d26a832b18ad9ae75dbbffed89a5e157c70861bc"}, {"rank": 203, "album": "Rio", "artist": "Duran Duran", "year": 1982, "rating": 3.5, "genre": "rock", "image_url": "https://i.scdn.co/image/e7ee81a46225bca041a2f970400e42dd0994d3ad"}, {"rank": 204, "album": "Violent Femmes", "artist": "Violent Femmes", "year": 1983, "rating": 3.5, "genre": "punk", "image_url": "https://i.scdn.co/image/f7747e2399bdb8714d056131083d6a128c77af23"}, {"rank": 205, "album": "Illinois", "artist": "Sufjan Stevens", "year": 2005, "rating": 3.5, "genre": "pop", "image_url": "https://i.scdn.co/image/2474e15c4830076d91e352544c80f9197d3d5813"}, {"rank": 206, "album": "Straight Outta Compton", "artist": "N.W.A.", "year": 1988, "rating": 3.5, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/73d3a3a310c5c01c252185e9013acdb23b85d8ba"}, {"rank": 207, "album": "Blue", "artist": "Joni Mitchell", "year": 1971, "rating": 3.5, "genre": "folk", "image_url": "https://i.scdn.co/image/ab67616d00001e02e9f77be85457110ebf304da7"}, {"rank": 208, "album": "That's The Way Of The World", "artist": "Earth, Wind & Fire", "year": 1975, "rating": 3.5, "genre": "funk", "image_url": "https://i.scdn.co/image/0ca8bbfa67d324c06a290c9177385fd70f873ebd"}, {"rank": 209, "album": "Rust Never Sleeps", "artist": "Neil Young & Crazy Horse", "year": 1979, "rating": 3.5, "genre": "rock", "image_url": "https://i.scdn.co/image/01244d847df2e994a5474a2a8979715cc8d77a7a"}, {"rank": 210, "album": "The Atomic Mr Basie", "artist": "Count Basie & His Orchestra", "year": 1958, "rating": 3.5, "genre": "jazz", "image_url": "https://i.scdn.co/image/de46cfa841214303fa059b2ef540b75d4e97d014"}, {"rank": 211, "album": "The Wildest!", "artist": "Louis Prima", "year": 1956, "rating": 3.5, "genre": "jazz", "image_url": "https://i.scdn.co/image/ff96afa77a8c6243bef64199b5790b22a1cb2513"}, {"rank": 212, "album": "Modern Sounds in Country and Western Music", "artist": "Ray Charles", "year": 1962, "rating": 3.5, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e027b97663666f03928ff1e4578"}, {"rank": 213, "album": "Coat Of Many Colors", "artist": "Dolly Parton", "year": 1971, "rating": 3.49, "genre": "country", "image_url": "https://i.scdn.co/image/ab67616d00001e025eedc4901818fe24d8645672"}, {"rank": 214, "album": "Surfer Rosa", "artist": "Pixies", "year": 1988, "rating": 3.49, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e021a3903c1aa8122f7720f5d71"}, {"rank": 215, "album": "1984", "artist": "Van Halen", "year": 1984, "rating": 3.49, "genre": "metal", "image_url": "https://i.scdn.co/image/d3625f49f2a419c3dbbc8f7d070927a4b6daef6a"}, {"rank": 216, "album": "Paul Simon", "artist": "Paul Simon", "year": 1972, "rating": 3.49, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0237a40ab12a4fb96319a9d96f"}, {"rank": 217, "album": "She's So Unusual", "artist": "Cyndi Lauper", "year": 1983, "rating": 3.49, "genre": "pop", "image_url": "https://i.scdn.co/image/ab67616d00001e0252f532df7ba3269b0242fed9"}, {"rank": 218, "album": "The Suburbs", "artist": "Arcade Fire", "year": 2010, "rating": 3.49, "genre": "rock", "image_url": "https://i.scdn.co/image/8c6588bb125ec6fce14f75d55993f249996e59c1"}, {"rank": 219, "album": "Raising Hell", "artist": "Run-D.M.C.", "year": 1986, "rating": 3.49, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/c86eba53f995224caead6f565e65b10ee5ed27d6"}, {"rank": 220, "album": "The Gershwin Songbook", "artist": "Ella Fitzgerald", "year": 1959, "rating": 3.49, "genre": "jazz", "image_url": "https://i.scdn.co/image/ab67616d00001e02924f8beefce2d7badc6cc61b"}, {"rank": 221, "album": "Unknown Pleasures", "artist": "Joy Division", "year": 1979, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/faaa85287c58815147f471495fb97df2d1c3fa32"}, {"rank": 222, "album": "Blackstar", "artist": "David Bowie", "year": 2016, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e024ff4ced89fcfe48079c11b37"}, {"rank": 223, "album": "Queen II", "artist": "Queen", "year": 1974, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02f30a542e495d92362519cf06"}, {"rank": 224, "album": "Aja", "artist": "Steely Dan", "year": 1977, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/36ac7382b2b84130c188aa0fd79ebc75fa75e0ea"}, {"rank": 225, "album": "It's Blitz!", "artist": "Yeah Yeah Yeahs", "year": 2009, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/7d31d1f1e1ec686e09f7baa4d340bab47396970e"}, {"rank": 226, "album": "Blonde On Blonde", "artist": "Bob Dylan", "year": 1966, "rating": 3.48, "genre": "rock", "image_url": "https://i.scdn.co/image/669c314b5bbccd288a044a57aa072cd710e93348"}, {"rank": 227, "album": "We Are Family", "artist": "Sister Sledge", "year": 1979, "rating": 3.48, "genre": "pop", "image_url": "https://i.scdn.co/image/f5923487520457c5e2ff3d4eb1dfc4038e1d9192"}, {"rank": 228, "album": "Diamond Life", "artist": "Sade", "year": 1984, "rating": 3.48, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e02ad27e16c5f844ea1ad6797cd"}, {"rank": 229, "album": "Blood Sugar Sex Magik", "artist": "Red Hot Chili Peppers", "year": 1991, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/39a7962875c189290dab782c666a2ba7062c2ad6"}, {"rank": 230, "album": "Tusk", "artist": "Fleetwood Mac", "year": 1979, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/ea22f7a4f03af5b0503780e25de1859938b4ac97"}, {"rank": 231, "album": "Foo Fighters", "artist": "Foo Fighters", "year": 1995, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e02126420226a30aa75a2f52691"}, {"rank": 232, "album": "Fear Of Music", "artist": "Talking Heads", "year": 1979, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/18c02c43c76a8c6ad873f3575bfb4f297ee183fd"}, {"rank": 233, "album": "Tidal", "artist": "Fiona Apple", "year": 1996, "rating": 3.47, "genre": "pop", "image_url": "https://i.scdn.co/image/0c1c28d8d93d26e0f95a86d16b718af370fdc2f2"}, {"rank": 234, "album": "Dirt", "artist": "Alice In Chains", "year": 1992, "rating": 3.47, "genre": "metal", "image_url": "https://i.scdn.co/image/ab67616d00001e0231ea2c36c5da3979177127b1"}, {"rank": 235, "album": "Five Leaves Left", "artist": "Nick Drake", "year": 1969, "rating": 3.47, "genre": "folk", "image_url": "https://i.scdn.co/image/8b67bb2bf678ee2ce0f53697262df43ac38aaa41"}, {"rank": 236, "album": "Dusty In Memphis", "artist": "Dusty Springfield", "year": 1969, "rating": 3.47, "genre": "pop", "image_url": "https://i.scdn.co/image/bddb8d8ed0e1e6179c5636a586faf4878be2d281"}, {"rank": 237, "album": "Crosby, Stills & Nash", "artist": "Crosby, Stills & Nash", "year": 1969, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/c79971df3f3e288729e6561adbc967067c76418c"}, {"rank": 238, "album": "Green", "artist": "R.E.M.", "year": 1988, "rating": 3.47, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e0288039803491ebeb8e694b36c"}, {"rank": 239, "album": "Parachutes", "artist": "Coldplay", "year": 2000, "rating": 3.46, "genre": "pop", "image_url": "https://i.scdn.co/image/af4812064c4963f5ce4e630cbf70b540ce3f60dc"}, {"rank": 240, "album": "Paul's Boutique", "artist": "Beastie Boys", "year": 1989, "rating": 3.46, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/d06513fa601688c13e16bbbd13d160fb07b92837"}, {"rank": 241, "album": "Zombie", "artist": "Fela Kuti", "year": 1977, "rating": 3.46, "genre": "funk", "image_url": "https://i.scdn.co/image/138e88570c9c1771caf31d90e70687cce34764ea"}, {"rank": 242, "album": "Power In Numbers", "artist": "Jurassic 5", "year": 2002, "rating": 3.46, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/241e3ebd29964d7c4be2a5b62553af4a9877d4e2"}, {"rank": 243, "album": "Odelay", "artist": "Beck", "year": 1996, "rating": 3.45, "genre": "rock", "image_url": "https://i.scdn.co/image/1aa8e7cd9c52832e89ad0807b2b91da593ef5e20"}, {"rank": 244, "album": "The Marshall Mathers LP", "artist": "Eminem", "year": 2000, "rating": 3.45, "genre": "hip-hop", "image_url": "https://i.scdn.co/image/ab67616d00001e02698fad59b42b7fb43d31b608"}, {"rank": 245, "album": "Disraeli Gears", "artist": "Cream", "year": 1967, "rating": 3.45, "genre": "rock", "image_url": "https://i.scdn.co/image/d5fe07dc048d5c0d3ad6aee0e9cbf72f67725dad"}, {"rank": 246, "album": "Play", "artist": "Moby", "year": 1999, "rating": 3.45, "genre": "electronica", "image_url": "https://i.scdn.co/image/ab67616d00001e0273b063d18cd9be91eb12284a"}, {"rank": 247, "album": "Sign 'O' The Times", "artist": "Prince", "year": 1987, "rating": 3.45, "genre": "funk", "image_url": "https://i.scdn.co/image/ef092f3c3d75f8284b7f590e3ebc7d5e97bc06c6"}, {"rank": 248, "album": "Frank", "artist": "Amy Winehouse", "year": 2003, "rating": 3.45, "genre": "soul", "image_url": "https://i.scdn.co/image/ab67616d00001e0214655886a5d7ef8a606e0c1f"}, {"rank": 249, "album": "Hail To the Thief", "artist": "Radiohead", "year": 2003, "rating": 3.45, "genre": "rock", "image_url": "https://i.scdn.co/image/ab67616d00001e020da53e8f58e59f28a79c10c7"}, {"rank": 250, "album": "The ArchAndroid", "artist": "Janelle Mon\u00e1e", "year": 2010, "rating": 3.45, "genre": "pop", "image_url": "https://i.scdn.co/image/be8c0c9df007c75ed0da899d85f8ce532971b7bb"}];
+  let currentStreak = 0;
+  let bestStreak = 0;
+  let roundCounter = 1;
+  let albumA = null;
+  let albumB = null;
+  let isAnswered = false;
+
+  const currentStreakDisplay = document.getElementById('currentStreakDisplay');
+  const bestStreakDisplay = document.getElementById('bestStreakDisplay');
+  const roundCounterDisplay = document.getElementById('roundCounterDisplay');
+
+  const gameImgA = document.getElementById('gameImgA');
+  const gameTitleA = document.getElementById('gameTitleA');
+  const gameArtistA = document.getElementById('gameArtistA');
+  const gameRankA = document.getElementById('gameRankA');
+  const gameRatingA = document.getElementById('gameRatingA');
+
+  const mysteryBox = document.getElementById('mysteryBox');
+  const gameImgB = document.getElementById('gameImgB');
+  const gameTitleB = document.getElementById('gameTitleB');
+  const gameArtistB = document.getElementById('gameArtistB');
+  const mysteryRankLine = document.getElementById('mysteryRankLine');
+  const guessActions = document.getElementById('guessActions');
+  const resultBanner = document.getElementById('resultBanner');
+  const resultMessage = document.getElementById('resultMessage');
+  const btnNextRound = document.getElementById('btnNextRound');
+  const btnHigher = document.getElementById('btnHigher');
+  const btnLower = document.getElementById('btnLower');
+
+  function getRandomAlbum(excludeRank) {
+    let item = albums[Math.floor(Math.random() * albums.length)];
+    while (excludeRank && item.rank === excludeRank) {
+      item = albums[Math.floor(Math.random() * albums.length)];
+    }
+    return item;
+  }
+
+  function startRound(usePreviousWinner) {
+    isAnswered = false;
+    mysteryBox.style.borderColor = 'rgba(255, 209, 102, 0.4)';
+    mysteryBox.style.boxShadow = 'none';
+
+    if (usePreviousWinner && albumB) {
+      albumA = albumB;
+    } else {
+      albumA = getRandomAlbum(null);
+    }
+
+    albumB = getRandomAlbum(albumA.rank);
+
+    // Populate A
+    gameImgA.src = albumA.image_url;
+    gameTitleA.textContent = albumA.album;
+    gameArtistA.textContent = albumA.artist + ' (' + albumA.year + ')';
+    gameRankA.textContent = albumA.rank;
+    gameRatingA.textContent = '⭐ ' + albumA.rating.toFixed(2);
+
+    // Populate B (Hidden rank)
+    gameImgB.src = albumB.image_url;
+    gameTitleB.textContent = albumB.album;
+    gameArtistB.textContent = albumB.artist + ' (' + albumB.year + ')';
+    mysteryRankLine.textContent = 'RANK # ???';
+    mysteryRankLine.style.color = '#ffd166';
+
+    guessActions.style.display = 'flex';
+    resultBanner.style.display = 'none';
+  }
+
+  function handleGuess(guess) {
+    if (isAnswered) return;
+    isAnswered = true;
+
+    // In rankings, a higher rank means smaller number (e.g. #1 is higher than #10)
+    const isHigher = albumB.rank < albumA.rank;
+    const isCorrect = (guess === 'higher' && isHigher) || (guess === 'lower' && !isHigher);
+
+    mysteryRankLine.textContent = 'RANK #' + albumB.rank + ' (⭐ ' + albumB.rating.toFixed(2) + ')';
+    guessActions.style.display = 'none';
+    resultBanner.style.display = 'block';
+
+    if (isCorrect) {
+      currentStreak++;
+      if (currentStreak > bestStreak) {
+        bestStreak = currentStreak;
+        bestStreakDisplay.textContent = bestStreak;
+      }
+      currentStreakDisplay.textContent = currentStreak;
+
+      mysteryBox.style.borderColor = '#38ef7d';
+      mysteryBox.style.boxShadow = '0 0 30px rgba(56, 239, 125, 0.4)';
+      mysteryRankLine.style.color = '#38ef7d';
+
+      resultMessage.innerHTML = '🎉 <span style="color: #38ef7d;">CORRECT!</span> ' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')';
+      btnNextRound.textContent = '⏭ Keep Rolling (Round ' + (roundCounter + 1) + ')';
+      btnNextRound.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
+    } else {
+      currentStreak = 0;
+      currentStreakDisplay.textContent = currentStreak;
+
+      mysteryBox.style.borderColor = '#ff4d4d';
+      mysteryBox.style.boxShadow = '0 0 30px rgba(255, 77, 77, 0.4)';
+      mysteryRankLine.style.color = '#ff4d4d';
+
+      resultMessage.innerHTML = '💥 <span style="color: #ff4d4d;">STREAK BROKEN!</span> ' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')';
+      btnNextRound.textContent = '🔄 Play Again';
+      btnNextRound.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+    }
+  }
+
+  btnHigher.addEventListener('click', () => handleGuess('higher'));
+  btnLower.addEventListener('click', () => handleGuess('lower'));
+
+  btnNextRound.addEventListener('click', () => {
+    roundCounter++;
+    roundCounterDisplay.textContent = roundCounter;
+    startRound(currentStreak > 0);
+  });
+
+  // Initial game launch
+  startRound(false);
+});
+</script>
 
 
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIExvYWQgdGhlIHRvcCAxMDAwIGFsYnVtcyBkYXRhc2V0XG5hbGJ1bXMgPSBGaWxlQXR0YWNobWVudChcInRvcF8xMDAwX2FsYnVtcy5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuY2xlYW5BbGJ1bXMgPSBhbGJ1bXMubWFwKGQgPT4gKHtcbiAgLi4uZCxcbiAgcHJpbWFyeV9nZW5yZTogZC5nZW5yZXMgPyBkLmdlbnJlcy5zcGxpdChcIixcIilbMF0udHJpbSgpIDogXCJvdGhlclwiXG59KSlcblxuLy8gR2FtZSBTdGF0ZTogY3VycmVudCBzdHJlYWssIGJlc3Qgc3RyZWFrLCByb3VuZCwgYWxidW1BLCBhbGJ1bUIsIHN0YXR1c1xubXV0YWJsZSBjdXJyZW50U3RyZWFrID0gMFxubXV0YWJsZSBiZXN0U3RyZWFrID0gMFxubXV0YWJsZSBnYW1lU3RhdHVzID0gXCJwbGF5aW5nXCIgLy8gXCJwbGF5aW5nXCIsIFwid29uXCIsIFwibG9zdFwiXG5tdXRhYmxlIHJvdW5kQ291bnRlciA9IDFcblxuLy8gUmFuZG9tIHNlZWQgdHJpZ2dlcnNcbmZ1bmN0aW9uIGdldFJhbmRvbUFsYnVtKGV4Y2x1ZGVSYW5rKSB7XG4gIGxldCBpdGVtID0gY2xlYW5BbGJ1bXNbTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogY2xlYW5BbGJ1bXMubGVuZ3RoKV07XG4gIHdoaWxlIChleGNsdWRlUmFuayAmJiBpdGVtLnJhbmsgPT09IGV4Y2x1ZGVSYW5rKSB7XG4gICAgaXRlbSA9IGNsZWFuQWxidW1zW01hdGguZmxvb3IoTWF0aC5yYW5kb20oKSAqIGNsZWFuQWxidW1zLmxlbmd0aCldO1xuICB9XG4gIHJldHVybiBpdGVtO1xufVxuXG5tdXRhYmxlIGdhbWVBbGJ1bUEgPSBjbGVhbkFsYnVtc1tNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiAyMDApXVxubXV0YWJsZSBnYW1lQWxidW1CID0gZ2V0UmFuZG9tQWxidW0oZ2FtZUFsYnVtQS5yYW5rKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gSW50ZWdyYXRlZCBuYXZpZ2F0aW9uIGhlYWRlclxuaHRtbGBcbjxkaXYgY2xhc3M9XCJ0dXJudGFibGUtZGVja1wiIHN0eWxlPVwicGFkZGluZzogMXJlbSAxLjVyZW07IG1hcmdpbi1ib3R0b206IDEuNXJlbTsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7XCI+XG4gIDxkaXYgY2xhc3M9XCJkZWNrLW5hdi1iYXJcIiBzdHlsZT1cIm1hcmdpbi1ib3R0b206IDA7IHBhZGRpbmctYm90dG9tOiAwOyBib3JkZXItYm90dG9tOiBub25lO1wiPlxuICAgIDxzcGFuIHN0eWxlPVwiZm9udC1zaXplOiAwLjc1cmVtOyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogI2ZmZDE2NjsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcIj5WQVVMVCBUQUJTOjwvc3Bhbj5cbiAgICA8YSBocmVmPVwiaW5kZXgucW1kXCIgY2xhc3M9XCJkZWNrLW5hdi1waWxsXCI+8J+OtSBUdXJudGFibGUgV2FsbCDihpc8L2E+XG4gICAgPGEgaHJlZj1cImNvbXBhcmUucW1kXCIgY2xhc3M9XCJkZWNrLW5hdi1waWxsXCI+4pqW77iPIENvdmVyIENvbXBhcmUg4oaXPC9hPlxuICAgIDxhIGhyZWY9XCJnYW1lLnFtZFwiIGNsYXNzPVwiZGVjay1uYXYtcGlsbCBhY3RpdmVcIj7wn46uIEhpZ2hlciAvIExvd2VyIEdhbWU8L2E+XG4gICAgPGEgaHJlZj1cImFib3V0LnFtZFwiIGNsYXNzPVwiZGVjay1uYXYtcGlsbFwiPuKEue+4jyBBYm91dCDihpc8L2E+XG4gIDwvZGl2PlxuPC9kaXY+XG5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBNYWluIEdhbWUgQXJlbmEgQ29tcG9uZW50XG5odG1sYFxuPGRpdiBjbGFzcz1cImdhbWUtYXJlbmEgdGV4dC1jZW50ZXJcIj5cbiAgPGRpdiBzdHlsZT1cImRpc3BsYXk6IGZsZXg7IGp1c3RpZnktY29udGVudDogY2VudGVyOyBnYXA6IDEuNXJlbTsgZmxleC13cmFwOiB3cmFwO1wiPlxuICAgIDxkaXYgY2xhc3M9XCJzdHJlYWstY291bnRlclwiPlxuICAgICAg8J+UpSBDdXJyZW50IFN0cmVhazogPHNwYW4gc3R5bGU9XCJmb250LXNpemU6IDEuMjVyZW07XCI+JHtjdXJyZW50U3RyZWFrfTwvc3Bhbj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwic3RyZWFrLWNvdW50ZXJcIiBzdHlsZT1cImJhY2tncm91bmQ6IHJnYmEoMCwgMjQyLCAyNTQsIDAuMTUpOyBib3JkZXItY29sb3I6IHJnYmEoMCwgMjQyLCAyNTQsIDAuMzUpOyBjb2xvcjogIzAwZjJmZTtcIj5cbiAgICAgIPCfj4YgQmVzdCBTdHJlYWs6IDxzcGFuIHN0eWxlPVwiZm9udC1zaXplOiAxLjI1cmVtO1wiPiR7YmVzdFN0cmVha308L3NwYW4+XG4gICAgPC9kaXY+XG4gIDwvZGl2PlxuXG4gIDxkaXYgY2xhc3M9XCJjb21wYXJlLWdyaWRcIiBzdHlsZT1cIm1hcmdpbjogMS41cmVtIDA7XCI+XG4gICAgPCEtLSBBbGJ1bSBBIChLbm93bikgLS0+XG4gICAgPGRpdiBjbGFzcz1cImNvbXBhcmUtYm94XCI+XG4gICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjc1cmVtOyBsZXR0ZXItc3BhY2luZzogMS41cHg7IGNvbG9yOiAjMDBmMmZlOyB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOyBmb250LXdlaWdodDogNzAwOyBtYXJnaW4tYm90dG9tOiAwLjVyZW07XCI+XG4gICAgICAgIEJFTkNITUFSSyBBTEJVTVxuICAgICAgPC9kaXY+XG4gICAgICA8aW1nIFxuICAgICAgICBjbGFzcz1cImNvbXBhcmUtY292ZXJcIiBcbiAgICAgICAgc3JjPVwiJHtnYW1lQWxidW1BLmltYWdlX3VybH1cIiBcbiAgICAgICAgYWx0PVwiJHtnYW1lQWxidW1BLmFsYnVtfVwiIFxuICAgICAgICByZWZlcnJlcnBvbGljeT1cIm5vLXJlZmVycmVyXCJcbiAgICAgICAgY3Jvc3NvcmlnaW49XCJhbm9ueW1vdXNcIlxuICAgICAgICBvbmVycm9yPVwidGhpcy5zcmM9J2h0dHBzOi8vcGxhY2Vob2xkLmNvLzMwMHgzMDAvMTgxYjI2LzAwZjJmZT90ZXh0PUFsYnVtJ1wiXG4gICAgICAvPlxuICAgICAgPGgzIHN0eWxlPVwiY29sb3I6ICNmZmY7IGZvbnQtc2l6ZTogMS4zNXJlbTsgbWFyZ2luOiAwLjI1cmVtIDA7IGZvbnQtd2VpZ2h0OiA4MDA7XCI+JHtnYW1lQWxidW1BLmFsYnVtfTwvaDM+XG4gICAgICA8ZGl2IHN0eWxlPVwiY29sb3I6ICNjYmQ1ZTE7IGZvbnQtc2l6ZTogMC45NXJlbTsgbWFyZ2luLWJvdHRvbTogMC41cmVtO1wiPiR7Z2FtZUFsYnVtQS5hcnRpc3R9ICgke2dhbWVBbGJ1bUEueWVhcn0pPC9kaXY+XG4gICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAxLjFyZW07IGZvbnQtd2VpZ2h0OiA5MDA7IGNvbG9yOiAjMDBmMmZlOyBtYXJnaW4tdG9wOiAwLjVyZW07XCI+XG4gICAgICAgIFJBTksgIyR7Z2FtZUFsYnVtQS5yYW5rfVxuICAgICAgPC9kaXY+XG4gICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjg1cmVtOyBjb2xvcjogI2ZmZDE2NjtcIj7irZAgJHtnYW1lQWxidW1BLnJhdGluZy50b0ZpeGVkKDIpfTwvZGl2PlxuICAgIDwvZGl2PlxuXG4gICAgPCEtLSBDZW50ZXIgVlMgSW5kaWNhdG9yIC0tPlxuICAgIDxkaXYgc3R5bGU9XCJ0ZXh0LWFsaWduOiBjZW50ZXI7XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwidnMtYmFkZ2VcIj5WUzwvZGl2PlxuICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC43NXJlbTsgY29sb3I6ICNjYmQ1ZTE7IG1hcmdpbi10b3A6IDAuNnJlbTsgZm9udC13ZWlnaHQ6IDYwMDtcIj5cbiAgICAgICAgUm91bmQgJHtyb3VuZENvdW50ZXJ9XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cblxuICAgIDwhLS0gQWxidW0gQiAoTXlzdGVyeSkgLS0+XG4gICAgPGRpdiBjbGFzcz1cImNvbXBhcmUtYm94XCIgc3R5bGU9XCIke2dhbWVTdGF0dXMgPT09ICd3b24nID8gJ2JvcmRlci1jb2xvcjogIzAwZjJmZTsgYm94LXNoYWRvdzogMCAwIDI1cHggcmdiYSgwLCAyNDIsIDI1NCwgMC40KTsnIDogKGdhbWVTdGF0dXMgPT09ICdsb3N0JyA/ICdib3JkZXItY29sb3I6ICNmZjRkNGQ7IGJveC1zaGFkb3c6IDAgMCAyNXB4IHJnYmEoMjU1LCA3NywgNzcsIDAuNCk7JyA6ICcnKX1cIj5cbiAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuNzVyZW07IGxldHRlci1zcGFjaW5nOiAxLjVweDsgY29sb3I6ICNmZmQxNjY7IHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IGZvbnQtd2VpZ2h0OiA3MDA7IG1hcmdpbi1ib3R0b206IDAuNXJlbTtcIj5cbiAgICAgICAgTVlTVEVSWSBBTEJVTVxuICAgICAgPC9kaXY+XG4gICAgICA8aW1nIFxuICAgICAgICBjbGFzcz1cImNvbXBhcmUtY292ZXJcIiBcbiAgICAgICAgc3JjPVwiJHtnYW1lQWxidW1CLmltYWdlX3VybH1cIiBcbiAgICAgICAgYWx0PVwiJHtnYW1lQWxidW1CLmFsYnVtfVwiIFxuICAgICAgICByZWZlcnJlcnBvbGljeT1cIm5vLXJlZmVycmVyXCJcbiAgICAgICAgY3Jvc3NvcmlnaW49XCJhbm9ueW1vdXNcIlxuICAgICAgICBvbmVycm9yPVwidGhpcy5zcmM9J2h0dHBzOi8vcGxhY2Vob2xkLmNvLzMwMHgzMDAvMTgxYjI2LzAwZjJmZT90ZXh0PUFsYnVtJ1wiXG4gICAgICAvPlxuICAgICAgPGgzIHN0eWxlPVwiY29sb3I6ICNmZmY7IGZvbnQtc2l6ZTogMS4zNXJlbTsgbWFyZ2luOiAwLjI1cmVtIDA7IGZvbnQtd2VpZ2h0OiA4MDA7XCI+JHtnYW1lQWxidW1CLmFsYnVtfTwvaDM+XG4gICAgICA8ZGl2IHN0eWxlPVwiY29sb3I6ICNjYmQ1ZTE7IGZvbnQtc2l6ZTogMC45NXJlbTsgbWFyZ2luLWJvdHRvbTogMC41cmVtO1wiPiR7Z2FtZUFsYnVtQi5hcnRpc3R9ICgke2dhbWVBbGJ1bUIueWVhcn0pPC9kaXY+XG5cbiAgICAgICR7Z2FtZVN0YXR1cyA9PT0gJ3BsYXlpbmcnID8gaHRtbGBcbiAgICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMS4xcmVtOyBmb250LXdlaWdodDogOTAwOyBjb2xvcjogI2ZmZDE2NjsgbWFyZ2luLXRvcDogMC41cmVtO1wiPlxuICAgICAgICAgIFJBTks6IOKdk+Kdk+Kdk1xuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMC44NXJlbTsgY29sb3I6ICM5NGEzYjg7XCI+SXMgaXQgcmFua2VkIGhpZ2hlciBvciBsb3dlcj88L2Rpdj5cbiAgICAgIGAgOiBodG1sYFxuICAgICAgICA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAxLjI1cmVtOyBmb250LXdlaWdodDogOTAwOyBjb2xvcjogJHtnYW1lU3RhdHVzID09PSAnd29uJyA/ICcjMDBmMmZlJyA6ICcjZmY0ZDRkJ307IG1hcmdpbi10b3A6IDAuNXJlbTtcIj5cbiAgICAgICAgICBSQU5LICMke2dhbWVBbGJ1bUIucmFua31cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgc3R5bGU9XCJmb250LXNpemU6IDAuODVyZW07IGNvbG9yOiAjZmZkMTY2O1wiPuKtkCAke2dhbWVBbGJ1bUIucmF0aW5nLnRvRml4ZWQoMil9PC9kaXY+XG4gICAgICBgfVxuICAgIDwvZGl2PlxuICA8L2Rpdj5cblxuICA8IS0tIEludGVyYWN0aXZlIERlY2lzaW9uIENvbnRyb2xzIC0tPlxuICAke2dhbWVTdGF0dXMgPT09ICdwbGF5aW5nJyA/IGh0bWxgXG4gICAgPGRpdiBzdHlsZT1cImRpc3BsYXk6IGZsZXg7IGp1c3RpZnktY29udGVudDogY2VudGVyOyBnYXA6IDFyZW07IGZsZXgtd3JhcDogd3JhcDsgbWFyZ2luLXRvcDogMXJlbTtcIj5cbiAgICAgIDxidXR0b24gY2xhc3M9XCJidG4tbmVvblwiIHN0eWxlPVwiYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDEzNWRlZywgIzAwZjJmZSwgIzRmYWNmZSk7IGZvbnQtc2l6ZTogMXJlbTsgcGFkZGluZzogMC42NXJlbSAxLjZyZW07XCIgb25jbGljaz0keygpID0+IHtcbiAgICAgICAgLy8gSGlnaGVyIHJhbmsgbWVhbnMgbnVtZXJpY2FsIHJhbmsgaXMgc21hbGxlciAoZS5nLiAjMSBpcyBoaWdoZXIgdGhhbiAjMTApXG4gICAgICAgIGNvbnN0IGlzSGlnaGVyID0gZ2FtZUFsYnVtQi5yYW5rIDwgZ2FtZUFsYnVtQS5yYW5rO1xuICAgICAgICBpZiAoaXNIaWdoZXIpIHtcbiAgICAgICAgICBjb25zdCBuZXdTdHJlYWsgPSBjdXJyZW50U3RyZWFrICsgMTtcbiAgICAgICAgICBtdXRhYmxlIGN1cnJlbnRTdHJlYWsgPSBuZXdTdHJlYWs7XG4gICAgICAgICAgaWYgKG5ld1N0cmVhayA+IGJlc3RTdHJlYWspIG11dGFibGUgYmVzdFN0cmVhayA9IG5ld1N0cmVhaztcbiAgICAgICAgICBtdXRhYmxlIGdhbWVTdGF0dXMgPSBcIndvblwiO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIG11dGFibGUgY3VycmVudFN0cmVhayA9IDA7XG4gICAgICAgICAgbXV0YWJsZSBnYW1lU3RhdHVzID0gXCJsb3N0XCI7XG4gICAgICAgIH1cbiAgICAgIH19PlxuICAgICAgICDilrIgSElHSEVSIFJBTksgKENsb3NlciB0byAjMSlcbiAgICAgIDwvYnV0dG9uPlxuXG4gICAgICA8YnV0dG9uIGNsYXNzPVwiYnRuLW5lb25cIiBzdHlsZT1cImJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMzVkZWcsICNmZmQxNjYsICNmZjdiMDApOyBmb250LXNpemU6IDFyZW07IHBhZGRpbmc6IDAuNjVyZW0gMS42cmVtO1wiIG9uY2xpY2s9JHsoKSA9PiB7XG4gICAgICAgIC8vIExvd2VyIHJhbmsgbWVhbnMgbnVtZXJpY2FsIHJhbmsgaXMgbGFyZ2VyIChlLmcuICM1MCBpcyBsb3dlciB0aGFuICMxMClcbiAgICAgICAgY29uc3QgaXNMb3dlciA9IGdhbWVBbGJ1bUIucmFuayA+IGdhbWVBbGJ1bUEucmFuaztcbiAgICAgICAgaWYgKGlzTG93ZXIpIHtcbiAgICAgICAgICBjb25zdCBuZXdTdHJlYWsgPSBjdXJyZW50U3RyZWFrICsgMTtcbiAgICAgICAgICBtdXRhYmxlIGN1cnJlbnRTdHJlYWsgPSBuZXdTdHJlYWs7XG4gICAgICAgICAgaWYgKG5ld1N0cmVhayA+IGJlc3RTdHJlYWspIG11dGFibGUgYmVzdFN0cmVhayA9IG5ld1N0cmVhaztcbiAgICAgICAgICBtdXRhYmxlIGdhbWVTdGF0dXMgPSBcIndvblwiO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIG11dGFibGUgY3VycmVudFN0cmVhayA9IDA7XG4gICAgICAgICAgbXV0YWJsZSBnYW1lU3RhdHVzID0gXCJsb3N0XCI7XG4gICAgICAgIH1cbiAgICAgIH19PlxuICAgICAgICDilrwgTE9XRVIgUkFOSyAoRnVydGhlciBmcm9tICMxKVxuICAgICAgPC9idXR0b24+XG4gICAgPC9kaXY+XG4gIGAgOiBodG1sYFxuICAgIDxkaXYgc3R5bGU9XCJtYXJnaW4tdG9wOiAxLjI1cmVtO1wiPlxuICAgICAgPGRpdiBzdHlsZT1cImZvbnQtc2l6ZTogMS4zNXJlbTsgZm9udC13ZWlnaHQ6IDgwMDsgbWFyZ2luLWJvdHRvbTogMXJlbTsgY29sb3I6ICR7Z2FtZVN0YXR1cyA9PT0gJ3dvbicgPyAnIzAwZjJmZScgOiAnI2ZmNGQ0ZCd9O1wiPlxuICAgICAgICAke2dhbWVTdGF0dXMgPT09ICd3b24nID8gJ/CfjokgU1BPVCBPTiEgWW91IGd1ZXNzZWQgY29ycmVjdGx5IScgOiAn4p2MIEJVU1RFRCEgQmV0dGVyIGx1Y2sgbmV4dCB0aW1lISd9XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGJ1dHRvbiBjbGFzcz1cImJ0bi1uZW9uXCIgc3R5bGU9XCJwYWRkaW5nOiAwLjZyZW0gMS44cmVtOyBmb250LXNpemU6IDFyZW07XCIgb25jbGljaz0keygpID0+IHtcbiAgICAgICAgbXV0YWJsZSBnYW1lQWxidW1BID0gZ2FtZUFsYnVtQjtcbiAgICAgICAgbXV0YWJsZSBnYW1lQWxidW1CID0gZ2V0UmFuZG9tQWxidW0oZ2FtZUFsYnVtQi5yYW5rKTtcbiAgICAgICAgbXV0YWJsZSBnYW1lU3RhdHVzID0gXCJwbGF5aW5nXCI7XG4gICAgICAgIG11dGFibGUgcm91bmRDb3VudGVyID0gcm91bmRDb3VudGVyICsgMTtcbiAgICAgIH19PlxuICAgICAgICAke2dhbWVTdGF0dXMgPT09ICd3b24nID8gJ/CflKUgS2VlcCBTdHJlYWsgR29pbmcg4oaSJyA6ICfwn5SEIFBsYXkgQWdhaW4nfVxuICAgICAgPC9idXR0b24+XG4gICAgPC9kaXY+XG4gIGB9XG48L2Rpdj5cbmBcbiJ9XX0=
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../..";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
