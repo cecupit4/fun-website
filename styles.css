@@ -222,3 +222,77 @@ body {
   color: #000;
 }
 
+/* Integrated Deck Navigation & Visual Showcase */
+.deck-nav-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+}
+
+.deck-nav-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.deck-nav-pill:hover, .deck-nav-pill.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+  text-decoration: none;
+}
+
+/* Horizontal Cover Ribbon */
+.cover-ribbon {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 1rem 0.25rem;
+  scroll-behavior: smooth;
+}
+
+.cover-ribbon-item {
+  flex: 0 0 130px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #161a23;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.cover-ribbon-item:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: #00f2fe;
+  box-shadow: 0 8px 20px rgba(0, 242, 254, 0.35);
+}
+
+.cover-ribbon-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.cover-ribbon-meta {
+  padding: 0.4rem;
+  font-size: 0.72rem;
+}
+
+
