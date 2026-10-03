@@ -94,3 +94,131 @@ body {
   margin-top: 8px;
   color: #ffd166;
 }
+
+/* Vinyl Turntable & Jukebox Deck */
+.turntable-deck {
+  background: linear-gradient(135deg, #131722 0%, #0d0f16 100%);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.75rem;
+  margin: 1.5rem 0 2rem 0;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .turntable-deck {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.platter-area {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, #252b3b 0%, #10121a 70%);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 0 20px rgba(0, 242, 254, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-record {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    #111 0px,
+    #181818 2px,
+    #0d0d0d 4px,
+    #1a1a1a 6px
+  );
+  box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: vinylSpin 6s linear infinite;
+  border: 2px solid #2a2a2a;
+}
+
+.vinyl-label {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 3px solid #ffd166;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.vinyl-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Equalizer Bars */
+.equalizer-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+  margin-top: 1rem;
+}
+
+.eq-bar {
+  width: 5px;
+  background: linear-gradient(to top, #00f2fe, #4facfe);
+  border-radius: 2px;
+  animation: eqJump 0.8s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(2) { animation-delay: 0.2s; }
+.eq-bar:nth-child(3) { animation-delay: 0.4s; }
+.eq-bar:nth-child(4) { animation-delay: 0.1s; }
+.eq-bar:nth-child(5) { animation-delay: 0.5s; }
+.eq-bar:nth-child(6) { animation-delay: 0.3s; }
+.eq-bar:nth-child(7) { animation-delay: 0.6s; }
+.eq-bar:nth-child(8) { animation-delay: 0.25s; }
+
+@keyframes eqJump {
+  0% { height: 18%; opacity: 0.4; }
+  100% { height: 100%; opacity: 1; }
+}
+
+.deck-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-neon {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  color: #0b0d13;
+  font-weight: 700;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-neon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+  color: #000;
+}
+
