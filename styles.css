@@ -295,4 +295,141 @@ body {
   font-size: 0.72rem;
 }
 
+/* Immersive Album Cover Mosaic Wall */
+.mosaic-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: rgba(18, 22, 32, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 992px) {
+  .mosaic-wall {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+.mosaic-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #151822;
+}
+
+.mosaic-tile:hover {
+  transform: scale(1.18);
+  z-index: 10;
+  border-color: #00f2fe;
+  box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
+}
+
+.mosaic-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mosaic-tile .mosaic-rank {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  color: #00f2fe;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Compare Arena */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.compare-box {
+  background: #141824;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease;
+}
+
+.compare-box:hover {
+  border-color: #00f2fe;
+}
+
+.compare-cover {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  margin-bottom: 1rem;
+}
+
+.vs-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd166, #ff7b00);
+  color: #000;
+  font-weight: 900;
+  font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(255, 209, 102, 0.4);
+}
+
+/* Game Arena */
+.game-arena {
+  background: linear-gradient(145deg, #131722, #0c0e14);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 0 35px rgba(255, 209, 102, 0.1);
+}
+
+.streak-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 209, 102, 0.15);
+  border: 1px solid rgba(255, 209, 102, 0.35);
+  border-radius: 20px;
+  font-weight: 800;
+  color: #ffd166;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+
 
