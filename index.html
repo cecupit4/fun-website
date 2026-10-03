@@ -191,10 +191,38 @@ ul.task-list li input[type="checkbox"] {
 
   <!-- Turntable Body: Giant Circular Platter on Left, Realistic Tonearm on Right -->
   <div class="turntable-body-grid">
-    <!-- Big Circular Platter -->
-    <div class="big-platter-well">
-      <!-- Spinning Vinyl Record Disc containing concentric tracks of album covers -->
-      <div class="turntable-vinyl-disc" id="turntableDisc">
+    <!-- Big Circular Platter Column -->
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <!-- Platter Groove Art Option Switcher -->
+      <div class="platter-art-controls" style="width: 100%; max-width: 580px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 8px; padding: 0.45rem 0.85rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+          <span style="font-size: 0.72rem; color: #ffd166; font-family: monospace; font-weight: 800; letter-spacing: 1px;">
+            💽 PLATTER VINYL TRACKS:
+          </span>
+          <select id="platterSetSelect" class="form-select form-select-sm" style="width: auto; background: #111520; color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.3); font-family: monospace; font-size: 0.78rem; border-radius: 5px; padding: 0.2rem 0.6rem;">
+            <option value="top1000_1">🏆 Top 1,000 Albums (#1 – #30)</option>
+            <option value="top1000_2">🏆 Top 1,000 Albums (#31 – #60)</option>
+            <option value="top1000_3">🏆 Top 1,000 Albums (#61 – #90)</option>
+            <option value="top1000_4">🏆 Top 1,000 Albums (#91 – #120)</option>
+            <option value="curated">🏛️ Curated Archive Prints (30)</option>
+            <option value="random">🎲 Random 30 Albums</option>
+          </select>
+        </div>
+        
+        <div class="btn-group btn-group-sm" role="group">
+          <button id="btnPrevPlatterBatch" class="btn btn-outline-info" type="button" style="font-size: 0.72rem; font-family: monospace; padding: 0.2rem 0.55rem;" title="Previous 30 albums on platter">
+            ◀ Prev 30
+          </button>
+          <button id="btnNextPlatterBatch" class="btn btn-outline-info" type="button" style="font-size: 0.72rem; font-family: monospace; padding: 0.2rem 0.55rem;" title="Next 30 albums on platter">
+            Next 30 ▶
+          </button>
+        </div>
+      </div>
+
+      <!-- Big Circular Platter -->
+      <div class="big-platter-well">
+        <!-- Spinning Vinyl Record Disc containing concentric tracks of album covers -->
+        <div class="turntable-vinyl-disc" id="turntableDisc">
         <!-- Vinyl concentric groove guide lines -->
         <div class="vinyl-groove-ring" style="width: 74%; height: 74%;"></div>
         <div class="vinyl-groove-ring" style="width: 47%; height: 47%;"></div>
@@ -300,6 +328,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Tonearm Assembly on Right Side of the Deck -->
     <div class="tonearm-column">
@@ -316,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="pitch-control">
         <div>33 ⅓ RPM</div>
         <div style="color: #00f2fe; margin-top: 4px; font-weight: bold;">● DIRECT DRIVE</div>
-        <div style="font-size: 0.65rem; color: #ffd166; margin-top: 6px;">🏛️ ARCHIVE PRINTS</div>
+        <div style="font-size: 0.65rem; color: #ffd166; margin-top: 6px;" id="pitchCollectionLabel">🏆 1,035 ALBUMS</div>
       </div>
     </div>
   </div>
@@ -374,9 +403,10 @@ ul.task-list li input[type="checkbox"] {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
-        <!-- Genre Filter -->
+        <!-- Genre / Collection Filter -->
         <select id="turntableGenreSelect" class="form-select form-select-sm" style="flex: 1 1 150px; max-width: 190px; background: #111520; color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.3); font-family: monospace; font-size: 0.8rem; border-radius: 6px;">
-          <option value="all">💿 All Genres</option>
+          <option value="all">💿 All 1,035 Albums</option>
+          <option value="top1000">🏆 Top 1,000 Master Albums</option>
           <option value="curated">🏛️ Curated Archive Prints (35)</option>
           <option value="rock">🎸 Rock</option>
           <option value="pop">🎤 Pop</option>
@@ -856,9 +886,93 @@ ul.task-list li input[type="checkbox"] {
     const btnPrevTrack = document.getElementById('btnPrevTrack');
     const btnNextTrack = document.getElementById('btnNextTrack');
 
+    const platterSetSelect = document.getElementById('platterSetSelect');
+    const btnPrevPlatterBatch = document.getElementById('btnPrevPlatterBatch');
+    const btnNextPlatterBatch = document.getElementById('btnNextPlatterBatch');
+    const pitchCollectionLabel = document.getElementById('pitchCollectionLabel');
+
     const discTiles = Array.from(document.querySelectorAll('.disc-cover-track'));
     const rackCards = Array.from(document.querySelectorAll('.archive-card'));
     const filterBtns = Array.from(document.querySelectorAll('.archive-filter-btn'));
+
+    const top1000List = allAlbums.filter(a => !a.is_curated);
+    const curatedList = allAlbums.filter(a => a.is_curated);
+    let currentPlatterBatch = 0; // Steps of 30 for top1000
+
+    function loadPlatterBatch(albums30, labelText) {
+      if (!albums30 || albums30.length === 0) return;
+      discTiles.forEach((tile, i) => {
+        if (i < albums30.length) {
+          const alb = albums30[i];
+          tile.style.display = 'block';
+          tile.setAttribute('data-album-id', alb.id);
+          tile.title = (alb.rank ? '#' + alb.rank + ' ' : '') + alb.title + ' — ' + alb.artist + ' (' + alb.year + ')';
+          const img = tile.querySelector('img');
+          if (img) {
+            img.src = alb.image_url;
+            img.alt = alb.title;
+          }
+          if (alb.id === currentAlbumId) {
+            tile.classList.add('is-active-track');
+          } else {
+            tile.classList.remove('is-active-track');
+          }
+        } else {
+          tile.style.display = 'none';
+        }
+      });
+      if (pitchCollectionLabel && labelText) {
+        pitchCollectionLabel.textContent = labelText;
+      }
+    }
+
+    function switchPlatterSet(val) {
+      if (val === 'curated') {
+        loadPlatterBatch(curatedList, '🏛️ ARCHIVE (30)');
+      } else if (val === 'top1000_1') {
+        currentPlatterBatch = 0;
+        loadPlatterBatch(top1000List.slice(0, 30), '🏆 #1 – #30');
+      } else if (val === 'top1000_2') {
+        currentPlatterBatch = 1;
+        loadPlatterBatch(top1000List.slice(30, 60), '🏆 #31 – #60');
+      } else if (val === 'top1000_3') {
+        currentPlatterBatch = 2;
+        loadPlatterBatch(top1000List.slice(60, 90), '🏆 #61 – #90');
+      } else if (val === 'top1000_4') {
+        currentPlatterBatch = 3;
+        loadPlatterBatch(top1000List.slice(90, 120), '🏆 #91 – #120');
+      } else if (val === 'random') {
+        const shuffled = allAlbums.slice().sort(() => 0.5 - Math.random()).slice(0, 30);
+        loadPlatterBatch(shuffled, '🎲 SHUFFLED 30');
+      }
+    }
+
+    if (platterSetSelect) {
+      platterSetSelect.addEventListener('change', () => {
+        switchPlatterSet(platterSetSelect.value);
+      });
+    }
+
+    if (btnPrevPlatterBatch) {
+      btnPrevPlatterBatch.addEventListener('click', () => {
+        currentPlatterBatch = Math.max(0, currentPlatterBatch - 1);
+        const start = currentPlatterBatch * 30;
+        const end = Math.min(top1000List.length, start + 30);
+        loadPlatterBatch(top1000List.slice(start, end), '🏆 #' + (start + 1) + ' – #' + end);
+        if (platterSetSelect) platterSetSelect.value = '';
+      });
+    }
+
+    if (btnNextPlatterBatch) {
+      btnNextPlatterBatch.addEventListener('click', () => {
+        const maxBatch = Math.floor(top1000List.length / 30);
+        currentPlatterBatch = Math.min(maxBatch, currentPlatterBatch + 1);
+        const start = currentPlatterBatch * 30;
+        const end = Math.min(top1000List.length, start + 30);
+        loadPlatterBatch(top1000List.slice(start, end), '🏆 #' + (start + 1) + ' – #' + end);
+        if (platterSetSelect) platterSetSelect.value = '';
+      });
+    }
 
     function populateDropdown(list) {
       if (!albumSelect) return;
@@ -890,7 +1004,11 @@ ul.task-list li input[type="checkbox"] {
       if (lcdTitle) lcdTitle.textContent = item.title;
       if (lcdArtist) lcdArtist.textContent = item.artist;
       if (lcdYear) lcdYear.textContent = '(' + item.year + ')';
-      if (lcdSource) lcdSource.textContent = 'SOURCE: ' + item.source;
+      if (lcdSource) {
+        lcdSource.textContent = item.is_curated
+          ? 'SOURCE: ' + item.source
+          : 'RANK #' + item.rank + ' • RATING ⭐ ' + (item.rating ? item.rating.toFixed(2) : '4.5');
+      }
 
       // Update Spotify search link
       if (btnSpotifyLink) {
@@ -909,10 +1027,11 @@ ul.task-list li input[type="checkbox"] {
         tonearmRod.style.transform = 'rotate(' + jitterAngle + 'deg)';
       }
 
-      // Highlight corresponding curated disc track or exhibition rack card if applicable
+      // Highlight corresponding disc track if on current platter
       const archIdx = item.is_curated ? parseInt(item.id.replace('arch_', ''), 10) : -1;
       discTiles.forEach(t => {
-        if (archIdx !== -1 && parseInt(t.getAttribute('data-index')) === archIdx) {
+        const tileId = t.getAttribute('data-album-id');
+        if (tileId === id || (archIdx !== -1 && parseInt(t.getAttribute('data-index')) === archIdx && !tileId)) {
           t.classList.add('is-active-track');
         } else {
           t.classList.remove('is-active-track');
@@ -934,6 +1053,7 @@ ul.task-list li input[type="checkbox"] {
       filteredAlbums = allAlbums.filter(a => {
         const matchGenre = (genre === 'all') ||
           (genre === 'curated' && a.is_curated) ||
+          (genre === 'top1000' && !a.is_curated) ||
           (a.genre && a.genre.toLowerCase().includes(genre));
         const matchQuery = !query ||
           a.title.toLowerCase().includes(query) ||
@@ -998,12 +1118,12 @@ ul.task-list li input[type="checkbox"] {
       });
     }
 
-    // Disc tiles click
+    // Disc tiles click: loads ANY album directly onto the turntable spindle
     discTiles.forEach(tile => {
       tile.addEventListener('click', (e) => {
         e.stopPropagation();
-        const idx = parseInt(tile.getAttribute('data-index'));
-        selectAlbumById('arch_' + idx);
+        const albId = tile.getAttribute('data-album-id') || ('arch_' + tile.getAttribute('data-index'));
+        selectAlbumById(albId);
       });
     });
 
@@ -1065,9 +1185,10 @@ ul.task-list li input[type="checkbox"] {
       });
     }
 
-    // Initialize list and initial state
+    // Initialize list, platter tracks, and start on #1 Top Ranked album (Rumours)
     populateDropdown(allAlbums);
-    selectAlbumById('arch_2', false);
+    switchPlatterSet('top1000_1');
+    selectAlbumById('top_1', false);
   }
 
   if (document.readyState === 'loading') {

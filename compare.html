@@ -628,40 +628,11 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 
-  <!-- Center Crossfader Console (Cool Feature 1) -->
-  <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <!-- Center VS Indicator -->
+  <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 250px;">
     <div class="vs-badge">VS</div>
-    
-    <div style="background: #090c12; border: 1px solid #2d3748; border-radius: 14px; padding: 1.25rem 1rem; margin-top: 1.25rem; width: 100%; max-width: 300px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.8);">
-      <div style="font-size: 0.7rem; font-weight: 800; color: #00f2fe; font-family: monospace; letter-spacing: 1px; margin-bottom: 0.5rem;">
-        🎚️ DJ HARDWARE CROSSFADER
-      </div>
-
-      <!-- Mode Selector: Split Curtain vs Sonic Blend -->
-      <div class="fader-mode-toggle">
-        <button type="button" class="btn-fader-mode is-active" id="modeWipe">🪚 Split Curtain</button>
-        <button type="button" class="btn-fader-mode" id="modeBlend">🎛️ Sonic Blend</button>
-      </div>
-
-      <!-- Live Blending Mixer Viewport -->
-      <div style="position: relative; width: 140px; height: 140px; margin: 0.5rem auto 0.75rem auto; border-radius: 12px; overflow: hidden; border: 2px solid #ffd166; box-shadow: 0 0 15px rgba(255, 209, 102, 0.3);">
-        <img id="faderImgB" src="https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" referrerpolicy="no-referrer" crossorigin="anonymous">
-        <img id="faderImgA" src="https://i.scdn.co/image/12fe04b0eb5ba5ecbfa9f508da60c2669719102e" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); transition: opacity 0.1s ease;" referrerpolicy="no-referrer" crossorigin="anonymous">
-        <div class="crossfader-split-line" id="faderSplitLine" style="left: 50%;"></div>
-      </div>
-
-      <input id="crossfaderSlider" type="range" min="0" max="100" value="50" style="width: 100%; cursor: pointer;">
-
-      <div id="crossfaderReadout" style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace; margin-top: 0.4rem; font-weight: bold;">
-        CH-1 (A): 50% | CH-2 (B): 50%
-      </div>
-
-      <!-- DJ Quick Cut Snap Buttons -->
-      <div class="fader-quick-cuts">
-        <button type="button" class="btn-fader-cut" id="cutA">◀ DECK A</button>
-        <button type="button" class="btn-fader-cut" id="cutCenter">⚖️ 50/50</button>
-        <button type="button" class="btn-fader-cut" id="cutB">DECK B ▶</button>
-      </div>
+    <div style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace; margin-top: 0.6rem; letter-spacing: 1px;">
+      HEAD-TO-HEAD
     </div>
   </div>
 
@@ -688,6 +659,55 @@ ul.task-list li input[type="checkbox"] {
       <a id="spotifyB" class="btn btn-outline-light btn-sm" target="_blank" href="https://open.spotify.com/search/Beatles%20Abbey Road" style="font-size: 0.78rem; font-family: monospace;">
         🎧 Listen on Spotify ↗
       </a>
+    </div>
+  </div>
+</div>
+
+<!-- Hardware DJ Crossfader Console (Placed Under the Initial Comparison) -->
+<div class="crossfader-under-deck" style="margin: 2rem 0; background: #090c12; border: 1px solid #2d3748; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.7);">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem;">
+    <div>
+      <div style="font-size: 0.75rem; font-weight: 800; color: #00f2fe; font-family: monospace; letter-spacing: 1.5px;">
+        🎚️ DJ HARDWARE SONIC CROSSFADER
+      </div>
+      <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+        Real-time audio gain mixing &amp; visual split-curtain wipe between Decks A &amp; B
+      </div>
+    </div>
+    
+    <!-- Mode Selector: Split Curtain vs Sonic Blend -->
+    <div class="fader-mode-toggle" style="margin: 0;">
+      <button type="button" class="btn-fader-mode is-active" id="modeWipe">🪚 Split Curtain</button>
+      <button type="button" class="btn-fader-mode" id="modeBlend">🎛️ Sonic Blend</button>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap;">
+    <!-- Live Blending Mixer Viewport -->
+    <div style="position: relative; width: 170px; height: 170px; border-radius: 14px; overflow: hidden; border: 2px solid #ffd166; box-shadow: 0 0 20px rgba(255, 209, 102, 0.35); flex-shrink: 0;">
+      <img id="faderImgB" src="https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" referrerpolicy="no-referrer" crossorigin="anonymous">
+      <img id="faderImgA" src="https://i.scdn.co/image/12fe04b0eb5ba5ecbfa9f508da60c2669719102e" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); transition: opacity 0.1s ease;" referrerpolicy="no-referrer" crossorigin="anonymous">
+      <div class="crossfader-split-line" id="faderSplitLine" style="left: 50%;"></div>
+    </div>
+
+    <!-- Controls Column -->
+    <div style="flex: 1 1 320px; max-width: 520px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+        <span style="font-size: 0.75rem; color: #00f2fe; font-family: monospace; font-weight: 700;">◀ DECK A GAIN</span>
+        <div id="crossfaderReadout" style="font-size: 0.8rem; color: #ffd166; font-family: monospace; font-weight: bold;">
+          CH-1 (A): 50% | CH-2 (B): 50%
+        </div>
+        <span style="font-size: 0.75rem; color: #ffd166; font-family: monospace; font-weight: 700;">DECK B GAIN ▶</span>
+      </div>
+
+      <input id="crossfaderSlider" type="range" min="0" max="100" value="50" style="width: 100%; cursor: pointer;">
+
+      <!-- DJ Quick Cut Snap Buttons -->
+      <div class="fader-quick-cuts" style="margin-top: 0.75rem;">
+        <button type="button" class="btn-fader-cut" id="cutA">◀ DECK A</button>
+        <button type="button" class="btn-fader-cut" id="cutCenter">⚖️ 50/50 (CENTER)</button>
+        <button type="button" class="btn-fader-cut" id="cutB">DECK B ▶</button>
+      </div>
     </div>
   </div>
 </div>

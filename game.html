@@ -181,10 +181,13 @@ ul.task-list li input[type="checkbox"] {
   </a>
 </div>
 
+<!-- Confetti Celebration Canvas Overlay -->
+<canvas id="arcadeConfettiCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999;"></canvas>
+
 <!-- Main Game Arena -->
 <div class="game-arena text-center">
-  <!-- Top Streak & Score Status HUD -->
-  <div style="display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center;">
+  <!-- Top Streak, Shield, Gamble & Score Status HUD -->
+  <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center;">
     <div class="streak-counter" id="streakBadge">
       🔥 Streak: <span id="currentStreakDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
     </div>
@@ -195,11 +198,14 @@ ul.task-list li input[type="checkbox"] {
       🪙 Score: <span id="scoreDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
     </div>
     <div class="streak-counter" style="background: rgba(148, 163, 184, 0.12); border-color: rgba(148, 163, 184, 0.25); color: #cbd5e1;">
-      🏆 High Score: <span id="highScoreDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
+      🏆 High: <span id="highScoreDisplay" style="font-size: 1.35rem; margin-left: 4px;">0</span>
     </div>
-    <div class="streak-counter" style="background: rgba(148, 163, 184, 0.12); border-color: rgba(148, 163, 184, 0.25); color: #cbd5e1;">
-      🎯 Round: <span id="roundCounterDisplay" style="font-size: 1.35rem; margin-left: 4px;">1</span>
+    <div class="streak-counter" id="shieldHud" style="background: rgba(56, 239, 125, 0.15); border-color: rgba(56, 239, 125, 0.4); color: #38ef7d;" title="1-time streak protector">
+      🛡️ Shield: <span id="shieldDisplay" style="font-size: 1.1rem; font-weight: 800; margin-left: 4px;">READY (1)</span>
     </div>
+    <button id="btnDoubleDown" type="button" class="btn btn-sm btn-outline-warning" style="font-family: monospace; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 20px;">
+      ⚡ Double Down: OFF
+    </button>
     <button id="btnSoundToggle" type="button" class="btn btn-sm btn-outline-info" style="font-family: monospace; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 20px;">
       🔊 Sound ON
     </button>
@@ -290,6 +296,8 @@ ul.task-list li input[type="checkbox"] {
     let hintUsed = false;
     let soundEnabled = true;
     let audioCtx = null;
+    let shieldCount = 1;
+    let doubleDownActive = false;
 
     const currentStreakDisplay = document.getElementById('currentStreakDisplay');
     const bestStreakDisplay = document.getElementById('bestStreakDisplay');
@@ -297,6 +305,8 @@ ul.task-list li input[type="checkbox"] {
     const scoreDisplay = document.getElementById('scoreDisplay');
     const highScoreDisplay = document.getElementById('highScoreDisplay');
     const roundCounterDisplay = document.getElementById('roundCounterDisplay');
+    const shieldDisplay = document.getElementById('shieldDisplay');
+    const btnDoubleDown = document.getElementById('btnDoubleDown');
     const btnSoundToggle = document.getElementById('btnSoundToggle');
     const btnHint = document.getElementById('btnHint');
     const hintBox = document.getElementById('hintBox');
@@ -321,6 +331,82 @@ ul.task-list li input[type="checkbox"] {
 
     if (!btnHigher || !btnLower || !mysteryBox) return;
 
+    // Confetti Celebration Particle Cannon
+    const confettiCanvas = document.getElementById('arcadeConfettiCanvas');
+    let confettiCtx = confettiCanvas ? confettiCanvas.getContext('2d') : null;
+    let confettiParticles = [];
+    let confettiAnimId = null;
+
+    function resizeCanvas() {
+      if (!confettiCanvas) return;
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function fireArcadeConfetti() {
+      if (!confettiCtx) return;
+      resizeCanvas();
+      const colors = ['#00f2fe', '#4facfe', '#ffd166', '#ff7b00', '#38ef7d', '#ff007f', '#ffffff'];
+      confettiParticles = [];
+      for (let i = 0; i < 90; i++) {
+        confettiParticles.push({
+          x: window.innerWidth * 0.5 + (Math.random() * 260 - 130),
+          y: window.innerHeight * 0.45,
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.72) * 20,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12,
+          opacity: 1,
+          shape: Math.random() > 0.4 ? 'rect' : 'circle'
+        });
+      }
+      if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+      animateConfetti();
+    }
+
+    function animateConfetti() {
+      if (!confettiCtx) return;
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      let alive = false;
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45;
+        p.vx *= 0.98;
+        p.rotation += p.vRot;
+        p.opacity -= 0.016;
+        if (p.opacity > 0 && p.y < confettiCanvas.height) {
+          alive = true;
+          confettiCtx.save();
+          confettiCtx.globalAlpha = Math.max(0, p.opacity);
+          confettiCtx.translate(p.x, p.y);
+          confettiCtx.rotate((p.rotation * Math.PI) / 180);
+          confettiCtx.fillStyle = p.color;
+          if (p.shape === 'rect') {
+            confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          } else {
+            confettiCtx.beginPath();
+            confettiCtx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+            confettiCtx.fill();
+            confettiCtx.fillStyle = '#000';
+            confettiCtx.beginPath();
+            confettiCtx.arc(0, 0, p.size * 0.22, 0, Math.PI * 2);
+            confettiCtx.fill();
+          }
+          confettiCtx.restore();
+        }
+      });
+      if (alive) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      }
+    }
+
     // Initialize HUD displays
     if (bestStreakDisplay) bestStreakDisplay.textContent = bestStreak;
     if (highScoreDisplay) highScoreDisplay.textContent = highScore;
@@ -338,6 +424,10 @@ ul.task-list li input[type="checkbox"] {
       if (multiplierDisplay) multiplierDisplay.textContent = getMultiplier() + 'X';
       if (scoreDisplay) scoreDisplay.textContent = score;
       if (highScoreDisplay) highScoreDisplay.textContent = highScore;
+      if (shieldDisplay) {
+        shieldDisplay.textContent = shieldCount > 0 ? 'READY (' + shieldCount + ')' : 'USED (0)';
+        shieldDisplay.style.color = shieldCount > 0 ? '#38ef7d' : '#ff4d4d';
+      }
     }
 
     // Pure Browser Web Audio API Synthesizer (Zero network requests)
@@ -378,6 +468,23 @@ ul.task-list li input[type="checkbox"] {
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
           osc.start(now);
           osc.stop(now + 0.25);
+        } else if (type === 'shield') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.linearRampToValueAtTime(880, now + 0.15);
+          osc.frequency.linearRampToValueAtTime(1320, now + 0.3);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          osc.start(now);
+          osc.stop(now + 0.45);
+        } else if (type === 'doubledown') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.setValueAtTime(640, now + 0.09);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+          osc.start(now);
+          osc.stop(now + 0.22);
         }
       } catch (e) {}
     }
@@ -387,6 +494,19 @@ ul.task-list li input[type="checkbox"] {
         soundEnabled = !soundEnabled;
         btnSoundToggle.textContent = soundEnabled ? '🔊 Sound ON' : '🔇 Sound OFF';
         btnSoundToggle.className = soundEnabled ? 'btn btn-sm btn-outline-info' : 'btn btn-sm btn-outline-secondary';
+      });
+    }
+
+    if (btnDoubleDown) {
+      btnDoubleDown.addEventListener('click', function() {
+        if (isAnswered) return;
+        doubleDownActive = !doubleDownActive;
+        btnDoubleDown.textContent = doubleDownActive ? '⚡ Double Down: ON (2X)' : '⚡ Double Down: OFF';
+        btnDoubleDown.className = doubleDownActive ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-outline-warning';
+        if (mysteryBox) {
+          mysteryBox.style.boxShadow = doubleDownActive ? '0 0 28px rgba(255, 209, 102, 0.75)' : 'none';
+        }
+        playSfx('doubledown');
       });
     }
 
@@ -421,6 +541,11 @@ ul.task-list li input[type="checkbox"] {
     function startRound(usePreviousWinner) {
       isAnswered = false;
       hintUsed = false;
+      doubleDownActive = false;
+      if (btnDoubleDown) {
+        btnDoubleDown.textContent = '⚡ Double Down: OFF';
+        btnDoubleDown.className = 'btn btn-sm btn-outline-warning';
+      }
       if (btnHint) {
         btnHint.disabled = false;
         btnHint.style.opacity = '1';
@@ -478,7 +603,8 @@ ul.task-list li input[type="checkbox"] {
       if (isCorrect) {
         currentStreak++;
         const mult = getMultiplier();
-        const earned = 100 * mult;
+        let earned = 100 * mult;
+        if (doubleDownActive) earned *= 2;
         score += earned;
         if (currentStreak > bestStreak) {
           bestStreak = currentStreak;
@@ -490,33 +616,54 @@ ul.task-list li input[type="checkbox"] {
         }
         updateHud();
         playSfx('correct');
+        fireArcadeConfetti();
 
         mysteryBox.style.borderColor = '#38ef7d';
-        mysteryBox.style.boxShadow = '0 0 30px rgba(56, 239, 125, 0.4)';
+        mysteryBox.style.boxShadow = '0 0 35px rgba(56, 239, 125, 0.5)';
         if (mysteryRankLine) mysteryRankLine.style.color = '#38ef7d';
 
+        const doubleText = doubleDownActive ? ' ⚡ <b style="color: #ffd166;">DOUBLE DOWN HIT!</b>' : '';
         if (resultMessage) {
-          resultMessage.innerHTML = '🎉 <span style="color: #38ef7d;">CORRECT!</span> +' + earned + ' PTS (' + mult + 'X MULTIPLIER)<br/><span style="font-size: 0.95rem; color: #cbd5e1;">' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')</span>';
+          resultMessage.innerHTML = '🎉 <span style="color: #38ef7d;">CORRECT!</span> +' + earned + ' PTS (' + mult + 'X MULTIPLIER)' + doubleText + '<br/><span style="font-size: 0.95rem; color: #cbd5e1;">' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')</span>';
         }
         if (btnNextRound) {
           btnNextRound.textContent = '⏭ Keep Rolling (Round ' + (roundCounter + 1) + ')';
           btnNextRound.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
         }
       } else {
-        currentStreak = 0;
-        updateHud();
-        playSfx('wrong');
+        if (shieldCount > 0) {
+          // Vinyl Shield saves streak!
+          shieldCount--;
+          updateHud();
+          playSfx('shield');
 
-        mysteryBox.style.borderColor = '#ff4d4d';
-        mysteryBox.style.boxShadow = '0 0 30px rgba(255, 77, 77, 0.4)';
-        if (mysteryRankLine) mysteryRankLine.style.color = '#ff4d4d';
+          mysteryBox.style.borderColor = '#00f2fe';
+          mysteryBox.style.boxShadow = '0 0 30px rgba(0, 242, 254, 0.5)';
+          if (mysteryRankLine) mysteryRankLine.style.color = '#00f2fe';
 
-        if (resultMessage) {
-          resultMessage.innerHTML = '💥 <span style="color: #ff4d4d;">STREAK BROKEN!</span> ' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')<br/><span style="font-size: 0.95rem; color: #ffd166;">Final Score: ' + score + ' PTS</span>';
-        }
-        if (btnNextRound) {
-          btnNextRound.textContent = '🔄 Play Again (Reset Score)';
-          btnNextRound.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+          if (resultMessage) {
+            resultMessage.innerHTML = '🛡️ <span style="color: #00f2fe;">VINYL SHIELD SAVED YOUR STREAK!</span> (Streak preserved at ' + currentStreak + ')<br/><span style="font-size: 0.95rem; color: #cbd5e1;">' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')</span>';
+          }
+          if (btnNextRound) {
+            btnNextRound.textContent = '⏭ Continue Run (Round ' + (roundCounter + 1) + ')';
+            btnNextRound.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
+          }
+        } else {
+          currentStreak = 0;
+          updateHud();
+          playSfx('wrong');
+
+          mysteryBox.style.borderColor = '#ff4d4d';
+          mysteryBox.style.boxShadow = '0 0 30px rgba(255, 77, 77, 0.4)';
+          if (mysteryRankLine) mysteryRankLine.style.color = '#ff4d4d';
+
+          if (resultMessage) {
+            resultMessage.innerHTML = '💥 <span style="color: #ff4d4d;">STREAK BROKEN!</span> ' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')<br/><span style="font-size: 0.95rem; color: #ffd166;">Final Score: ' + score + ' PTS</span>';
+          }
+          if (btnNextRound) {
+            btnNextRound.textContent = '🔄 Play Again (Reset Run)';
+            btnNextRound.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+          }
         }
       }
     }
@@ -528,6 +675,7 @@ ul.task-list li input[type="checkbox"] {
       btnNextRound.addEventListener('click', () => {
         if (currentStreak === 0) {
           score = 0;
+          shieldCount = 1;
           updateHud();
         }
         roundCounter++;
