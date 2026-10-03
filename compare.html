@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About the Album Cover Archive</span></a>
+<span class="menu-text">Archival Documentation &amp; Dataset Specifications</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -663,50 +663,166 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 
-<!-- Hardware DJ Crossfader Console (Placed Under the Initial Comparison) -->
-<div class="crossfader-under-deck" style="margin: 2rem 0; background: #090c12; border: 1px solid #2d3748; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.7);">
-  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem;">
+<!-- Active Head-to-Head Battle Breakdown (Compare Actually Does Something) -->
+<div class="battle-audit-box" id="battleAuditBox">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
     <div>
-      <div style="font-size: 0.75rem; font-weight: 800; color: #00f2fe; font-family: monospace; letter-spacing: 1.5px;">
-        🎚️ DJ HARDWARE SONIC CROSSFADER
+      <div style="font-size: 0.75rem; font-weight: 800; color: #ffd166; font-family: monospace; letter-spacing: 1.5px;">
+        ⚔️ HEAD-TO-HEAD BATTLE AUDIT &amp; VERDICT
       </div>
       <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
-        Real-time audio gain mixing &amp; visual split-curtain wipe between Decks A &amp; B
+        Direct metric collision: Critical Acclaim, Chart Supremacy &amp; Era Longevity
       </div>
     </div>
-    
-    <!-- Mode Selector: Split Curtain vs Sonic Blend -->
-    <div class="fader-mode-toggle" style="margin: 0;">
-      <button type="button" class="btn-fader-mode is-active" id="modeWipe">🪚 Split Curtain</button>
-      <button type="button" class="btn-fader-mode" id="modeBlend">🎛️ Sonic Blend</button>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <button type="button" class="btn btn-sm btn-neon" id="btnRunAudit" style="background: linear-gradient(135deg, #ffd166, #ff7b00); color: #000; font-weight: 800; font-size: 0.85rem; padding: 0.45rem 1.2rem; border-radius: 8px; box-shadow: 0 0 16px rgba(255, 209, 102, 0.4); border: none;">
+        ⚡ RUN SHOWDOWN AUDIT
+      </button>
     </div>
   </div>
 
-  <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-    <!-- Live Blending Mixer Viewport -->
-    <div style="position: relative; width: 170px; height: 170px; border-radius: 14px; overflow: hidden; border: 2px solid #ffd166; box-shadow: 0 0 20px rgba(255, 209, 102, 0.35); flex-shrink: 0;">
+  <!-- Stat Clash Rows -->
+  <div class="battle-stat-row">
+    <div style="text-align: right;">
+      <span id="auditStatValA1" style="font-size: 1.1rem; font-weight: 800; color: #00f2fe; font-family: monospace;">4.45</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-a" id="auditBarA1" style="width: 89%;"></div>
+      </div>
+    </div>
+    <div style="text-align: center; font-size: 0.75rem; font-weight: 700; color: #94a3b8; font-family: monospace; text-transform: uppercase;">
+      ⭐ Critical Acclaim
+    </div>
+    <div style="text-align: left;">
+      <span id="auditStatValB1" style="font-size: 1.1rem; font-weight: 800; color: #ffd166; font-family: monospace;">4.45</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-b" id="auditBarB1" style="width: 89%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="battle-stat-row">
+    <div style="text-align: right;">
+      <span id="auditStatValA2" style="font-size: 1.1rem; font-weight: 800; color: #00f2fe; font-family: monospace;">#1</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-a" id="auditBarA2" style="width: 100%;"></div>
+      </div>
+    </div>
+    <div style="text-align: center; font-size: 0.75rem; font-weight: 700; color: #94a3b8; font-family: monospace; text-transform: uppercase;">
+      🏆 Chart Supremacy
+    </div>
+    <div style="text-align: left;">
+      <span id="auditStatValB2" style="font-size: 1.1rem; font-weight: 800; color: #ffd166; font-family: monospace;">#2</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-b" id="auditBarB2" style="width: 98%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="battle-stat-row">
+    <div style="text-align: right;">
+      <span id="auditStatValA3" style="font-size: 1.1rem; font-weight: 800; color: #00f2fe; font-family: monospace;">1977</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-a" id="auditBarA3" style="width: 77%;"></div>
+      </div>
+    </div>
+    <div style="text-align: center; font-size: 0.75rem; font-weight: 700; color: #94a3b8; font-family: monospace; text-transform: uppercase;">
+      ⏳ Release Era
+    </div>
+    <div style="text-align: left;">
+      <span id="auditStatValB3" style="font-size: 1.1rem; font-weight: 800; color: #ffd166; font-family: monospace;">1969</span>
+      <div class="battle-bar-track" style="margin-top: 4px;">
+        <div class="battle-bar-fill-b" id="auditBarB3" style="width: 69%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Champion Audit Verdict Banner -->
+  <div class="battle-winner-banner" id="battleVerdictBanner">
+    <div style="font-size: 0.8rem; font-weight: 800; color: #38ef7d; font-family: monospace; letter-spacing: 1.5px; text-transform: uppercase;">
+      🏆 OFFICIAL SHOWDOWN VERDICT
+    </div>
+    <div id="battleVerdictText" style="font-size: 1.1rem; font-weight: 800; color: #fff; margin-top: 0.4rem;">
+      Click "RUN SHOWDOWN AUDIT" to compare contenders!
+    </div>
+  </div>
+
+  <!-- Interactive Fan Voting Bar -->
+  <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+    <div style="font-size: 0.8rem; color: #94a3b8; font-family: monospace;">
+      🗳️ CROWD VERDICT: <span id="voteTallyText" style="color: #ffd166; font-weight: bold;">Deck A: 50% | Deck B: 50%</span>
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <button type="button" class="btn btn-sm btn-outline-info" id="btnVoteA" style="font-family: monospace; font-size: 0.78rem;">
+        👍 Vote Deck A
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-warning" id="btnVoteB" style="font-family: monospace; font-size: 0.78rem;">
+        👍 Vote Deck B
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Hardware DJ Crossfader Console (Larger & Tactile with Real-time Audio Mixing) -->
+<div class="crossfader-under-deck" style="margin: 2rem 0; background: #090c12; border: 1.5px solid #2d3748; border-radius: 18px; padding: 1.75rem; box-shadow: 0 15px 40px rgba(0,0,0,0.8);">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem;">
+    <div>
+      <div style="font-size: 0.8rem; font-weight: 800; color: #00f2fe; font-family: monospace; letter-spacing: 1.5px;">
+        🎚️ DJ HARDWARE SONIC CROSSFADER (LARGE CONSOLE)
+      </div>
+      <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+        Enlarged tactile crossfader with real-time Web Audio synthesizer mixing &amp; visual split-curtain wipe
+      </div>
+    </div>
+    
+    <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+      <button type="button" class="btn btn-sm" id="btnDjMonitor" style="font-family: monospace; font-size: 0.8rem; font-weight: 800; background: linear-gradient(135deg, #38ef7d, #11998e); color: #000; border-radius: 20px; padding: 0.45rem 1.15rem; border: none; box-shadow: 0 0 15px rgba(56, 239, 125, 0.4);">
+        🔊 START DJ AUDIO MIX
+      </button>
+      
+      <!-- Mode Selector: Split Curtain vs Sonic Blend -->
+      <div class="fader-mode-toggle" style="margin: 0;">
+        <button type="button" class="btn-fader-mode is-active" id="modeWipe">🪚 Split Curtain</button>
+        <button type="button" class="btn-fader-mode" id="modeBlend">🎛️ Sonic Blend</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 2.5rem; align-items: center; justify-content: center; flex-wrap: wrap;">
+    <!-- Large Blending Mixer Viewport (Enlarged to 260x260) -->
+    <div style="position: relative; width: 260px; height: 260px; border-radius: 16px; overflow: hidden; border: 3px solid #ffd166; box-shadow: 0 0 28px rgba(255, 209, 102, 0.45); flex-shrink: 0; background: #000;">
       <img id="faderImgB" src="https://i.scdn.co/image/ab67616d00001e02dc30583ba717007b00cceb25" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" referrerpolicy="no-referrer" crossorigin="anonymous">
       <img id="faderImgA" src="https://i.scdn.co/image/12fe04b0eb5ba5ecbfa9f508da60c2669719102e" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); transition: opacity 0.1s ease;" referrerpolicy="no-referrer" crossorigin="anonymous">
       <div class="crossfader-split-line" id="faderSplitLine" style="left: 50%;"></div>
     </div>
 
     <!-- Controls Column -->
-    <div style="flex: 1 1 320px; max-width: 520px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-        <span style="font-size: 0.75rem; color: #00f2fe; font-family: monospace; font-weight: 700;">◀ DECK A GAIN</span>
-        <div id="crossfaderReadout" style="font-size: 0.8rem; color: #ffd166; font-family: monospace; font-weight: bold;">
+    <div style="flex: 1 1 360px; max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+        <span style="font-size: 0.85rem; color: #00f2fe; font-family: monospace; font-weight: 800;">◀ DECK A GAIN</span>
+        <div id="crossfaderReadout" style="font-size: 0.9rem; color: #ffd166; font-family: monospace; font-weight: bold; background: #111520; padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(255,209,102,0.3);">
           CH-1 (A): 50% | CH-2 (B): 50%
         </div>
-        <span style="font-size: 0.75rem; color: #ffd166; font-family: monospace; font-weight: 700;">DECK B GAIN ▶</span>
+        <span style="font-size: 0.85rem; color: #ffd166; font-family: monospace; font-weight: 800;">DECK B GAIN ▶</span>
+      </div>
+
+      <!-- Decibel Scale Markings -->
+      <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; font-family: monospace; margin: 0 4px 6px 4px;">
+        <span>◀ -∞ dB</span>
+        <span>-12 dB</span>
+        <span>-6 dB</span>
+        <span style="color: #ffd166; font-weight: bold;">0 dB (50/50)</span>
+        <span>+6 dB</span>
+        <span>+12 dB</span>
+        <span>+∞ dB ▶</span>
       </div>
 
       <input id="crossfaderSlider" type="range" min="0" max="100" value="50" style="width: 100%; cursor: pointer;">
 
       <!-- DJ Quick Cut Snap Buttons -->
-      <div class="fader-quick-cuts" style="margin-top: 0.75rem;">
-        <button type="button" class="btn-fader-cut" id="cutA">◀ DECK A</button>
-        <button type="button" class="btn-fader-cut" id="cutCenter">⚖️ 50/50 (CENTER)</button>
-        <button type="button" class="btn-fader-cut" id="cutB">DECK B ▶</button>
+      <div class="fader-quick-cuts" style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+        <button type="button" class="btn-fader-cut" id="cutA" style="flex: 1; padding: 0.6rem; font-weight: 800;">◀ CUT TO DECK A</button>
+        <button type="button" class="btn-fader-cut" id="cutCenter" style="flex: 1; padding: 0.6rem; font-weight: 800;">⚖️ 50/50 CENTER</button>
+        <button type="button" class="btn-fader-cut" id="cutB" style="flex: 1; padding: 0.6rem; font-weight: 800;">CUT TO DECK B ▶</button>
       </div>
     </div>
   </div>
@@ -779,6 +895,219 @@ ul.task-list li input[type="checkbox"] {
       });
     }
 
+    // Web Audio Synthesizer DJ Mixing Engine
+    let audioCtx = null;
+    let isAudioActive = false;
+    let oscA = null, oscB = null;
+    let gainNodeA = null, gainNodeB = null;
+    let masterGain = null;
+    const btnDjMonitor = document.getElementById('btnDjMonitor');
+
+    function initDjAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (isAudioActive) {
+        stopDjAudio();
+        return;
+      }
+      
+      try {
+        gainNodeA = audioCtx.createGain();
+        gainNodeB = audioCtx.createGain();
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+
+        // Deck A: Warm rhythmic bass groove (130.81 Hz - C3)
+        oscA = audioCtx.createOscillator();
+        oscA.type = 'triangle';
+        oscA.frequency.setValueAtTime(130.81, audioCtx.currentTime);
+        const filterA = audioCtx.createBiquadFilter();
+        filterA.type = 'lowpass';
+        filterA.frequency.setValueAtTime(450, audioCtx.currentTime);
+        oscA.connect(filterA);
+        filterA.connect(gainNodeA);
+
+        // Deck B: Bright energetic arpeggio lead (261.63 Hz - C4)
+        oscB = audioCtx.createOscillator();
+        oscB.type = 'sawtooth';
+        oscB.frequency.setValueAtTime(261.63, audioCtx.currentTime);
+        const filterB = audioCtx.createBiquadFilter();
+        filterB.type = 'bandpass';
+        filterB.frequency.setValueAtTime(800, audioCtx.currentTime);
+        oscB.connect(filterB);
+        filterB.connect(gainNodeB);
+
+        gainNodeA.connect(masterGain);
+        gainNodeB.connect(masterGain);
+        masterGain.connect(audioCtx.destination);
+
+        oscA.start();
+        oscB.start();
+        isAudioActive = true;
+        if (btnDjMonitor) {
+          btnDjMonitor.textContent = '⏹ STOP DJ AUDIO MIX';
+          btnDjMonitor.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+        }
+        updateAudioGains(parseInt(crossfaderSlider ? crossfaderSlider.value : 50, 10));
+      } catch (e) {
+        console.error('Audio mix init error:', e);
+      }
+    }
+
+    function stopDjAudio() {
+      if (oscA) { try { oscA.stop(); } catch(e){} oscA = null; }
+      if (oscB) { try { oscB.stop(); } catch(e){} oscB = null; }
+      isAudioActive = false;
+      if (btnDjMonitor) {
+        btnDjMonitor.textContent = '🔊 START DJ AUDIO MIX';
+        btnDjMonitor.style.background = 'linear-gradient(135deg, #38ef7d, #11998e)';
+      }
+    }
+
+    function updateAudioGains(pct) {
+      if (!isAudioActive || !gainNodeA || !gainNodeB || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const volA = (100 - pct) / 100;
+      const volB = pct / 100;
+      gainNodeA.gain.setTargetAtTime(volA * 0.18, now, 0.03);
+      gainNodeB.gain.setTargetAtTime(volB * 0.18, now, 0.03);
+    }
+
+    function playScratchSfx() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      try {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(160, now + 0.12);
+        g.gain.setValueAtTime(0.2, now);
+        g.gain.linearRampToValueAtTime(0.01, now + 0.12);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      } catch(e) {}
+    }
+
+    function playFanfareSfx() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      try {
+        const notes = [261.63, 329.63, 392.00, 523.25];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          osc.type = 'triangle';
+          const t = audioCtx.currentTime + i * 0.09;
+          osc.frequency.setValueAtTime(freq, t);
+          g.gain.setValueAtTime(0.15, t);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.26);
+          osc.connect(g);
+          g.connect(audioCtx.destination);
+          osc.start(t);
+          osc.stop(t + 0.27);
+        });
+      } catch(e) {}
+    }
+
+    if (btnDjMonitor) {
+      btnDjMonitor.addEventListener('click', initDjAudio);
+    }
+
+    // Head-to-Head Battle Breakdown Audit & Fan Voting
+    let votesA = 18, votesB = 18;
+
+    function updateVotes() {
+      const total = votesA + votesB;
+      const pctA = Math.round((votesA / total) * 100);
+      const pctB = 100 - pctA;
+      const el = document.getElementById('voteTallyText');
+      if (el) {
+        el.textContent = `Deck A (${albumA.album}): ${pctA}% (${votesA} votes) | Deck B (${albumB.album}): ${pctB}% (${votesB} votes)`;
+      }
+    }
+
+    const btnVoteA = document.getElementById('btnVoteA');
+    const btnVoteB = document.getElementById('btnVoteB');
+    if (btnVoteA) btnVoteA.addEventListener('click', () => { votesA++; updateVotes(); });
+    if (btnVoteB) btnVoteB.addEventListener('click', () => { votesB++; updateVotes(); });
+
+    function updateBattleStats() {
+      if (!albumA || !albumB) return;
+      const rA = albumA.rating || 4.0;
+      const rB = albumB.rating || 4.0;
+      const vA1 = document.getElementById('auditStatValA1');
+      const vB1 = document.getElementById('auditStatValB1');
+      const bA1 = document.getElementById('auditBarA1');
+      const bB1 = document.getElementById('auditBarB1');
+      if (vA1) vA1.textContent = rA.toFixed(2);
+      if (vB1) vB1.textContent = rB.toFixed(2);
+      if (bA1) bA1.style.width = Math.min(100, Math.round((rA / 5) * 100)) + '%';
+      if (bB1) bB1.style.width = Math.min(100, Math.round((rB / 5) * 100)) + '%';
+
+      const vA2 = document.getElementById('auditStatValA2');
+      const vB2 = document.getElementById('auditStatValB2');
+      const bA2 = document.getElementById('auditBarA2');
+      const bB2 = document.getElementById('auditBarB2');
+      if (vA2) vA2.textContent = '#' + albumA.rank;
+      if (vB2) vB2.textContent = '#' + albumB.rank;
+      const maxRank = 100;
+      if (bA2) bA2.style.width = Math.max(12, 100 - Math.round((albumA.rank / maxRank) * 88)) + '%';
+      if (bB2) bB2.style.width = Math.max(12, 100 - Math.round((albumB.rank / maxRank) * 88)) + '%';
+
+      const vA3 = document.getElementById('auditStatValA3');
+      const vB3 = document.getElementById('auditStatValB3');
+      const bA3 = document.getElementById('auditBarA3');
+      const bB3 = document.getElementById('auditBarB3');
+      if (vA3) vA3.textContent = albumA.year;
+      if (vB3) vB3.textContent = albumB.year;
+      const minYear = 1950, maxYear = 2025;
+      if (bA3) bA3.style.width = Math.max(10, Math.round(((albumA.year - minYear) / (maxYear - minYear)) * 100)) + '%';
+      if (bB3) bB3.style.width = Math.max(10, Math.round(((albumB.year - minYear) / (maxYear - minYear)) * 100)) + '%';
+    }
+
+    function runBattleAudit() {
+      updateBattleStats();
+      const text = document.getElementById('battleVerdictText');
+      if (!text) return;
+
+      const scoreA = (albumA.rating * 30) + (1000 - albumA.rank);
+      const scoreB = (albumB.rating * 30) + (1000 - albumB.rank);
+
+      let winner, loser, winnerDeck;
+      if (scoreA >= scoreB) {
+        winner = albumA; loser = albumB; winnerDeck = 'Deck A';
+      } else {
+        winner = albumB; loser = albumA; winnerDeck = 'Deck B';
+      }
+
+      const diff = Math.abs(albumA.year - albumB.year);
+      const eraDiff = diff === 0 ? "released the exact same year" : `${diff} years apart in vinyl history`;
+
+      text.innerHTML = `🏆 <strong style="color: #ffd166;">VICTORIOUS:</strong> <strong>${winner.album}</strong> (${winner.artist})!<br><span style="font-size: 0.88rem; color: #38ef7d; font-weight: normal;">Edges out ${loser.album} with #${winner.rank} chart supremacy &amp; ⭐ ${winner.rating.toFixed(2)} rating (${eraDiff}).</span>`;
+      
+      // Pulse winning card
+      if (winner === albumA) {
+        boxA.style.borderColor = '#38ef7d';
+        boxA.style.boxShadow = '0 0 35px rgba(56, 239, 125, 0.75)';
+      } else {
+        boxB.style.borderColor = '#38ef7d';
+        boxB.style.boxShadow = '0 0 35px rgba(56, 239, 125, 0.75)';
+      }
+
+      playFanfareSfx();
+    }
+
+    const btnRunAudit = document.getElementById('btnRunAudit');
+    if (btnRunAudit) btnRunAudit.addEventListener('click', runBattleAudit);
+
     function updateCards() {
       if (!albumA || !albumB) return;
 
@@ -804,6 +1133,9 @@ ul.task-list li input[type="checkbox"] {
       if (faderImgA) faderImgA.src = albumA.image_url;
       if (faderImgB) faderImgB.src = albumB.image_url;
       applyCrossfader(parseInt(crossfaderSlider ? crossfaderSlider.value : 50, 10));
+
+      updateBattleStats();
+      updateVotes();
     }
 
     function applyFx(fxClass) {
@@ -901,6 +1233,8 @@ ul.task-list li input[type="checkbox"] {
       if (crossfaderReadout) {
         crossfaderReadout.textContent = 'CH-1 (A): ' + (100 - pct) + '% | CH-2 (B): ' + pct + '%';
       }
+
+      updateAudioGains(pct);
     }
 
     if (crossfaderSlider) {
@@ -909,9 +1243,9 @@ ul.task-list li input[type="checkbox"] {
       });
     }
 
-    if (cutA) cutA.addEventListener('click', () => applyCrossfader(0));
-    if (cutCenter) cutCenter.addEventListener('click', () => applyCrossfader(50));
-    if (cutB) cutB.addEventListener('click', () => applyCrossfader(100));
+    if (cutA) cutA.addEventListener('click', () => { playScratchSfx(); applyCrossfader(0); });
+    if (cutCenter) cutCenter.addEventListener('click', () => { playScratchSfx(); applyCrossfader(50); });
+    if (cutB) cutB.addEventListener('click', () => { playScratchSfx(); applyCrossfader(100); });
 
     if (modeWipe && modeBlend) {
       modeWipe.addEventListener('click', function() {
@@ -938,6 +1272,10 @@ ul.task-list li input[type="checkbox"] {
         applyFx(fx);
       });
     });
+
+    // Initialize battle stats & votes on startup
+    updateBattleStats();
+    updateVotes();
   }
 
   if (document.readyState === 'loading') {

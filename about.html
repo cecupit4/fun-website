@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About the Album Cover Archive – Album Covers</title>
+<title>Archival Documentation &amp; Dataset Specifications – Album Covers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">About the Album Cover Archive</span></a>
+<span class="menu-text">Archival Documentation &amp; Dataset Specifications</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -128,7 +128,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About the Album Cover Archive</h1>
+<h1 class="title">Archival Documentation &amp; Dataset Specifications</h1>
+<p class="subtitle lead">A digital humanities repository exploring vinyl sleeve art, graphic design history, and critical acclaim metrics.</p>
 </div>
 
 
@@ -176,24 +177,103 @@ ul.task-list li input[type="checkbox"] {
       <span class="switch-led"></span>
       <span>CH-4: 📻 INTEL ARCHIVE</span>
     </div>
-    <div class="switch-subtext">Master Credits &amp; Info</div>
+    <div class="switch-subtext">Master Documentation &amp; Data</div>
   </a>
 </div>
-<section id="the-collection-visual-engineering" class="level3">
-<h3 class="anchored" data-anchor-id="the-collection-visual-engineering">The Collection &amp; Visual Engineering</h3>
-<p>This interactive archive brings together legendary album cover artworks and design history from two primary museum and digital preservation sources:</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Curatorial Statement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This repository is an interactive digital humanities project documenting the intersection of 20th- and 21st-century recording history, vinyl sleeve design movements, and critical reception indices. All visual assets and quantitative metadata are curated from open preservation archives for educational analysis and historical scholarship.</p>
+</div>
+</div>
+<section id="archival-provenance-primary-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="archival-provenance-primary-repositories">1. Archival Provenance &amp; Primary Repositories</h2>
+<p>The collection integrates primary documentation and imagery from three core archival repositories:</p>
 <ol type="1">
-<li><strong><a href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">The Cover Art Archive</a></strong> via Open Culture and the Internet Archive: A massive digital preservation project archiving hundreds of thousands of historical album covers from music history.</li>
-<li><strong><a href="https://browse.gallery/en/project_category/album-cover-en/">The Browse Gallery Hipgnosis Portfolio</a></strong>: Featuring original album cover art prints created by Storm Thorgerson and the Hipgnosis design studio for legendary artists including Pink Floyd, Led Zeppelin, Peter Gabriel, Genesis, AC/DC, and 10cc.</li>
+<li><strong><a href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">The Cover Art Archive</a> (Internet Archive &amp; MusicBrainz):</strong><br>
+A public-domain digital preservation initiative archiving comprehensive visual records of vinyl packaging, typography, and sleeve photography across international music history.</li>
+<li><strong><a href="https://browse.gallery/en/project_category/album-cover-en/">Browse Gallery Berlin: Hipgnosis Exhibition Portfolio</a>:</strong><br>
+Curated fine-art prints documenting the surrealist sleeve photography developed by Aubrey Powell, Storm Thorgerson, and Peter Christopherson (Hipgnosis) between 1968 and 1983 for artists including Pink Floyd, Led Zeppelin, Peter Gabriel, and AC/DC.</li>
+<li><strong>Global Critical Acclaim &amp; Streaming Aggregate:</strong><br>
+Standardized quantitative indexing of 1,000 seminal releases spanning 1956 to 2025, recording critical score indices (normalized out of 5.00), commercial chart supremacy rankings, release eras, and primary acoustic classifications.</li>
 </ol>
+<hr>
 </section>
-<section id="interactive-features" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-features">Interactive Features</h3>
+<section id="dataset-architecture-specifications" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-architecture-specifications">2. Dataset Architecture &amp; Specifications</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Catalog Attribute</th>
+<th style="text-align: left;">Archival Specification</th>
+<th style="text-align: left;">Methodological Context</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Repository Size</strong></td>
+<td style="text-align: left;">1,035 Documented Titles</td>
+<td style="text-align: left;">1,000 ranked historical standards + 35 curated museum art prints</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Chronological Range</strong></td>
+<td style="text-align: left;">1956 – 2025 (70 Years)</td>
+<td style="text-align: left;">Spanning mid-century modern jazz to contemporary releases</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Genre Classifications</strong></td>
+<td style="text-align: left;">11 Taxonomical Categories</td>
+<td style="text-align: left;">Rock, Metal, Pop, Funk, Soul, Jazz, Hip-Hop, Punk, Folk, Country, Blues</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Quantitative Measures</strong></td>
+<td style="text-align: left;">Ordinal Chart Rank &amp; Continuous Acclaim</td>
+<td style="text-align: left;">Derived from critical reviews, historical importance, and streaming indices</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Acoustic Synthesis</strong></td>
+<td style="text-align: left;">Web Audio API (Native Synthesizer)</td>
+<td style="text-align: left;">Dual-oscillator polyphonic signal generation with live gain staging</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>System Architecture</strong></td>
+<td style="text-align: left;">Quarto Open Scientific Publishing</td>
+<td style="text-align: left;">Static compilation with zero server tracking or external dependencies</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="historical-context-the-evolution-of-album-art" class="level2">
+<h2 class="anchored" data-anchor-id="historical-context-the-evolution-of-album-art">3. Historical Context: The Evolution of Album Art</h2>
+<p>The illustrated 12-inch record jacket was invented in <strong>1939 by Alex Steinweiss</strong>, the first art director at Columbia Records. Prior to Steinweiss’s innovation, phonograph discs were sold in generic, unmarked brown paper sleeves. By combining bold Bauhaus typography with expressive graphic illustration, Steinweiss converted utilitarian disc packaging into an essential visual medium—increasing Columbia’s record sales by more than 800% in its inaugural quarter.</p>
+<p>During the late 1960s and 1970s, photographic design studios such as <strong>Hipgnosis</strong> transformed vinyl packaging into surrealist fine art. Working with film cameras and darkroom composition techniques prior to digital editing, Hipgnosis created iconic cultural imagery—such as the prism refraction on <em>The Dark Side of the Moon</em> and the flaming businessman on <em>Wish You Were Here</em>.</p>
+<hr>
+</section>
+<section id="systems-architecture-interface-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="systems-architecture-interface-engineering">4. Systems Architecture &amp; Interface Engineering</h2>
 <ul>
-<li><strong>The Grand Hi-Fi Turntable Deck:</strong> A full interactive 33 ⅓ RPM vinyl turntable with dynamic center spindle rotation, moving tonearm stylus, illuminated LCD display, and real-time needle-drop platter exploration.</li>
-<li><strong>Dual Contender Comparator:</strong> Filter through genres and specific songs/albums, blend covers with the DJ Sonic Crossfader, and experiment with real-time Visual FX shaders.</li>
-<li><strong>Showdown Arcade:</strong> A responsive Higher/Lower rank guessing game tracking consecutive win streaks.</li>
+<li><strong>Platter Kinematics Deck (<code>index.qmd</code>):</strong> Simulates 33 ⅓ RPM rotational physics, mechanical tonearm cueing, and an interactive 1,000-tile micro-mosaic grid with dynamic search and filtering.</li>
+<li><strong>Hardware Sonic Comparator (<code>compare.qmd</code>):</strong> Implements dual-channel Web Audio oscillators with dynamic biquad filtering, equal-power slider crossfading, visual curtain wipes, and head-to-head metric collision audits.</li>
+<li><strong>Showdown Arcade Engine (<code>game.qmd</code>):</strong> Pure client-side binary evaluation framework featuring localStorage persistence, rapid-fire countdown timer loops, and SVG/canvas particle physics.</li>
 </ul>
+<hr>
+</section>
+<section id="curatorial-attribution-fair-use-notice" class="level2">
+<h2 class="anchored" data-anchor-id="curatorial-attribution-fair-use-notice">5. Curatorial Attribution &amp; Fair Use Notice</h2>
+<p>All album cover graphics and trademarked identifiers featured within this educational project remain the sole intellectual property of their original visual designers, photographers, artists, and associated record labels. Artwork and metadata are reproduced under <strong>Fair Use and Educational Guidelines</strong> exclusively for non-commercial scholarship, visual culture studies, and data science pedagogy.</p>
 
 
 </section>

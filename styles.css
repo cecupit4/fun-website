@@ -1310,36 +1310,165 @@ body {
   transition: left 0.04s ease;
 }
 
-/* Custom styled Range Slider for DJ Crossfader */
+/* Custom styled Large Range Slider for DJ Crossfader */
 #crossfaderSlider {
   -webkit-appearance: none;
   appearance: none;
-  height: 10px;
-  border-radius: 5px;
-  background: #141926;
-  border: 1px solid #2d3748;
+  width: 100%;
+  height: 24px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0d111b 0%, #171d2b 100%);
+  border: 2px solid #334155;
   outline: none;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.9), 0 1px 2px rgba(255,255,255,0.05);
+  cursor: pointer;
+  position: relative;
 }
 
 #crossfaderSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 28px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #e2e8f0 0%, #718096 100%);
-  border: 2px solid #00f2fe;
+  width: 44px;
+  height: 60px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 40%, #475569 80%, #1e293b 100%);
+  border: 2.5px solid #00f2fe;
   cursor: grab;
-  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.8), 0 4px 10px rgba(0,0,0,0.9);
+  position: relative;
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+#crossfaderSlider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.08);
+  border-color: #ffd166;
+  box-shadow: 0 0 24px rgba(255, 209, 102, 0.9), 0 4px 12px rgba(0,0,0,0.9);
 }
 
 #crossfaderSlider::-moz-range-thumb {
-  width: 22px;
-  height: 28px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #e2e8f0 0%, #718096 100%);
-  border: 2px solid #00f2fe;
+  width: 44px;
+  height: 60px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 40%, #475569 80%, #1e293b 100%);
+  border: 2.5px solid #00f2fe;
   cursor: grab;
-  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.8), 0 4px 10px rgba(0,0,0,0.9);
 }
+
+#crossfaderSlider:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(1.08);
+  border-color: #ffd166;
+  box-shadow: 0 0 24px rgba(255, 209, 102, 0.9), 0 4px 12px rgba(0,0,0,0.9);
+}
+
+/* Thousand-Record Mega-Wall (See All 1,000 At Once) */
+.mega-wall-dense {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 6px;
+}
+
+.mega-wall-standard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.mega-album-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #141722;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.mega-album-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mega-album-tile:hover {
+  transform: scale(1.75);
+  z-index: 200;
+  border-color: #00f2fe;
+  box-shadow: 0 0 22px rgba(0, 242, 254, 0.95);
+}
+
+.mega-album-tile .mega-tile-rank {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffd166;
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+  line-height: 1.1;
+}
+
+.mega-album-tile.is-active-mega {
+  border: 2px solid #38ef7d !important;
+  box-shadow: 0 0 18px #38ef7d !important;
+}
+
+/* Head-to-Head Battle Breakdown Module */
+.battle-audit-box {
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+.battle-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 140px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.battle-bar-track {
+  height: 10px;
+  background: #1e2533;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.battle-bar-fill-a {
+  height: 100%;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+  float: right;
+}
+
+.battle-bar-fill-b {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd166, #ff7b00);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.battle-winner-banner {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(255, 209, 102, 0.15));
+  border: 1.5px solid #ffd166;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 0 0 25px rgba(255, 209, 102, 0.25);
+}
+

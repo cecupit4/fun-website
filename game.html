@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About the Album Cover Archive</span></a>
+<span class="menu-text">Archival Documentation &amp; Dataset Specifications</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -206,9 +206,23 @@ ul.task-list li input[type="checkbox"] {
     <button id="btnDoubleDown" type="button" class="btn btn-sm btn-outline-warning" style="font-family: monospace; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 20px;">
       ⚡ Double Down: OFF
     </button>
+    <button id="btnShroudToggle" type="button" class="btn btn-sm btn-outline-danger" style="font-family: monospace; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 20px;">
+      🕵️ Shroud Mode: OFF (3X)
+    </button>
     <button id="btnSoundToggle" type="button" class="btn btn-sm btn-outline-info" style="font-family: monospace; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: 20px;">
       🔊 Sound ON
     </button>
+  </div>
+
+  <!-- Speed Blitz Bonus Countdown Bar (Rapid-Fire Bonus) -->
+  <div style="margin: 0.25rem auto 1.25rem auto; max-width: 620px; background: #0c101b; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 12px; padding: 0.65rem 1rem; box-shadow: 0 4px 18px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-family: monospace; margin-bottom: 5px;">
+      <span style="color: #00f2fe; font-weight: 800; letter-spacing: 1px;">⚡ SPEED BLITZ BONUS TIMER</span>
+      <span id="timerCountdownText" style="color: #ffd166; font-weight: 800;">10.0s (+50 Speed Pts)</span>
+    </div>
+    <div style="height: 10px; background: #1a2233; border-radius: 5px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);">
+      <div id="blitzTimerBar" style="height: 100%; width: 100%; background: linear-gradient(90deg, #38ef7d, #00f2fe); transition: width 0.1s linear, background 0.3s ease;"></div>
+    </div>
   </div>
 
   <!-- Head-to-Head Arena -->
@@ -241,7 +255,17 @@ ul.task-list li input[type="checkbox"] {
       <div style="font-size: 0.75rem; letter-spacing: 1.5px; color: #ffd166; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;">
         MYSTERY CHALLENGER
       </div>
-      <img id="gameImgB" class="compare-cover" src="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" alt="Wish You Were Here" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album+B'">
+      
+      <!-- Mystery Cover Wrapper with Hardcore Crate Digger Shroud Overlay -->
+      <div style="position: relative; width: 100%; max-width: 300px; margin: 0 auto; overflow: hidden; border-radius: 12px;">
+        <img id="gameImgB" class="compare-cover" src="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" alt="Wish You Were Here" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Album+B'">
+        <div id="shroudOverlay" style="display: none; position: absolute; inset: 0; background: radial-gradient(circle, #1a1e2e 30%, #090b10 100%); border-radius: 12px; align-items: center; justify-content: center; flex-direction: column; border: 2.5px dashed #ff4757; z-index: 10; box-shadow: inset 0 0 30px rgba(0,0,0,0.8);">
+          <div style="font-size: 3rem; filter: drop-shadow(0 0 10px #ff4757);">❓</div>
+          <div style="font-size: 0.82rem; font-weight: 900; color: #ff6b81; font-family: monospace; letter-spacing: 1px;">CRATE DIGGER SHROUD</div>
+          <div style="font-size: 0.68rem; color: #ffd166; font-family: monospace; margin-top: 4px;">CONCEALED ART • 3X PTS</div>
+        </div>
+      </div>
+
       <h3 id="gameTitleB" style="color: #fff; font-size: 1.35rem; margin: 0.4rem 0 0.15rem 0; font-weight: 800;" class="anchored">Wish You Were Here</h3>
       <div id="gameArtistB" style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.5rem;">Pink Floyd (1975)</div>
 
@@ -279,7 +303,38 @@ ul.task-list li input[type="checkbox"] {
       </div>
     </div>
   </div>
+
+  <!-- Arcade Hall of Fame & Crate Digger Rank Tiers -->
+  <div style="margin-top: 2rem; background: #090c14; border: 1.5px solid #1e293b; border-radius: 14px; padding: 1.25rem; max-width: 680px; margin-left: auto; margin-right: auto; text-align: left; box-shadow: 0 8px 30px rgba(0,0,0,0.6);">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div style="font-size: 0.8rem; font-weight: 800; color: #ffd166; font-family: monospace; letter-spacing: 1.5px;">
+        🏆 CRATE DIGGER HALL OF FAME
+      </div>
+      <div id="tierBadge" style="font-size: 0.75rem; font-family: monospace; font-weight: 800; color: #38ef7d; background: rgba(56, 239, 125, 0.15); border: 1px solid rgba(56, 239, 125, 0.3); padding: 3px 10px; border-radius: 12px;">
+        TIER: ROOKIE DIGGER
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; font-family: monospace; font-size: 0.8rem;">
+      <div style="background: #121724; padding: 0.6rem 0.8rem; border-radius: 8px;">
+        <div style="color: #64748b; font-size: 0.7rem;">ALL-TIME BEST</div>
+        <div id="hofBestScore" style="color: #00f2fe; font-size: 1.15rem; font-weight: 800;">0 PTS</div>
+      </div>
+      <div style="background: #121724; padding: 0.6rem 0.8rem; border-radius: 8px;">
+        <div style="color: #64748b; font-size: 0.7rem;">MAX STREAK</div>
+        <div id="hofBestStreak" style="color: #ffd166; font-size: 1.15rem; font-weight: 800;">0 WINS</div>
+      </div>
+      <div style="background: #121724; padding: 0.6rem 0.8rem; border-radius: 8px;">
+        <div style="color: #64748b; font-size: 0.7rem;">SPEED DEMONS</div>
+        <div id="hofSpeedCount" style="color: #38ef7d; font-size: 1.15rem; font-weight: 800;">0 ⚡</div>
+      </div>
+      <div style="background: #121724; padding: 0.6rem 0.8rem; border-radius: 8px;">
+        <div style="color: #64748b; font-size: 0.7rem;">SHROUD DIGS</div>
+        <div id="hofShroudCount" style="color: #ff4757; font-size: 1.15rem; font-weight: 800;">0 🕵️</div>
+      </div>
+    </div>
+  </div>
 </div>
+</main></div>
 
 <script>
 (function() {
@@ -298,6 +353,12 @@ ul.task-list li input[type="checkbox"] {
     let audioCtx = null;
     let shieldCount = 1;
     let doubleDownActive = false;
+    let isShroudActive = false;
+    let speedBonusEligible = false;
+    let blitzTimerInterval = null;
+    let blitzTimeRemaining = 10.0;
+    let speedCount = parseInt(localStorage.getItem('arcade_speed_count') || '0', 10);
+    let shroudCount = parseInt(localStorage.getItem('arcade_shroud_count') || '0', 10);
 
     const currentStreakDisplay = document.getElementById('currentStreakDisplay');
     const bestStreakDisplay = document.getElementById('bestStreakDisplay');
@@ -307,9 +368,19 @@ ul.task-list li input[type="checkbox"] {
     const roundCounterDisplay = document.getElementById('roundCounterDisplay');
     const shieldDisplay = document.getElementById('shieldDisplay');
     const btnDoubleDown = document.getElementById('btnDoubleDown');
+    const btnShroudToggle = document.getElementById('btnShroudToggle');
+    const shroudOverlay = document.getElementById('shroudOverlay');
+    const blitzTimerBar = document.getElementById('blitzTimerBar');
+    const timerCountdownText = document.getElementById('timerCountdownText');
     const btnSoundToggle = document.getElementById('btnSoundToggle');
     const btnHint = document.getElementById('btnHint');
     const hintBox = document.getElementById('hintBox');
+
+    const tierBadge = document.getElementById('tierBadge');
+    const hofBestScore = document.getElementById('hofBestScore');
+    const hofBestStreak = document.getElementById('hofBestStreak');
+    const hofSpeedCount = document.getElementById('hofSpeedCount');
+    const hofShroudCount = document.getElementById('hofShroudCount');
 
     const gameImgA = document.getElementById('gameImgA');
     const gameTitleA = document.getElementById('gameTitleA');
@@ -418,15 +489,93 @@ ul.task-list li input[type="checkbox"] {
       return 1;
     }
 
+    function updateHallOfFame() {
+      if (hofBestScore) hofBestScore.textContent = highScore + ' PTS';
+      if (hofBestStreak) hofBestStreak.textContent = bestStreak + ' WINS';
+      if (hofSpeedCount) hofSpeedCount.textContent = speedCount + ' ⚡';
+      if (hofShroudCount) hofShroudCount.textContent = shroudCount + ' 🕵️';
+
+      if (tierBadge) {
+        if (highScore >= 3000 || bestStreak >= 10) {
+          tierBadge.textContent = 'TIER: CRATE DIGGING LEGEND 👑';
+          tierBadge.style.color = '#ffd166';
+          tierBadge.style.background = 'rgba(255, 209, 102, 0.2)';
+          tierBadge.style.borderColor = 'rgba(255, 209, 102, 0.6)';
+        } else if (highScore >= 1500 || bestStreak >= 6) {
+          tierBadge.textContent = 'TIER: GOLD RECORD MASTER ⭐';
+          tierBadge.style.color = '#00f2fe';
+          tierBadge.style.background = 'rgba(0, 242, 254, 0.2)';
+          tierBadge.style.borderColor = 'rgba(0, 242, 254, 0.5)';
+        } else if (highScore >= 500 || bestStreak >= 3) {
+          tierBadge.textContent = 'TIER: VINYL HUNTER 🎧';
+          tierBadge.style.color = '#38ef7d';
+          tierBadge.style.background = 'rgba(56, 239, 125, 0.2)';
+          tierBadge.style.borderColor = 'rgba(56, 239, 125, 0.5)';
+        } else {
+          tierBadge.textContent = 'TIER: ROOKIE DIGGER 🎒';
+          tierBadge.style.color = '#cbd5e1';
+          tierBadge.style.background = 'rgba(148, 163, 184, 0.15)';
+          tierBadge.style.borderColor = 'rgba(148, 163, 184, 0.3)';
+        }
+      }
+    }
+
     function updateHud() {
       if (currentStreakDisplay) currentStreakDisplay.textContent = currentStreak;
       if (bestStreakDisplay) bestStreakDisplay.textContent = bestStreak;
-      if (multiplierDisplay) multiplierDisplay.textContent = getMultiplier() + 'X';
+      if (multiplierDisplay) {
+        let mult = getMultiplier();
+        if (isShroudActive) mult *= 3;
+        multiplierDisplay.textContent = mult + 'X' + (isShroudActive ? ' 🕵️' : '');
+      }
       if (scoreDisplay) scoreDisplay.textContent = score;
       if (highScoreDisplay) highScoreDisplay.textContent = highScore;
       if (shieldDisplay) {
         shieldDisplay.textContent = shieldCount > 0 ? 'READY (' + shieldCount + ')' : 'USED (0)';
         shieldDisplay.style.color = shieldCount > 0 ? '#38ef7d' : '#ff4d4d';
+      }
+      updateHallOfFame();
+    }
+
+    // Speed Blitz 10-Second Bonus Timer
+    function startBlitzTimer() {
+      if (blitzTimerInterval) clearInterval(blitzTimerInterval);
+      blitzTimeRemaining = 10.0;
+      speedBonusEligible = true;
+      updateTimerUI();
+
+      blitzTimerInterval = setInterval(() => {
+        if (isAnswered) {
+          clearInterval(blitzTimerInterval);
+          return;
+        }
+        blitzTimeRemaining = Math.max(0, blitzTimeRemaining - 0.1);
+        if (blitzTimeRemaining <= 0) {
+          speedBonusEligible = false;
+          clearInterval(blitzTimerInterval);
+        } else if (blitzTimeRemaining < 5.0) {
+          speedBonusEligible = false;
+        }
+        updateTimerUI();
+      }, 100);
+    }
+
+    function updateTimerUI() {
+      if (!blitzTimerBar || !timerCountdownText) return;
+      const pct = Math.max(0, Math.min(100, (blitzTimeRemaining / 10.0) * 100));
+      blitzTimerBar.style.width = pct + '%';
+      if (blitzTimeRemaining > 5.0) {
+        blitzTimerBar.style.background = 'linear-gradient(90deg, #38ef7d, #00f2fe)';
+        timerCountdownText.textContent = blitzTimeRemaining.toFixed(1) + 's (+50 Speed Pts)';
+        timerCountdownText.style.color = '#38ef7d';
+      } else if (blitzTimeRemaining > 0) {
+        blitzTimerBar.style.background = 'linear-gradient(90deg, #ffd166, #ff7b00)';
+        timerCountdownText.textContent = blitzTimeRemaining.toFixed(1) + 's (Speed Bonus Expired)';
+        timerCountdownText.style.color = '#ffd166';
+      } else {
+        blitzTimerBar.style.background = '#ff4757';
+        timerCountdownText.textContent = '0.0s (Time Standard)';
+        timerCountdownText.style.color = '#ff6b81';
       }
     }
 
@@ -494,6 +643,19 @@ ul.task-list li input[type="checkbox"] {
         soundEnabled = !soundEnabled;
         btnSoundToggle.textContent = soundEnabled ? '🔊 Sound ON' : '🔇 Sound OFF';
         btnSoundToggle.className = soundEnabled ? 'btn btn-sm btn-outline-info' : 'btn btn-sm btn-outline-secondary';
+      });
+    }
+
+    if (btnShroudToggle) {
+      btnShroudToggle.addEventListener('click', function() {
+        isShroudActive = !isShroudActive;
+        btnShroudToggle.textContent = isShroudActive ? '🕵️ Shroud Mode: ON (3X)' : '🕵️ Shroud Mode: OFF (3X)';
+        btnShroudToggle.className = isShroudActive ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-outline-danger';
+        if (shroudOverlay && !isAnswered) {
+          shroudOverlay.style.display = isShroudActive ? 'flex' : 'none';
+        }
+        updateHud();
+        playSfx('doubledown');
       });
     }
 
@@ -582,13 +744,26 @@ ul.task-list li input[type="checkbox"] {
         mysteryRankLine.style.color = '#ffd166';
       }
 
+      // Shroud display for Mystery Challenger B
+      if (shroudOverlay) {
+        shroudOverlay.style.display = isShroudActive ? 'flex' : 'none';
+      }
+
       if (guessActions) guessActions.style.display = 'flex';
       if (resultBanner) resultBanner.style.display = 'none';
+
+      startBlitzTimer();
     }
 
     function handleGuess(guess) {
       if (isAnswered) return;
       isAnswered = true;
+
+      // Stop Blitz timer
+      if (blitzTimerInterval) clearInterval(blitzTimerInterval);
+
+      // Reveal Shrouded cover art
+      if (shroudOverlay) shroudOverlay.style.display = 'none';
 
       // In chart rankings, a higher rank is a smaller number (e.g. #1 is higher than #10)
       const isHigher = albumB.rank < albumA.rank;
@@ -602,9 +777,27 @@ ul.task-list li input[type="checkbox"] {
 
       if (isCorrect) {
         currentStreak++;
-        const mult = getMultiplier();
+        let mult = getMultiplier();
+        if (isShroudActive) mult *= 3;
         let earned = 100 * mult;
         if (doubleDownActive) earned *= 2;
+        
+        let bonusTags = '';
+        if (speedBonusEligible) {
+          earned += 50;
+          speedCount++;
+          try { localStorage.setItem('arcade_speed_count', speedCount); } catch(e){}
+          bonusTags += ' ⚡ <b style="color: #00f2fe;">+50 SPEED BONUS!</b>';
+        }
+        if (isShroudActive) {
+          shroudCount++;
+          try { localStorage.setItem('arcade_shroud_count', shroudCount); } catch(e){}
+          bonusTags += ' 🕵️ <b style="color: #ff4757;">3X SHROUD DIGGER!</b>';
+        }
+        if (doubleDownActive) {
+          bonusTags += ' ⚡ <b style="color: #ffd166;">DOUBLE DOWN HIT!</b>';
+        }
+
         score += earned;
         if (currentStreak > bestStreak) {
           bestStreak = currentStreak;
@@ -622,9 +815,8 @@ ul.task-list li input[type="checkbox"] {
         mysteryBox.style.boxShadow = '0 0 35px rgba(56, 239, 125, 0.5)';
         if (mysteryRankLine) mysteryRankLine.style.color = '#38ef7d';
 
-        const doubleText = doubleDownActive ? ' ⚡ <b style="color: #ffd166;">DOUBLE DOWN HIT!</b>' : '';
         if (resultMessage) {
-          resultMessage.innerHTML = '🎉 <span style="color: #38ef7d;">CORRECT!</span> +' + earned + ' PTS (' + mult + 'X MULTIPLIER)' + doubleText + '<br/><span style="font-size: 0.95rem; color: #cbd5e1;">' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')</span>';
+          resultMessage.innerHTML = '🎉 <span style="color: #38ef7d;">CORRECT!</span> +' + earned + ' PTS (' + mult + 'X MULTIPLIER)' + bonusTags + '<br/><span style="font-size: 0.95rem; color: #cbd5e1;">' + albumB.album + ' is ranked #' + albumB.rank + ' (vs #' + albumA.rank + ')</span>';
         }
         if (btnNextRound) {
           btnNextRound.textContent = '⏭ Keep Rolling (Round ' + (roundCounter + 1) + ')';
@@ -699,7 +891,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-</main> <!-- /main -->
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1100,7 +1292,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 
