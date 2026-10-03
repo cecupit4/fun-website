@@ -122,9 +122,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content column-page" id="quarto-document-content">
 
@@ -147,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Explore the iconic album cover art from the <a href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">Cover Art Archive (Open Culture)</a> and the <a href="https://browse.gallery/en/project_category/album-cover-en/">Browse Gallery</a> Hipgnosis collection, loaded directly inside a grand interactive vinyl turntable.</p>
+<p>Explore legendary album cover art from the <a href="https://www.openculture.com/2018/02/enter-the-cover-art-archive.html">Cover Art Archive (Open Culture)</a> and the <a href="https://browse.gallery/en/project_category/album-cover-en/">Browse Gallery</a> Hipgnosis collection, loaded directly into an interactive vinyl turntable deck.</p>
 <div class="grand-turntable-deck">
   <!-- Top Bezel: Navigation & Deck Branding -->
   <div class="turntable-bezel">
@@ -157,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 
     <!-- Creative Anodized Hardware Channel Switcher -->
     <div class="hardware-switch-nav" style="margin-bottom: 0;">
-      <a href="index.html" class="switch-nav-btn is-active">
+      <a href="./index.html" class="switch-nav-btn is-active">
         <div class="switch-top-line">
           <span class="switch-led"></span>
           <span>CH-1: 🎛️ TURNTABLE</span>
@@ -165,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
         <div class="switch-subtext">33 RPM Platter Deck</div>
       </a>
 
-      <a href="compare.html" class="switch-nav-btn">
+      <a href="./compare.html" class="switch-nav-btn">
         <div class="switch-top-line">
           <span class="switch-led"></span>
           <span>CH-2: 🎚️ COMPARATOR</span>
@@ -173,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
         <div class="switch-subtext">Crossfader &amp; FX Battle</div>
       </a>
 
-      <a href="game.html" class="switch-nav-btn">
+      <a href="./game.html" class="switch-nav-btn">
         <div class="switch-top-line">
           <span class="switch-led"></span>
           <span>CH-3: 🕹️ ARCADE SHOWDOWN</span>
@@ -181,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
         <div class="switch-subtext">Rank Guesser Game</div>
       </a>
 
-      <a href="about.html" class="switch-nav-btn">
+      <a href="./about.html" class="switch-nav-btn">
         <div class="switch-top-line">
           <span class="switch-led"></span>
           <span>CH-4: 📻 INTEL ARCHIVE</span>
@@ -193,120 +191,113 @@ ul.task-list li input[type="checkbox"] {
 
   <!-- Turntable Body: Giant Circular Platter on Left, Realistic Tonearm on Right -->
   <div class="turntable-body-grid">
-    <!-- Big Circular Platter filled with the album cover photos -->
+    <!-- Big Circular Platter -->
     <div class="big-platter-well">
-      <!-- Center Spindle Hub with spinning active album artwork -->
-      <div class="center-spindle-hub" id="spindleHub">
-        <div class="center-spinning-vinyl" id="centerVinyl">
-          <img id="spindleImg" src="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" alt="The Dark Side of the Moon" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.src='https://placehold.co/300x300/181b26/00f2fe?text=Vinyl';">
-        </div>
-        <div class="spindle-pin"></div>
+      <!-- Spinning Vinyl Record Disc containing concentric tracks of album covers -->
+      <div class="turntable-vinyl-disc" id="turntableDisc">
+        <!-- Vinyl concentric groove guide lines -->
+        <div class="vinyl-groove-ring" style="width: 74%; height: 74%;"></div>
+        <div class="vinyl-groove-ring" style="width: 47%; height: 47%;"></div>
+
+        <!-- Album Cover Tiles on Vinyl Grooves -->
+      <div class="disc-cover-track" data-index="0" data-title="Ruins" data-artist="First Aid Kit" data-year="2018" data-source="Open Culture Cover Art Archive" data-img="./images/archive/cover_00.jpg" style="width: 54px; height: 54px; left: 87.00%; top: 50.00%;" title="Ruins — First Aid Kit (2018)">
+        <img src="./images/archive/cover_00.jpg" alt="Ruins" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="1" data-title="Meddle" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_01.jpg" style="width: 54px; height: 54px; left: 84.77%; top: 62.65%;" title="Meddle — Pink Floyd (1970s)">
+        <img src="./images/archive/cover_01.jpg" alt="Meddle" loading="eager">
+      </div>
+      <div class="disc-cover-track is-active-track" data-index="2" data-title="The Dark Side of the Moon" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_02.jpg" style="width: 54px; height: 54px; left: 78.34%; top: 73.78%;" title="The Dark Side of the Moon — Pink Floyd (1970s)">
+        <img src="./images/archive/cover_02.jpg" alt="The Dark Side of the Moon" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="3" data-title="Atom Heart Mother" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_03.jpg" style="width: 54px; height: 54px; left: 68.50%; top: 82.04%;" title="Atom Heart Mother — Pink Floyd (1970s)">
+        <img src="./images/archive/cover_03.jpg" alt="Atom Heart Mother" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="4" data-title="Wish you were here" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_04.jpg" style="width: 54px; height: 54px; left: 56.42%; top: 86.44%;" title="Wish you were here — Pink Floyd (1970s)">
+        <img src="./images/archive/cover_04.jpg" alt="Wish you were here" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="5" data-title="Oh! You Pretty Things" data-artist="Lilac" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_05.jpg" style="width: 54px; height: 54px; left: 43.58%; top: 86.44%;" title="Oh! You Pretty Things — Lilac (1970s)">
+        <img src="./images/archive/cover_05.jpg" alt="Oh! You Pretty Things" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="6" data-title="Pink Floyd" data-artist="The later Years Box Set Image" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_06.jpg" style="width: 54px; height: 54px; left: 31.50%; top: 82.04%;" title="Pink Floyd — The later Years Box Set Image (1970s)">
+        <img src="./images/archive/cover_06.jpg" alt="Pink Floyd" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="7" data-title="ACDC -Dirty Deeds Done Dirt Cheap" data-artist="Hipgnosis / Storm Thorgerson" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_07.jpg" style="width: 54px; height: 54px; left: 21.66%; top: 73.78%;" title="ACDC -Dirty Deeds Done Dirt Cheap — Hipgnosis / Storm Thorgerson (1970s)">
+        <img src="./images/archive/cover_07.jpg" alt="ACDC -Dirty Deeds Done Dirt Cheap" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="8" data-title="10cc Greatest Hits" data-artist="1972-1978" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_08.jpg" style="width: 54px; height: 54px; left: 15.23%; top: 62.65%;" title="10cc Greatest Hits — 1972-1978 (1970s)">
+        <img src="./images/archive/cover_08.jpg" alt="10cc Greatest Hits" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="9" data-title="Riff Raff" data-artist="Vinyl Fu­tures" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_09.jpg" style="width: 54px; height: 54px; left: 13.00%; top: 50.00%;" title="Riff Raff — Vinyl Fu­tures (1970s)">
+        <img src="./images/archive/cover_09.jpg" alt="Riff Raff" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="10" data-title="10cc" data-artist="The Original Sound­track" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_10.jpg" style="width: 54px; height: 54px; left: 15.23%; top: 37.35%;" title="10cc — The Original Sound­track (1970s)">
+        <img src="./images/archive/cover_10.jpg" alt="10cc" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="11" data-title="Be Bop Deluxe" data-artist="Drastic Plastic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_11.jpg" style="width: 54px; height: 54px; left: 21.66%; top: 26.22%;" title="Be Bop Deluxe — Drastic Plastic (1970s)">
+        <img src="./images/archive/cover_11.jpg" alt="Be Bop Deluxe" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="12" data-title="Godley and Creme" data-artist="Freeze Frame" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_12.jpg" style="width: 54px; height: 54px; left: 31.50%; top: 17.96%;" title="Godley and Creme — Freeze Frame (1970s)">
+        <img src="./images/archive/cover_12.jpg" alt="Godley and Creme" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="13" data-title="10cc" data-artist="Sheetmusic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_13.jpg" style="width: 54px; height: 54px; left: 43.58%; top: 13.56%;" title="10cc — Sheetmusic (1970s)">
+        <img src="./images/archive/cover_13.jpg" alt="10cc" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="14" data-title="Montrose" data-artist="Jump on it" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_14.jpg" style="width: 54px; height: 54px; left: 56.42%; top: 13.56%;" title="Montrose — Jump on it (1970s)">
+        <img src="./images/archive/cover_14.jpg" alt="Montrose" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="15" data-title="10cc" data-artist="how dare you" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_15.jpg" style="width: 54px; height: 54px; left: 68.50%; top: 17.96%;" title="10cc — how dare you (1970s)">
+        <img src="./images/archive/cover_15.jpg" alt="10cc" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="16" data-title="10cc" data-artist="Deceptive Bends" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_16.jpg" style="width: 54px; height: 54px; left: 78.34%; top: 26.22%;" title="10cc — Deceptive Bends (1970s)">
+        <img src="./images/archive/cover_16.jpg" alt="10cc" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="17" data-title="Led Zeppelin" data-artist="Knebworth" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_17.jpg" style="width: 54px; height: 54px; left: 84.77%; top: 37.35%;" title="Led Zeppelin — Knebworth (1970s)">
+        <img src="./images/archive/cover_17.jpg" alt="Led Zeppelin" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="18" data-title="Styx" data-artist="Pieces of Eight" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_18.jpg" style="width: 44px; height: 44px; left: 72.70%; top: 56.08%;" title="Styx — Pieces of Eight (1970s)">
+        <img src="./images/archive/cover_18.jpg" alt="Styx" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="19" data-title="Rainbow" data-artist="Difficult to Cure" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_19.jpg" style="width: 44px; height: 44px; left: 66.62%; top: 66.62%;" title="Rainbow — Difficult to Cure (1970s)">
+        <img src="./images/archive/cover_19.jpg" alt="Rainbow" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="20" data-title="Pretty Things" data-artist="Silk Torpedo" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_20.jpg" style="width: 44px; height: 44px; left: 56.08%; top: 72.70%;" title="Pretty Things — Silk Torpedo (1970s)">
+        <img src="./images/archive/cover_20.jpg" alt="Pretty Things" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="21" data-title="Strawbs" data-artist="Deadlines" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_21.jpg" style="width: 44px; height: 44px; left: 43.92%; top: 72.70%;" title="Strawbs — Deadlines (1970s)">
+        <img src="./images/archive/cover_21.jpg" alt="Strawbs" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="22" data-title="Scorpions" data-artist="Lovedrive" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_22.jpg" style="width: 44px; height: 44px; left: 33.38%; top: 66.62%;" title="Scorpions — Lovedrive (1970s)">
+        <img src="./images/archive/cover_22.jpg" alt="Scorpions" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="23" data-title="10cc" data-artist="Bloody Tourists" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_23.jpg" style="width: 44px; height: 44px; left: 27.30%; top: 56.08%;" title="10cc — Bloody Tourists (1970s)">
+        <img src="./images/archive/cover_23.jpg" alt="10cc" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="24" data-title="Wishbone Ash" data-artist="New England" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_24.jpg" style="width: 44px; height: 44px; left: 27.30%; top: 43.92%;" title="Wishbone Ash — New England (1970s)">
+        <img src="./images/archive/cover_24.jpg" alt="Wishbone Ash" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="25" data-title="Led Zeppelin" data-artist="Houses of the Holy" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_25.jpg" style="width: 44px; height: 44px; left: 33.38%; top: 33.38%;" title="Led Zeppelin — Houses of the Holy (1970s)">
+        <img src="./images/archive/cover_25.jpg" alt="Led Zeppelin" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="26" data-title="Peter Gabriel" data-artist="Car" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_26.jpg" style="width: 44px; height: 44px; left: 43.92%; top: 27.30%;" title="Peter Gabriel — Car (1970s)">
+        <img src="./images/archive/cover_26.jpg" alt="Peter Gabriel" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="27" data-title="Genesis" data-artist="The Lamb lies down on Broadway" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_27.jpg" style="width: 44px; height: 44px; left: 56.08%; top: 27.30%;" title="Genesis — The Lamb lies down on Broadway (1970s)">
+        <img src="./images/archive/cover_27.jpg" alt="Genesis" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="28" data-title="Peter Gabriel" data-artist="Melt Polaroids" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_28.jpg" style="width: 44px; height: 44px; left: 66.62%; top: 33.38%;" title="Peter Gabriel — Melt Polaroids (1970s)">
+        <img src="./images/archive/cover_28.jpg" alt="Peter Gabriel" loading="eager">
+      </div>
+      <div class="disc-cover-track" data-index="29" data-title="Peter Gabriel" data-artist="Scratch" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_29.jpg" style="width: 44px; height: 44px; left: 72.70%; top: 43.92%;" title="Peter Gabriel — Scratch (1970s)">
+        <img src="./images/archive/cover_29.jpg" alt="Peter Gabriel" loading="eager">
       </div>
 
-      <!-- Inside the Platter: The Album Cover Photos Mosaic -->
-      <div class="platter-covers-mosaic is-archive" id="platterMosaic">
-          <div class="platter-cover-tile" data-index="0" data-title="Ruins" data-artist="First Aid Kit" data-year="2018" data-source="Open Culture Cover Art Archive" data-img="https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg" title="Ruins — First Aid Kit (2018) | Open Culture Cover Art Archive">
-            <img src="https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg" alt="Ruins" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
+        <!-- Center Spindle Hub with active spinning album label -->
+        <div class="center-spindle-hub" id="spindleHub" title="Click to view album info">
+          <div class="center-spinning-vinyl" id="centerVinyl">
+            <img id="spindleImg" src="./images/archive/cover_02.jpg" alt="The Dark Side of the Moon" loading="eager">
           </div>
-          <div class="platter-cover-tile" data-index="1" data-title="Meddle" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Meddle_Pink-Floyd_copyright-Pink-Floyd-Music-Ltd.-Browse-Gallery.jpg" title="Meddle — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2023/01/Meddle_Pink-Floyd_copyright-Pink-Floyd-Music-Ltd.-Browse-Gallery.jpg" alt="Meddle" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile is-active-track" data-index="2" data-title="The Dark Side of the Moon" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" title="The Dark Side of the Moon — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg" alt="The Dark Side of the Moon" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="3" data-title="Atom Heart Mother" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/PF-Atom-Heart-Mother-copyright_pink-Floyd-Music-LTD.-Browse-Gallery.jpg" title="Atom Heart Mother — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2023/01/PF-Atom-Heart-Mother-copyright_pink-Floyd-Music-LTD.-Browse-Gallery.jpg" alt="Atom Heart Mother" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="4" data-title="Wish you were here" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" title="Wish you were here — Pink Floyd (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg" alt="Wish you were here" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="5" data-title="Oh! You Pretty Things" data-artist="Lilac" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2020/11/DavidBowie_OhYouPrettyThings_Lilac_AlbumCoverArtPrint.jpg" title="Oh! You Pretty Things — Lilac (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2020/11/DavidBowie_OhYouPrettyThings_Lilac_AlbumCoverArtPrint.jpg" alt="Oh! You Pretty Things" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="6" data-title="Pink Floyd" data-artist="The later Years Box Set Image" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2019/12/Pink-Floyd-later-years-cover-art-2.jpg" title="Pink Floyd — The later Years Box Set Image (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2019/12/Pink-Floyd-later-years-cover-art-2.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="7" data-title="ACDC -Dirty Deeds Done Dirt Cheap" data-artist="Hipgnosis / Storm Thorgerson" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2019/12/ACDC_Hipgnosis.jpg" title="ACDC -Dirty Deeds Done Dirt Cheap — Hipgnosis / Storm Thorgerson (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2019/12/ACDC_Hipgnosis.jpg" alt="ACDC -Dirty Deeds Done Dirt Cheap" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="8" data-title="10cc Greatest Hits" data-artist="1972-1978" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/09/10cc_greatesthits_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc Greatest Hits — 1972-1978 (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/09/10cc_greatesthits_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc Greatest Hits" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="9" data-title="Riff Raff" data-artist="Vinyl Fu­tures" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/09/VinylFutures_RiffRaff_AlbumCoverArtPrint_StormThorgerson_fu_plusl-min.jpg" title="Riff Raff — Vinyl Fu­tures (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/09/VinylFutures_RiffRaff_AlbumCoverArtPrint_StormThorgerson_fu_plusl-min.jpg" alt="Riff Raff" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="10" data-title="10cc" data-artist="The Original Sound­track" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/08/10cc_originalsoundtrack_albumcoverartprint_hipgnosis_full-wi.jpg" title="10cc — The Original Sound­track (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/08/10cc_originalsoundtrack_albumcoverartprint_hipgnosis_full-wi.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="11" data-title="Be Bop Deluxe" data-artist="Drastic Plastic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/hipgnosis_bebopdeluxe_drasticplastic_kopiebanner.jpg" title="Be Bop Deluxe — Drastic Plastic (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/hipgnosis_bebopdeluxe_drasticplastic_kopiebanner.jpg" alt="Be Bop Deluxe" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="12" data-title="Godley and Creme" data-artist="Freeze Frame" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/GodleyAndCreme_FreezeFrame_AlbumCoverArtPrint_Hipgnosis_kopiefull.jpg" title="Godley and Creme — Freeze Frame (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/GodleyAndCreme_FreezeFrame_AlbumCoverArtPrint_Hipgnosis_kopiefull.jpg" alt="Godley and Creme" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="13" data-title="10cc" data-artist="Sheetmusic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_sheetmusic_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc — Sheetmusic (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_sheetmusic_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="14" data-title="Montrose" data-artist="Jump on it" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/Montrose_JumpOnIt_AlbumCoverArt_Hipgnosis_full-width.jpg" title="Montrose — Jump on it (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/Montrose_JumpOnIt_AlbumCoverArt_Hipgnosis_full-width.jpg" alt="Montrose" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="15" data-title="10cc" data-artist="how dare you" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_howdareyou_albumcoverartprint_hipgnosis_full-width.jpg" title="10cc — how dare you (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_howdareyou_albumcoverartprint_hipgnosis_full-width.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="16" data-title="10cc" data-artist="Deceptive Bends" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/10cc_deceptivebends_albumcoverartprint_hipgnosis_signing_aub.jpg" title="10cc — Deceptive Bends (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/10cc_deceptivebends_albumcoverartprint_hipgnosis_signing_aub.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="17" data-title="Led Zeppelin" data-artist="Knebworth" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/Led-Zepplin.jpg" title="Led Zeppelin — Knebworth (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/Led-Zepplin.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="18" data-title="Styx" data-artist="Pieces of Eight" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/styx_piecesofeight_albumcoverart_hipgnosis_full-width.jpg" title="Styx — Pieces of Eight (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/styx_piecesofeight_albumcoverart_hipgnosis_full-width.jpg" alt="Styx" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="19" data-title="Rainbow" data-artist="Difficult to Cure" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/rainbow_difficulttocure_albumcoverartprint_hipgnosis_bannerweb.jpg" title="Rainbow — Difficult to Cure (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/rainbow_difficulttocure_albumcoverartprint_hipgnosis_bannerweb.jpg" alt="Rainbow" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="20" data-title="Pretty Things" data-artist="Silk Torpedo" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/PrettyThings_SilkTorpedo_AlbumCoverArt_Hipgnosis.jpg" title="Pretty Things — Silk Torpedo (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/PrettyThings_SilkTorpedo_AlbumCoverArt_Hipgnosis.jpg" alt="Pretty Things" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="21" data-title="Strawbs" data-artist="Deadlines" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/07/strawbs_deadline_albumcoverart_hipgnosis.jpg" title="Strawbs — Deadlines (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/07/strawbs_deadline_albumcoverart_hipgnosis.jpg" alt="Strawbs" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="22" data-title="Scorpions" data-artist="Lovedrive" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2018/06/scorpions_love_drive.jpg" title="Scorpions — Lovedrive (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2018/06/scorpions_love_drive.jpg" alt="Scorpions" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="23" data-title="10cc" data-artist="Bloody Tourists" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/10cc_bloodytourists_albumcoverartprint_signing_header_1-1024x576.jpg" title="10cc — Bloody Tourists (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/11/10cc_bloodytourists_albumcoverartprint_signing_header_1-1024x576.jpg" alt="10cc" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="24" data-title="Wishbone Ash" data-artist="New England" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/WishboneAsh_NewEngland_AlbumCoverArt_Hipgnosis_full-width.jpg" title="Wishbone Ash — New England (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/07/WishboneAsh_NewEngland_AlbumCoverArt_Hipgnosis_full-width.jpg" alt="Wishbone Ash" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="25" data-title="Led Zeppelin" data-artist="Houses of the Holy" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/ledzeppelin_housesoftheholy_albumcoverartprint_hipgnosis_signing_aubreypowell_full-1-1024x576.jpg" title="Led Zeppelin — Houses of the Holy (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/11/ledzeppelin_housesoftheholy_albumcoverartprint_hipgnosis_signing_aubreypowell_full-1-1024x576.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="26" data-title="Peter Gabriel" data-artist="Car" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/petergabriel_car_lrg_albumcoverartprint_hipgnosis_signing_stormthorgerson_full-width-1-1024x576.jpg" title="Peter Gabriel — Car (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/11/petergabriel_car_lrg_albumcoverartprint_hipgnosis_signing_stormthorgerson_full-width-1-1024x576.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="27" data-title="Genesis" data-artist="The Lamb lies down on Broadway" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/Genesis_LambLiesDownOnBroadway_AlbumCoverArtPrint_PeterGabriel_Hipgnosis_full-width.jpg" title="Genesis — The Lamb lies down on Broadway (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/07/Genesis_LambLiesDownOnBroadway_AlbumCoverArtPrint_PeterGabriel_Hipgnosis_full-width.jpg" alt="Genesis" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="28" data-title="Peter Gabriel" data-artist="Melt Polaroids" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/petergabriel_meltpolaroids_emily2_1.jpg" title="Peter Gabriel — Melt Polaroids (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/07/petergabriel_meltpolaroids_emily2_1.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="29" data-title="Peter Gabriel" data-artist="Scratch" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Scratch_AlbumCoverArtPrint_Hipgnosis_Lrg_full-width_1.jpg" title="Peter Gabriel — Scratch (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Scratch_AlbumCoverArtPrint_Hipgnosis_Lrg_full-width_1.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="30" data-title="Peter Gabriel" data-artist="Melt" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Melt_AlbumCoverArtPrint_PeterGabriel_Sml_full-width_2.jpg" title="Peter Gabriel — Melt (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Melt_AlbumCoverArtPrint_PeterGabriel_Sml_full-width_2.jpg" alt="Peter Gabriel" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="31" data-title="Pink Floyd" data-artist="Animals" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/10/PinkFloyd_Animals_AlbumCoverArt_Hipgnosis-1-1024x658-1024x658-1024x658-min-1.jpg" title="Pink Floyd — Animals (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/10/PinkFloyd_Animals_AlbumCoverArt_Hipgnosis-1-1024x658-1024x658-1024x658-min-1.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="32" data-title="Pink Floyd" data-artist="Ummagumma" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/PinkFloyd_Ummagumma_AlbumCoverArtPrint_Hipgnosis_full-width-Kopie-1-1024x576.jpg" title="Pink Floyd — Ummagumma (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/11/PinkFloyd_Ummagumma_AlbumCoverArtPrint_Hipgnosis_full-width-Kopie-1-1024x576.jpg" alt="Pink Floyd" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
-          <div class="platter-cover-tile" data-index="33" data-title="Led Zeppelin" data-artist="Presence" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="https://browse.gallery/wp-content/uploads/2017/11/LedZeppelin_Presence_AlbumCoverArt_Hipgnosis_full-width-1-1-1024x576.jpg" title="Led Zeppelin — Presence (1970s) | Browse Gallery Album Cover Archive">
-            <img src="https://browse.gallery/wp-content/uploads/2017/11/LedZeppelin_Presence_AlbumCoverArt_Hipgnosis_full-width-1-1-1024x576.jpg" alt="Led Zeppelin" referrerpolicy="no-referrer" crossorigin="anonymous" loading="eager" onerror="this.src='https://placehold.co/150x150/141722/00f2fe?text=Album';">
-          </div>
+          <div class="spindle-pin"></div>
+        </div>
       </div>
     </div>
 
@@ -364,11 +355,64 @@ ul.task-list li input[type="checkbox"] {
         SOURCE: Browse Gallery Album Cover Archive
       </span>
       <span class="lcd-chip" style="font-size: 0.82rem;">
-        FORMAT: 12" Vinyl Gatefold
+        FORMAT: 12" Vinyl Gatefold Art Print
       </span>
-      <span class="lcd-chip" style="color: #38ef7d; border-color: rgba(56, 239, 125, 0.4); font-size: 0.82rem;">
-        LOADED: 34 ARCHIVE PRINTS IN PLATTER
+      <span class="lcd-chip" id="lcdLoadedChip" style="color: #38ef7d; border-color: rgba(56, 239, 125, 0.4); font-size: 0.82rem;">
+        LOADED: 1,035 TOTAL ALBUMS
       </span>
+    </div>
+
+    <!-- Vinyl Crate Master Album Selector -->
+    <div class="deck-crate-selector" style="margin-top: 1rem; padding: 0.85rem; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+        <label for="turntableAlbumSelect" style="font-size: 0.72rem; letter-spacing: 1.5px; color: #00f2fe; font-family: monospace; font-weight: 700; text-transform: uppercase; margin: 0;">
+          🎛️ VINYL CRATE // SELECT ANY ALBUM (<span id="albumCountLabel">1,035 Albums</span>)
+        </label>
+        <span style="font-size: 0.72rem; color: #ffd166; font-family: monospace;">
+          ✨ All 1,000 Albums + 35 Curated Archive Prints
+        </span>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+        <!-- Genre Filter -->
+        <select id="turntableGenreSelect" class="form-select form-select-sm" style="flex: 1 1 150px; max-width: 190px; background: #111520; color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.3); font-family: monospace; font-size: 0.8rem; border-radius: 6px;">
+          <option value="all">💿 All Genres</option>
+          <option value="curated">🏛️ Curated Archive Prints (35)</option>
+          <option value="rock">🎸 Rock</option>
+          <option value="pop">🎤 Pop</option>
+          <option value="metal">⚡ Metal</option>
+          <option value="soul">🎷 Soul / R&amp;B</option>
+          <option value="hip-hop">🎧 Hip-Hop</option>
+          <option value="jazz">🎺 Jazz</option>
+          <option value="funk">🕺 Funk</option>
+          <option value="punk">🧷 Punk</option>
+          <option value="folk">🪕 Folk</option>
+          <option value="country">🤠 Country</option>
+          <option value="blues">🎸 Blues</option>
+          <option value="electronica">🎹 Electronica</option>
+          <option value="reggae">🌴 Reggae</option>
+        </select>
+
+        <!-- Master Album Dropdown with all albums -->
+        <select id="turntableAlbumSelect" class="form-select form-select-sm" style="flex: 2 1 280px; background: #111520; color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); font-family: monospace; font-size: 0.82rem; border-radius: 6px;">
+          <!-- Populated dynamically via JS -->
+        </select>
+
+        <!-- Track Prev / Next Quick Buttons -->
+        <div class="btn-group btn-group-sm" role="group">
+          <button id="btnPrevTrack" class="btn btn-outline-secondary" type="button" title="Previous Album" style="padding: 0.25rem 0.65rem; font-family: monospace; font-size: 0.8rem;">
+            ⏮ Prev
+          </button>
+          <button id="btnNextTrack" class="btn btn-outline-secondary" type="button" title="Next Album" style="padding: 0.25rem 0.65rem; font-family: monospace; font-size: 0.8rem;">
+            Next ⏭
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div style="margin-top: 0.5rem;">
+        <input id="turntableSearchInput" type="text" placeholder="🔍 Or type to search any artist or album name (e.g. Beatles, Zeppelin, Fleetwood Mac, Prince)..." class="form-control form-control-sm" style="background: #0c0e17; color: #cbd5e1; border: 1px solid rgba(255, 209, 102, 0.3); font-size: 0.8rem; font-family: monospace; border-radius: 6px; padding: 0.35rem 0.75rem;">
+      </div>
     </div>
 
     <!-- Turntable Action Controls -->
@@ -396,86 +440,642 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 
+<!-- Complete Archive Gallery Showcase Shelf below the Turntable -->
+<div class="archive-showcase-section">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+    <div>
+      <div style="font-size: 0.75rem; letter-spacing: 2px; color: #00f2fe; font-family: monospace; font-weight: 700; text-transform: uppercase;">
+        EXHIBITION GALLERY // FULL COLLECTION
+      </div>
+      <h2 style="color: #fff; font-size: 1.4rem; margin: 0.25rem 0 0 0; font-weight: 800;" class="anchored">
+        Iconic Archive Art Prints (Click to Play on Turntable)
+      </h2>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="archive-filter-bar" style="margin-bottom: 0;">
+      <button class="archive-filter-btn is-active" data-filter="all">All Prints (35)</button>
+      <button class="archive-filter-btn" data-filter="hipgnosis">Browse Gallery Hipgnosis (33)</button>
+      <button class="archive-filter-btn" data-filter="openculture">Open Culture (2)</button>
+    </div>
+  </div>
+
+  <div class="archive-grid" id="archiveGrid">
+    <div class="archive-card" data-index="0" data-category="openculture" data-title="Ruins" data-artist="First Aid Kit" data-year="2018" data-source="Open Culture Cover Art Archive" data-img="./images/archive/cover_00.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_00.jpg" alt="Ruins" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Ruins</div>
+        <div class="archive-card-artist">First Aid Kit (2018)</div>
+        <div class="archive-card-source">Open Culture</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="1" data-category="hipgnosis" data-title="Meddle" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_01.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_01.jpg" alt="Meddle" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Meddle</div>
+        <div class="archive-card-artist">Pink Floyd (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card is-active" data-index="2" data-category="hipgnosis" data-title="The Dark Side of the Moon" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_02.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_02.jpg" alt="The Dark Side of the Moon" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">The Dark Side of the Moon</div>
+        <div class="archive-card-artist">Pink Floyd (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="3" data-category="hipgnosis" data-title="Atom Heart Mother" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_03.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_03.jpg" alt="Atom Heart Mother" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Atom Heart Mother</div>
+        <div class="archive-card-artist">Pink Floyd (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="4" data-category="hipgnosis" data-title="Wish you were here" data-artist="Pink Floyd" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_04.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_04.jpg" alt="Wish you were here" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Wish you were here</div>
+        <div class="archive-card-artist">Pink Floyd (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="5" data-category="hipgnosis" data-title="Oh! You Pretty Things" data-artist="Lilac" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_05.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_05.jpg" alt="Oh! You Pretty Things" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Oh! You Pretty Things</div>
+        <div class="archive-card-artist">Lilac (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="6" data-category="hipgnosis" data-title="Pink Floyd" data-artist="The later Years Box Set Image" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_06.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_06.jpg" alt="Pink Floyd" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Pink Floyd</div>
+        <div class="archive-card-artist">The later Years Box Set Image (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="7" data-category="hipgnosis" data-title="ACDC -Dirty Deeds Done Dirt Cheap" data-artist="Hipgnosis / Storm Thorgerson" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_07.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_07.jpg" alt="ACDC -Dirty Deeds Done Dirt Cheap" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">ACDC -Dirty Deeds Done Dirt Cheap</div>
+        <div class="archive-card-artist">Hipgnosis / Storm Thorgerson (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="8" data-category="hipgnosis" data-title="10cc Greatest Hits" data-artist="1972-1978" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_08.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_08.jpg" alt="10cc Greatest Hits" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc Greatest Hits</div>
+        <div class="archive-card-artist">1972-1978 (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="9" data-category="hipgnosis" data-title="Riff Raff" data-artist="Vinyl Fu­tures" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_09.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_09.jpg" alt="Riff Raff" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Riff Raff</div>
+        <div class="archive-card-artist">Vinyl Fu­tures (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="10" data-category="hipgnosis" data-title="10cc" data-artist="The Original Sound­track" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_10.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_10.jpg" alt="10cc" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc</div>
+        <div class="archive-card-artist">The Original Sound­track (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="11" data-category="hipgnosis" data-title="Be Bop Deluxe" data-artist="Drastic Plastic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_11.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_11.jpg" alt="Be Bop Deluxe" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Be Bop Deluxe</div>
+        <div class="archive-card-artist">Drastic Plastic (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="12" data-category="hipgnosis" data-title="Godley and Creme" data-artist="Freeze Frame" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_12.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_12.jpg" alt="Godley and Creme" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Godley and Creme</div>
+        <div class="archive-card-artist">Freeze Frame (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="13" data-category="hipgnosis" data-title="10cc" data-artist="Sheetmusic" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_13.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_13.jpg" alt="10cc" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc</div>
+        <div class="archive-card-artist">Sheetmusic (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="14" data-category="hipgnosis" data-title="Montrose" data-artist="Jump on it" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_14.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_14.jpg" alt="Montrose" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Montrose</div>
+        <div class="archive-card-artist">Jump on it (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="15" data-category="hipgnosis" data-title="10cc" data-artist="how dare you" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_15.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_15.jpg" alt="10cc" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc</div>
+        <div class="archive-card-artist">how dare you (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="16" data-category="hipgnosis" data-title="10cc" data-artist="Deceptive Bends" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_16.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_16.jpg" alt="10cc" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc</div>
+        <div class="archive-card-artist">Deceptive Bends (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="17" data-category="hipgnosis" data-title="Led Zeppelin" data-artist="Knebworth" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_17.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_17.jpg" alt="Led Zeppelin" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Led Zeppelin</div>
+        <div class="archive-card-artist">Knebworth (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="18" data-category="hipgnosis" data-title="Styx" data-artist="Pieces of Eight" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_18.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_18.jpg" alt="Styx" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Styx</div>
+        <div class="archive-card-artist">Pieces of Eight (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="19" data-category="hipgnosis" data-title="Rainbow" data-artist="Difficult to Cure" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_19.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_19.jpg" alt="Rainbow" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Rainbow</div>
+        <div class="archive-card-artist">Difficult to Cure (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="20" data-category="hipgnosis" data-title="Pretty Things" data-artist="Silk Torpedo" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_20.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_20.jpg" alt="Pretty Things" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Pretty Things</div>
+        <div class="archive-card-artist">Silk Torpedo (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="21" data-category="hipgnosis" data-title="Strawbs" data-artist="Deadlines" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_21.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_21.jpg" alt="Strawbs" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Strawbs</div>
+        <div class="archive-card-artist">Deadlines (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="22" data-category="hipgnosis" data-title="Scorpions" data-artist="Lovedrive" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_22.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_22.jpg" alt="Scorpions" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Scorpions</div>
+        <div class="archive-card-artist">Lovedrive (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="23" data-category="hipgnosis" data-title="10cc" data-artist="Bloody Tourists" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_23.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_23.jpg" alt="10cc" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">10cc</div>
+        <div class="archive-card-artist">Bloody Tourists (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="24" data-category="hipgnosis" data-title="Wishbone Ash" data-artist="New England" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_24.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_24.jpg" alt="Wishbone Ash" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Wishbone Ash</div>
+        <div class="archive-card-artist">New England (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="25" data-category="hipgnosis" data-title="Led Zeppelin" data-artist="Houses of the Holy" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_25.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_25.jpg" alt="Led Zeppelin" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Led Zeppelin</div>
+        <div class="archive-card-artist">Houses of the Holy (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="26" data-category="hipgnosis" data-title="Peter Gabriel" data-artist="Car" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_26.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_26.jpg" alt="Peter Gabriel" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Peter Gabriel</div>
+        <div class="archive-card-artist">Car (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="27" data-category="hipgnosis" data-title="Genesis" data-artist="The Lamb lies down on Broadway" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_27.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_27.jpg" alt="Genesis" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Genesis</div>
+        <div class="archive-card-artist">The Lamb lies down on Broadway (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="28" data-category="hipgnosis" data-title="Peter Gabriel" data-artist="Melt Polaroids" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_28.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_28.jpg" alt="Peter Gabriel" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Peter Gabriel</div>
+        <div class="archive-card-artist">Melt Polaroids (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="29" data-category="hipgnosis" data-title="Peter Gabriel" data-artist="Scratch" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_29.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_29.jpg" alt="Peter Gabriel" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Peter Gabriel</div>
+        <div class="archive-card-artist">Scratch (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="30" data-category="hipgnosis" data-title="Peter Gabriel" data-artist="Melt" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_30.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_30.jpg" alt="Peter Gabriel" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Peter Gabriel</div>
+        <div class="archive-card-artist">Melt (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="31" data-category="hipgnosis" data-title="Pink Floyd" data-artist="Animals" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_31.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_31.jpg" alt="Pink Floyd" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Pink Floyd</div>
+        <div class="archive-card-artist">Animals (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="32" data-category="hipgnosis" data-title="Pink Floyd" data-artist="Ummagumma" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_32.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_32.jpg" alt="Pink Floyd" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Pink Floyd</div>
+        <div class="archive-card-artist">Ummagumma (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="33" data-category="hipgnosis" data-title="Led Zeppelin" data-artist="Presence" data-year="1970s" data-source="Browse Gallery Album Cover Archive" data-img="./images/archive/cover_33.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_33.jpg" alt="Led Zeppelin" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Led Zeppelin</div>
+        <div class="archive-card-artist">Presence (1970s)</div>
+        <div class="archive-card-source">Browse Gallery</div>
+      </div>
+    </div>
+    <div class="archive-card" data-index="34" data-category="openculture" data-title="Pop vs Metal: Taylor Swift &amp; Ozzy Osbourne" data-artist="Cover Art Archive" data-year="2018" data-source="Open Culture Cover Art Archive" data-img="./images/archive/cover_34.jpg">
+      <div class="archive-card-img-wrap">
+        <img src="./images/archive/cover_34.jpg" alt="Pop vs Metal: Taylor Swift &amp; Ozzy Osbourne" loading="lazy">
+      </div>
+      <div class="archive-card-body">
+        <div class="archive-card-title">Pop vs Metal: Taylor Swift &amp; Ozzy Osbourne</div>
+        <div class="archive-card-artist">Cover Art Archive (2018)</div>
+        <div class="archive-card-source">Open Culture</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="all_albums.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  let isSpinning = true;
-  const tiles = Array.from(document.querySelectorAll('.platter-cover-tile'));
-  const spindleImg = document.getElementById('spindleImg');
-  const centerVinyl = document.getElementById('centerVinyl');
-  const tonearmRod = document.getElementById('tonearmRod');
-  const lcdTitle = document.getElementById('lcdTitle');
-  const lcdArtist = document.getElementById('lcdArtist');
-  const lcdYear = document.getElementById('lcdYear');
-  const lcdSource = document.getElementById('lcdSource');
-  const btnSpotifyLink = document.getElementById('btnSpotifyLink');
-  const btnToggleSpin = document.getElementById('btnToggleSpin');
-  const btnRandomDrop = document.getElementById('btnRandomDrop');
-  const eqWrap = document.getElementById('eqWrap');
+(function() {
+  function initTurntable() {
+    const archiveData = [{"title": "Ruins", "artist": "First Aid Kit", "year": "2018", "source": "Open Culture Cover Art Archive", "image_url": "https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg", "local_image": "images/archive/cover_00.jpg"}, {"title": "Meddle", "artist": "Pink Floyd", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/Meddle_Pink-Floyd_copyright-Pink-Floyd-Music-Ltd.-Browse-Gallery.jpg", "local_image": "images/archive/cover_01.jpg"}, {"title": "The Dark Side of the Moon", "artist": "Pink Floyd", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery.jpg", "local_image": "images/archive/cover_02.jpg"}, {"title": "Atom Heart Mother", "artist": "Pink Floyd", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/PF-Atom-Heart-Mother-copyright_pink-Floyd-Music-LTD.-Browse-Gallery.jpg", "local_image": "images/archive/cover_03.jpg"}, {"title": "Wish you were here", "artist": "Pink Floyd", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2023/01/Wish-you-were-here-Pink-Floyd_copyright-Pink-Floyd-Music-LTD.-Browse-Gallery-1.jpg", "local_image": "images/archive/cover_04.jpg"}, {"title": "Oh! You Pretty Things", "artist": "Lilac", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2020/11/DavidBowie_OhYouPrettyThings_Lilac_AlbumCoverArtPrint.jpg", "local_image": "images/archive/cover_05.jpg"}, {"title": "Pink Floyd", "artist": "The later Years Box Set Image", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2019/12/Pink-Floyd-later-years-cover-art-2.jpg", "local_image": "images/archive/cover_06.jpg"}, {"title": "ACDC -Dirty Deeds Done Dirt Cheap", "artist": "Hipgnosis / Storm Thorgerson", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2019/12/ACDC_Hipgnosis.jpg", "local_image": "images/archive/cover_07.jpg"}, {"title": "10cc Greatest Hits", "artist": "1972-1978", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/09/10cc_greatesthits_albumcoverartprint_hipgnosis_full-width.jpg", "local_image": "images/archive/cover_08.jpg"}, {"title": "Riff Raff", "artist": "Vinyl Fu\u00adtures", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/09/VinylFutures_RiffRaff_AlbumCoverArtPrint_StormThorgerson_fu_plusl-min.jpg", "local_image": "images/archive/cover_09.jpg"}, {"title": "10cc", "artist": "The Original Sound\u00adtrack", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/08/10cc_originalsoundtrack_albumcoverartprint_hipgnosis_full-wi.jpg", "local_image": "images/archive/cover_10.jpg"}, {"title": "Be Bop Deluxe", "artist": "Drastic Plastic", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/hipgnosis_bebopdeluxe_drasticplastic_kopiebanner.jpg", "local_image": "images/archive/cover_11.jpg"}, {"title": "Godley and Creme", "artist": "Freeze Frame", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/GodleyAndCreme_FreezeFrame_AlbumCoverArtPrint_Hipgnosis_kopiefull.jpg", "local_image": "images/archive/cover_12.jpg"}, {"title": "10cc", "artist": "Sheetmusic", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/10cc_sheetmusic_albumcoverartprint_hipgnosis_full-width.jpg", "local_image": "images/archive/cover_13.jpg"}, {"title": "Montrose", "artist": "Jump on it", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/Montrose_JumpOnIt_AlbumCoverArt_Hipgnosis_full-width.jpg", "local_image": "images/archive/cover_14.jpg"}, {"title": "10cc", "artist": "how dare you", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/10cc_howdareyou_albumcoverartprint_hipgnosis_full-width.jpg", "local_image": "images/archive/cover_15.jpg"}, {"title": "10cc", "artist": "Deceptive Bends", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/10cc_deceptivebends_albumcoverartprint_hipgnosis_signing_aub.jpg", "local_image": "images/archive/cover_16.jpg"}, {"title": "Led Zeppelin", "artist": "Knebworth", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/Led-Zepplin.jpg", "local_image": "images/archive/cover_17.jpg"}, {"title": "Styx", "artist": "Pieces of Eight", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/styx_piecesofeight_albumcoverart_hipgnosis_full-width.jpg", "local_image": "images/archive/cover_18.jpg"}, {"title": "Rainbow", "artist": "Difficult to Cure", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/rainbow_difficulttocure_albumcoverartprint_hipgnosis_bannerweb.jpg", "local_image": "images/archive/cover_19.jpg"}, {"title": "Pretty Things", "artist": "Silk Torpedo", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/PrettyThings_SilkTorpedo_AlbumCoverArt_Hipgnosis.jpg", "local_image": "images/archive/cover_20.jpg"}, {"title": "Strawbs", "artist": "Deadlines", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/07/strawbs_deadline_albumcoverart_hipgnosis.jpg", "local_image": "images/archive/cover_21.jpg"}, {"title": "Scorpions", "artist": "Lovedrive", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2018/06/scorpions_love_drive.jpg", "local_image": "images/archive/cover_22.jpg"}, {"title": "10cc", "artist": "Bloody Tourists", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/11/10cc_bloodytourists_albumcoverartprint_signing_header_1-1024x576.jpg", "local_image": "images/archive/cover_23.jpg"}, {"title": "Wishbone Ash", "artist": "New England", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/07/WishboneAsh_NewEngland_AlbumCoverArt_Hipgnosis_full-width.jpg", "local_image": "images/archive/cover_24.jpg"}, {"title": "Led Zeppelin", "artist": "Houses of the Holy", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/11/ledzeppelin_housesoftheholy_albumcoverartprint_hipgnosis_signing_aubreypowell_full-1-1024x576.jpg", "local_image": "images/archive/cover_25.jpg"}, {"title": "Peter Gabriel", "artist": "Car", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/11/petergabriel_car_lrg_albumcoverartprint_hipgnosis_signing_stormthorgerson_full-width-1-1024x576.jpg", "local_image": "images/archive/cover_26.jpg"}, {"title": "Genesis", "artist": "The Lamb lies down on Broadway", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/07/Genesis_LambLiesDownOnBroadway_AlbumCoverArtPrint_PeterGabriel_Hipgnosis_full-width.jpg", "local_image": "images/archive/cover_27.jpg"}, {"title": "Peter Gabriel", "artist": "Melt Polaroids", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/07/petergabriel_meltpolaroids_emily2_1.jpg", "local_image": "images/archive/cover_28.jpg"}, {"title": "Peter Gabriel", "artist": "Scratch", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Scratch_AlbumCoverArtPrint_Hipgnosis_Lrg_full-width_1.jpg", "local_image": "images/archive/cover_29.jpg"}, {"title": "Peter Gabriel", "artist": "Melt", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/07/PeterGabriel_Melt_AlbumCoverArtPrint_PeterGabriel_Sml_full-width_2.jpg", "local_image": "images/archive/cover_30.jpg"}, {"title": "Pink Floyd", "artist": "Animals", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/10/PinkFloyd_Animals_AlbumCoverArt_Hipgnosis-1-1024x658-1024x658-1024x658-min-1.jpg", "local_image": "images/archive/cover_31.jpg"}, {"title": "Pink Floyd", "artist": "Ummagumma", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/11/PinkFloyd_Ummagumma_AlbumCoverArtPrint_Hipgnosis_full-width-Kopie-1-1024x576.jpg", "local_image": "images/archive/cover_32.jpg"}, {"title": "Led Zeppelin", "artist": "Presence", "year": "1970s", "source": "Browse Gallery Album Cover Archive", "image_url": "https://browse.gallery/wp-content/uploads/2017/11/LedZeppelin_Presence_AlbumCoverArt_Hipgnosis_full-width-1-1-1024x576.jpg", "local_image": "images/archive/cover_33.jpg"}, {"title": "Pop vs Metal: Taylor Swift & Ozzy Osbourne", "artist": "Cover Art Archive", "year": "2018", "source": "Open Culture Cover Art Archive", "image_url": "https://cdn8.openculture.com/2018/02/26231617/swift-ozzy.jpg", "local_image": "images/archive/cover_34.jpg"}];
+    const allAlbums = (window.ALL_TURNTABLE_ALBUMS && window.ALL_TURNTABLE_ALBUMS.length > 0)
+      ? window.ALL_TURNTABLE_ALBUMS
+      : archiveData.map((d, i) => ({
+          id: 'arch_' + i,
+          title: d.title,
+          artist: d.artist,
+          year: d.year,
+          genre: 'curated',
+          rating: 4.5,
+          source: d.source,
+          image_url: './' + d.local_image,
+          is_curated: true
+        }));
 
-  function selectTile(tile) {
-    if (!tile) return;
-    tiles.forEach(t => t.classList.remove('is-active-track'));
-    tile.classList.add('is-active-track');
+    let isSpinning = true;
+    let currentAlbumId = 'arch_2'; // Start on The Dark Side of the Moon
+    let filteredAlbums = allAlbums.slice();
 
-    const title = tile.getAttribute('data-title');
-    const artist = tile.getAttribute('data-artist');
-    const year = tile.getAttribute('data-year');
-    const source = tile.getAttribute('data-source');
-    const img = tile.getAttribute('data-img');
+    const disc = document.getElementById('turntableDisc');
+    const spindleImg = document.getElementById('spindleImg');
+    const tonearmRod = document.getElementById('tonearmRod');
+    const lcdTitle = document.getElementById('lcdTitle');
+    const lcdArtist = document.getElementById('lcdArtist');
+    const lcdYear = document.getElementById('lcdYear');
+    const lcdSource = document.getElementById('lcdSource');
+    const btnSpotifyLink = document.getElementById('btnSpotifyLink');
+    const btnToggleSpin = document.getElementById('btnToggleSpin');
+    const btnRandomDrop = document.getElementById('btnRandomDrop');
+    const eqWrap = document.getElementById('eqWrap');
 
-    if (spindleImg) spindleImg.src = img;
-    if (lcdTitle) lcdTitle.textContent = title;
-    if (lcdArtist) lcdArtist.textContent = artist;
-    if (lcdYear) lcdYear.textContent = '(' + year + ')';
-    if (lcdSource) lcdSource.textContent = 'SOURCE: ' + source;
-    if (btnSpotifyLink) {
-      btnSpotifyLink.href = 'https://open.spotify.com/search/' + encodeURIComponent(artist + ' ' + title);
-    }
-  }
+    const genreSelect = document.getElementById('turntableGenreSelect');
+    const albumSelect = document.getElementById('turntableAlbumSelect');
+    const searchInput = document.getElementById('turntableSearchInput');
+    const albumCountLabel = document.getElementById('albumCountLabel');
+    const btnPrevTrack = document.getElementById('btnPrevTrack');
+    const btnNextTrack = document.getElementById('btnNextTrack');
 
-  tiles.forEach(tile => {
-    tile.addEventListener('click', () => selectTile(tile));
-    tile.addEventListener('mouseover', () => selectTile(tile));
-  });
+    const discTiles = Array.from(document.querySelectorAll('.disc-cover-track'));
+    const rackCards = Array.from(document.querySelectorAll('.archive-card'));
+    const filterBtns = Array.from(document.querySelectorAll('.archive-filter-btn'));
 
-  if (btnToggleSpin) {
-    btnToggleSpin.addEventListener('click', () => {
-      isSpinning = !isSpinning;
-      if (isSpinning) {
-        if (centerVinyl) centerVinyl.style.animationPlayState = 'running';
-        if (tonearmRod) {
-          tonearmRod.style.animation = 'armBob 3s ease-in-out infinite alternate';
-          tonearmRod.style.transform = 'rotate(-10deg)';
-        }
-        btnToggleSpin.textContent = '⏹ PAUSE PLATTER';
-        btnToggleSpin.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
-        if (eqWrap) {
-          Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'running');
-        }
-      } else {
-        if (centerVinyl) centerVinyl.style.animationPlayState = 'paused';
-        if (tonearmRod) {
-          tonearmRod.style.animation = 'none';
-          tonearmRod.style.transform = 'rotate(-18deg)';
-        }
-        btnToggleSpin.textContent = '▶ SPIN PLATTER';
-        btnToggleSpin.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
-        if (eqWrap) {
-          Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'paused');
-        }
+    function populateDropdown(list) {
+      if (!albumSelect) return;
+      albumSelect.innerHTML = '';
+      list.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        const prefix = item.is_curated ? '🏛️ ' : `#${item.rank} `;
+        opt.textContent = `${prefix}${item.title} — ${item.artist} (${item.year})`;
+        albumSelect.appendChild(opt);
+      });
+      if (albumCountLabel) {
+        albumCountLabel.textContent = `${list.length} Albums`;
       }
+    }
+
+    function selectAlbumById(id, animateArm = true) {
+      const item = allAlbums.find(a => a.id === id);
+      if (!item) return;
+      currentAlbumId = id;
+
+      // Update Spindle Label
+      if (spindleImg) {
+        spindleImg.src = item.image_url;
+        spindleImg.alt = item.title;
+      }
+
+      // Update LCD console
+      if (lcdTitle) lcdTitle.textContent = item.title;
+      if (lcdArtist) lcdArtist.textContent = item.artist;
+      if (lcdYear) lcdYear.textContent = '(' + item.year + ')';
+      if (lcdSource) lcdSource.textContent = 'SOURCE: ' + item.source;
+
+      // Update Spotify search link
+      if (btnSpotifyLink) {
+        btnSpotifyLink.href = 'https://open.spotify.com/search/' + encodeURIComponent(item.artist + ' ' + item.title);
+      }
+
+      // Sync dropdown value
+      if (albumSelect && albumSelect.value !== id) {
+        albumSelect.value = id;
+      }
+
+      // Tonearm needle drop motion
+      if (tonearmRod && animateArm) {
+        tonearmRod.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        const jitterAngle = -10 + (Math.random() * 4 - 2);
+        tonearmRod.style.transform = 'rotate(' + jitterAngle + 'deg)';
+      }
+
+      // Highlight corresponding curated disc track or exhibition rack card if applicable
+      const archIdx = item.is_curated ? parseInt(item.id.replace('arch_', ''), 10) : -1;
+      discTiles.forEach(t => {
+        if (archIdx !== -1 && parseInt(t.getAttribute('data-index')) === archIdx) {
+          t.classList.add('is-active-track');
+        } else {
+          t.classList.remove('is-active-track');
+        }
+      });
+      rackCards.forEach(c => {
+        if (archIdx !== -1 && parseInt(c.getAttribute('data-index')) === archIdx) {
+          c.classList.add('is-active');
+        } else {
+          c.classList.remove('is-active');
+        }
+      });
+    }
+
+    function applyFilters() {
+      const genre = genreSelect ? genreSelect.value : 'all';
+      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+
+      filteredAlbums = allAlbums.filter(a => {
+        const matchGenre = (genre === 'all') ||
+          (genre === 'curated' && a.is_curated) ||
+          (a.genre && a.genre.toLowerCase().includes(genre));
+        const matchQuery = !query ||
+          a.title.toLowerCase().includes(query) ||
+          a.artist.toLowerCase().includes(query);
+        return matchGenre && matchQuery;
+      });
+
+      populateDropdown(filteredAlbums);
+
+      // Preserve selection if possible, otherwise select first match
+      if (filteredAlbums.some(a => a.id === currentAlbumId)) {
+        if (albumSelect) albumSelect.value = currentAlbumId;
+      } else if (filteredAlbums.length > 0) {
+        selectAlbumById(filteredAlbums[0].id);
+      }
+    }
+
+    // Dropdown change
+    if (albumSelect) {
+      albumSelect.addEventListener('change', () => {
+        selectAlbumById(albumSelect.value);
+      });
+    }
+
+    // Genre filter
+    if (genreSelect) {
+      genreSelect.addEventListener('change', applyFilters);
+    }
+
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    // Track Navigation (Prev / Next)
+    if (btnPrevTrack) {
+      btnPrevTrack.addEventListener('click', () => {
+        if (filteredAlbums.length === 0) return;
+        let pos = filteredAlbums.findIndex(a => a.id === currentAlbumId);
+        if (pos <= 0) pos = filteredAlbums.length - 1;
+        else pos--;
+        selectAlbumById(filteredAlbums[pos].id);
+      });
+    }
+
+    if (btnNextTrack) {
+      btnNextTrack.addEventListener('click', () => {
+        if (filteredAlbums.length === 0) return;
+        let pos = filteredAlbums.findIndex(a => a.id === currentAlbumId);
+        if (pos === -1 || pos >= filteredAlbums.length - 1) pos = 0;
+        else pos++;
+        selectAlbumById(filteredAlbums[pos].id);
+      });
+    }
+
+    // Drop Needle (Random from filtered or full collection)
+    if (btnRandomDrop) {
+      btnRandomDrop.addEventListener('click', () => {
+        const pool = filteredAlbums.length > 0 ? filteredAlbums : allAlbums;
+        const randItem = pool[Math.floor(Math.random() * pool.length)];
+        selectAlbumById(randItem.id);
+      });
+    }
+
+    // Disc tiles click
+    discTiles.forEach(tile => {
+      tile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(tile.getAttribute('data-index'));
+        selectAlbumById('arch_' + idx);
+      });
     });
+
+    // Rack cards click
+    rackCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.getAttribute('data-index'));
+        selectAlbumById('arch_' + idx);
+        const deck = document.querySelector('.grand-turntable-deck');
+        if (deck) deck.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Filter Buttons for Gallery Rack
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const filter = btn.getAttribute('data-filter');
+
+        rackCards.forEach(c => {
+          const cat = c.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            c.style.display = 'flex';
+          } else {
+            c.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Spin / Pause toggle
+    if (btnToggleSpin) {
+      btnToggleSpin.addEventListener('click', () => {
+        isSpinning = !isSpinning;
+        if (isSpinning) {
+          if (disc) disc.style.animationPlayState = 'running';
+          if (tonearmRod) {
+            tonearmRod.style.animation = 'armBob 3s ease-in-out infinite alternate';
+            tonearmRod.style.transform = 'rotate(-10deg)';
+          }
+          btnToggleSpin.textContent = '⏹ PAUSE PLATTER';
+          btnToggleSpin.style.background = 'linear-gradient(135deg, #ffd166, #ff7b00)';
+          if (eqWrap) {
+            Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'running');
+          }
+        } else {
+          if (disc) disc.style.animationPlayState = 'paused';
+          if (tonearmRod) {
+            tonearmRod.style.animation = 'none';
+            tonearmRod.style.transform = 'rotate(-18deg)';
+          }
+          btnToggleSpin.textContent = '▶ SPIN PLATTER';
+          btnToggleSpin.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
+          if (eqWrap) {
+            Array.from(eqWrap.children).forEach(bar => bar.style.animationPlayState = 'paused');
+          }
+        }
+      });
+    }
+
+    // Initialize list and initial state
+    populateDropdown(allAlbums);
+    selectAlbumById('arch_2', false);
   }
 
-  if (btnRandomDrop) {
-    btnRandomDrop.addEventListener('click', () => {
-      const randIndex = Math.floor(Math.random() * tiles.length);
-      const chosen = tiles[randIndex];
-      selectTile(chosen);
-      chosen.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTurntable);
+  } else {
+    initTurntable();
   }
-});
+})();
 </script>
 
 

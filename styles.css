@@ -337,6 +337,10 @@ body {
 /* Integrated Deck Navigation & Visual Showcase */
 .deck-nav-bar {
   display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 /* ================================================================
    CREATIVE HARDWARE HI-FI CHANNEL SWITCHER NAVIGATION
    ================================================================ */
@@ -863,72 +867,80 @@ body {
   justify-content: center;
 }
 
-/* Inside the platter: The Album Covers Mosaic */
-.platter-covers-mosaic {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-  gap: 3px;
-  padding: 20px;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  background: #090c12;
-}
-
-.platter-covers-mosaic.is-archive {
-  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
-  gap: 8px;
-  padding: 24px;
-}
-
-.platter-covers-mosaic::-webkit-scrollbar {
-  width: 6px;
-}
-.platter-covers-mosaic::-webkit-scrollbar-track {
-  background: #090c12;
-}
-.platter-covers-mosaic::-webkit-scrollbar-thumb {
-  background: rgba(0, 242, 254, 0.35);
-  border-radius: 3px;
-}
-
-.platter-cover-tile {
+/* Authentic Spinning Vinyl Record Platter */
+.turntable-vinyl-disc {
   position: relative;
-  aspect-ratio: 1 / 1;
-  min-height: 40px;
-  border-radius: 4px;
+  width: 96%;
+  height: 96%;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    #131722 0px,
+    #131722 2px,
+    #0a0d14 3px,
+    #0a0d14 5px
+  );
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.95), 0 0 15px rgba(0, 0, 0, 0.8);
+  animation: vinylDiscSpin 24s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+.turntable-vinyl-disc:hover {
+  animation-play-state: paused;
+}
+
+@keyframes vinylDiscSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Concentric Vinyl Track Guides */
+.vinyl-groove-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+/* Album Cover Tiles Mounted on Vinyl Grooves */
+.disc-cover-track {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
   background: #141722;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 20;
 }
 
-.platter-cover-tile img {
+.disc-cover-track img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.platter-cover-tile:hover {
-  transform: scale(2.4);
-  z-index: 60;
-  border-color: #00f2fe;
-  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.8);
+.disc-cover-track:hover {
+  transform: translate(-50%, -50%) scale(2.4) !important;
+  z-index: 100 !important;
+  border-color: #00f2fe !important;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.95) !important;
 }
 
-.platter-cover-tile.is-active-track {
-  border: 2px solid #ffd166;
-  box-shadow: 0 0 15px #ffd166;
-  transform: scale(1.15);
-  z-index: 10;
-}
-
-.platter-cover-tile.is-dimmed {
-  opacity: 0.15;
-  filter: grayscale(80%);
+.disc-cover-track.is-active-track {
+  border: 2px solid #ffd166 !important;
+  box-shadow: 0 0 20px #ffd166 !important;
+  z-index: 30;
 }
 
 /* Center Spindle Hub floating in middle of platter */
@@ -937,17 +949,17 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 130px;
-  height: 130px;
+  width: 135px;
+  height: 135px;
   border-radius: 50%;
   background: #12151e;
   border: 4px solid #ffd166;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 209, 102, 0.35);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.95), 0 0 22px rgba(255, 209, 102, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
   z-index: 40;
+  cursor: pointer;
 }
 
 .center-spinning-vinyl {
@@ -1107,3 +1119,227 @@ body {
 
 
 
+
+/* Archive Gallery Showcase Rack below Turntable */
+.archive-showcase-section {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #10141e;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.archive-filter-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.archive-filter-btn {
+  background: #181d2a;
+  border: 1px solid #2d3748;
+  color: #cbd5e1;
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.archive-filter-btn.is-active, .archive-filter-btn:hover {
+  background: #00f2fe;
+  color: #000;
+  font-weight: 700;
+  border-color: #00f2fe;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1.25rem;
+}
+
+.archive-card {
+  background: #161a26;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.archive-card:hover {
+  transform: translateY(-4px);
+  border-color: #00f2fe;
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.25);
+}
+
+.archive-card.is-active {
+  border-color: #ffd166;
+  box-shadow: 0 0 18px rgba(255, 209, 102, 0.4);
+}
+
+.archive-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #0a0d14;
+}
+
+.archive-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.archive-card-body {
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.archive-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.archive-card-artist {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+.archive-card-source {
+  font-size: 0.68rem;
+  font-family: monospace;
+  color: #ffd166;
+  margin-top: auto;
+  padding: 2px 6px;
+  background: rgba(255, 209, 102, 0.12);
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+/* DJ Crossfader Console & Reactive Styles */
+.deck-vu-meter {
+  height: 6px;
+  background: #0e121a;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.75rem auto 0.25rem auto;
+  max-width: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.deck-vu-fill {
+  height: 100%;
+  background: linear-gradient(to right, #00f2fe, #ffd166, #ff4d4d);
+  transition: width 0.08s ease;
+}
+
+.fader-quick-cuts {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.btn-fader-cut {
+  background: #141824;
+  border: 1px solid #2d3748;
+  color: #cbd5e1;
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-fader-cut:hover {
+  background: #232b3c;
+  color: #fff;
+  border-color: #00f2fe;
+}
+
+.fader-mode-toggle {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+}
+
+.btn-fader-mode {
+  background: #10141e;
+  border: 1px solid #283042;
+  color: #94a3b8;
+  font-family: monospace;
+  font-size: 0.68rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-fader-mode.is-active {
+  background: #00f2fe;
+  color: #000;
+  font-weight: 700;
+  border-color: #00f2fe;
+}
+
+.crossfader-split-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #00f2fe;
+  box-shadow: 0 0 10px #00f2fe;
+  pointer-events: none;
+  z-index: 25;
+  transition: left 0.04s ease;
+}
+
+/* Custom styled Range Slider for DJ Crossfader */
+#crossfaderSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: #141926;
+  border: 1px solid #2d3748;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+#crossfaderSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 28px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #e2e8f0 0%, #718096 100%);
+  border: 2px solid #00f2fe;
+  cursor: grab;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+}
+
+#crossfaderSlider::-moz-range-thumb {
+  width: 22px;
+  height: 28px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #e2e8f0 0%, #718096 100%);
+  border: 2px solid #00f2fe;
+  cursor: grab;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+}
