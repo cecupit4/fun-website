@@ -2,10 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cecupit4.github.io/fun-website/index.html</loc>
-    <lastmod>2026-10-03T01:51:58.358Z</lastmod>
+    <lastmod>2026-10-03T01:56:02.141Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cecupit4.github.io/fun-website/genres.html</loc>
+    <lastmod>2026-10-03T01:55:43.884Z</lastmod>
   </url>
   <url>
     <loc>https://cecupit4.github.io/fun-website/about.html</loc>
     <lastmod>2026-10-03T01:37:19.585Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cecupit4.github.io/fun-website/decades.html</loc>
+    <lastmod>2026-10-03T01:55:36.278Z</lastmod>
   </url>
 </urlset>
